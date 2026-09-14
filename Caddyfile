@@ -1,0 +1,45 @@
+# render-live branch: adapted for Render, where this runs as two INDEPENDENT
+# services (not a docker-compose network), and Render's own edge already
+# terminates HTTPS for every service — so Caddy's job here is just the
+# password gate + serving the frontend + proxying to the API's public URL.
+# Do NOT merge this file back to main: the self-hosted/VPS deploy (main)
+# needs Caddy's own automatic-HTTPS behaviour, which this deliberately
+# disables (auto_https off) since Render doesn't expose raw ports 80/443
+# to the container for Caddy to run its own ACME challenge on.
+#
+# BASIC_AUTH_USER, BASIC_AUTH_HASH and API_ORIGIN (the api service's own
+# https://...onrender.com URL) are Render environment variables. PORT is
+# set automatically by Render. Nothing secret lives in this file.
+
+{
+	auto_https off
+}
+
+:{$PORT} {
+	encode gzip
+
+	# One login for the entire site — covers the dashboard AND the API, so the
+	# data can't be reached without the password. (Caddy 2.7+ directive name.)
+	basic_auth {
+		{$BASIC_AUTH_USER} {$BASIC_AUTH_HASH}
+	}
+
+	# API + health check go to the FastAPI backend's own Render service. These
+	# live in their own handle blocks so they terminate here — otherwise the
+	# SPA's try_files (a rewrite, which Caddy runs BEFORE reverse_proxy) would
+	# rewrite /api/* to /index.html and the API would never be reached.
+	handle /api/* {
+		reverse_proxy {$API_ORIGIN}
+	}
+	handle /health {
+		reverse_proxy {$API_ORIGIN}
+	}
+
+	# Everything else is the built React app. try_files makes client-side
+	# routing work by falling back to index.html.
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+}

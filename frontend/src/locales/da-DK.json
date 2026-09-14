@@ -1,0 +1,652 @@
+{
+  "common": {
+    "grain": {
+      "day": "Daglig",
+      "week": "Ugentlig",
+      "month": "Månedlig"
+    },
+    "nav": {
+      "prev": "Forrige",
+      "next": "Næste"
+    },
+    "loading": "Indlæser…",
+    "noDataForPeriod": "Ingen data for denne periode.",
+    "routePanel": {
+      "title": "Rutehistorik",
+      "noLocation": "Ingen placeringsdata for dette køretøj.",
+      "noGpsForDay": "Ingen GPS-data for denne dag.",
+      "noGpsFallback": "Ingen GPS for {{requested}} endnu — viser den nærmeste dag med GPS: {{actual}}.",
+      "ptoActive": "",
+      "start": "Start",
+      "end": "Slut",
+      "driving": "kører",
+      "stop": "stop",
+      "workingStop": "arbejdsstop",
+      "stops": "stop"
+    },
+    "mapPanel": {
+      "title": "Senest Kendte Placering",
+      "noLocation": "Ingen placeringsdata for dette køretøj."
+    },
+    "weatherPanel": {
+      "title": "Live Lokal Vejrudsigt",
+      "noLocation": "Ingen placering — ingen vejrudsigt.",
+      "unavailable": "Vejrudsigt ikke tilgængelig.",
+      "now": "nu",
+      "overnightLow": "laveste nattemperatur",
+      "blowdown": "",
+      "storm": "Stormvarsel — sørg for at sikre udstyr før brug",
+      "illustrative": "(illustrativ)",
+      "rainIn": "Regn i {{region}}",
+      "theArea": "området",
+      "outlookUnavailable": "udsigt ikke tilgængelig",
+      "unlikelyToday": "usandsynligt i dag",
+      "chance": "{{pct}}% chance",
+      "mm": "{{mm}} mm",
+      "expectedToday": "forventet i dag",
+      "heaviestAt": ", kraftigst {{time}}",
+      "peak": {
+        "overnight": "om natten",
+        "morning": "om morgenen",
+        "midday": "ved middagstid",
+        "afternoon": "om eftermiddagen",
+        "evening": "om aftenen"
+      }
+    },
+    "weatherConditions": {
+      "clear": "Klart",
+      "mainlyClear": "Overvejende klart",
+      "partlyCloudy": "Delvist skyet",
+      "overcast": "Overskyet",
+      "fog": "Tåge",
+      "drizzle": "Støvregn",
+      "lightRain": "Let regn",
+      "rain": "Regn",
+      "heavyRain": "Kraftig regn",
+      "snow": "Sne",
+      "showers": "Byger",
+      "heavyShowers": "Kraftige byger",
+      "snowShowers": "Snebyger",
+      "thunderstorm": "Tordenvejr",
+      "cloudy": "Skyet"
+    },
+    "weekdaysShort": {
+      "mon": "M",
+      "tue": "T",
+      "wed": "O",
+      "thu": "T",
+      "fri": "F",
+      "sat": "L",
+      "sun": "S"
+    }
+  },
+  "nav": {
+    "overview": {
+      "label": "Oversigt",
+      "title": "Oversigt"
+    },
+    "fleet": {
+      "label": "Flåde",
+      "title": "Flåde",
+      "crumb": "Alle køretøjer"
+    },
+    "trends": {
+      "label": "Tendenser",
+      "title": "Tendenser"
+    },
+    "sustainability": {
+      "label": "Bæredygtighed",
+      "title": "Bæredygtighed"
+    },
+    "health": {
+      "label": "Sundhed",
+      "title": "Maskinens Tilstand"
+    },
+    "alerts": {
+      "label": "Advarsler",
+      "title": "Advarsler"
+    },
+    "pumps": {
+      "label": "Pumper",
+      "title": "Pumper"
+    },
+    "routes": {
+      "label": "Ruter",
+      "title": "Ruter"
+    },
+    "costing": {
+      "label": "Omkostninger",
+      "title": "Brændstofomkostninger"
+    },
+    "groups": {
+      "vehicle": "Køretøj",
+      "fleet": "Flåde"
+    }
+  },
+  "app": {
+    "menu": "Menu",
+    "generateReport": "Generér rapport",
+    "lastKnownValues": "Senest kendte værdier",
+    "vehicle": "Køretøj",
+    "selectVehicle": "Vælg køretøj",
+    "live": "Live",
+    "offline": "Offline",
+    "toggleDarkMode": "Skift mørk tilstand",
+    "noVehiclesVisible": "Ingen køretøjer er synlige for denne installation.",
+    "apiError": {
+      "title": "Kunne ikke oprette forbindelse til API'et.",
+      "hint": "Kontrollér at API'et (uvicorn) og databasen begge kører."
+    },
+    "footer": "Revive Live"
+  },
+  "overview": {
+    "dayStatusBar": {
+      "statusOnNamed": "Status for {{vehicle}} den",
+      "statusOnGeneric": "Status den",
+      "prevDay": "Forrige dag",
+      "nextDay": "Næste dag",
+      "latest": "Seneste"
+    },
+    "kpi": {
+      "utilisation": {
+        "label": "Udnyttelse",
+        "note": "PTO-tændt andel af aktiv tid"
+      },
+      "hours": {
+        "label": "Timer",
+        "note": "aktiv tid (arbejde + kørsel)"
+      },
+      "atWork": {
+        "label": "På Arbejde",
+        "notePct": "{{pct}}% af aktiv tid",
+        "noteNoRoute": "ingen rute"
+      },
+      "jobs": {
+        "label": "Opgaver",
+        "note": "PTO-aktive stop"
+      },
+      "stops": {
+        "label": "Stop",
+        "note": "stationære klynger"
+      },
+      "openAlerts": {
+        "label": "Åbne Advarsler",
+        "noteInRecord": "{{count}} i registret"
+      }
+    },
+    "routeToggle": {
+      "routes": "Ruter",
+      "location": "Placering"
+    },
+    "activity": {
+      "title": "Aktivitet",
+      "mismatch": "Ingen aktivitet for {{requested}} endnu — viser den nærmeste dag med aktivitet: {{actual}}.",
+      "noData": "Ingen aktivitetsdata for denne dag.",
+      "atWork": "på arbejde",
+      "travel": "kørsel",
+      "idle": "tomgang",
+      "jobs": "opgaver",
+      "stops": "stop"
+    },
+    "currentStatus": {
+      "title": "Nuværende Status",
+      "segments": {
+        "offline": "Offline",
+        "live": "Live",
+        "travelling": "Kører",
+        "idle": "Tomgang",
+        "working": "Arbejder"
+      },
+      "indicators": {
+        "pto": "",
+        "vac": "",
+        "jet": "",
+        "rec": ""
+      }
+    },
+    "tankLevels": {
+      "title": "Tankniveauer",
+      "noData": "Intet tankniveau for dette køretøj.",
+      "frontWater": "Vand Foran",
+      "rearSludge": "Slam Bagpå",
+      "frontCompartmentWater": "forreste rum · vand",
+      "fullAria": "{{label}} {{pct}}% fyldt"
+    },
+    "vehicleWeight": {
+      "title": "Køretøjets Vægt",
+      "noData": "Ingen vægtdata for dette køretøj.",
+      "total": "Samlet køretøjsvægt"
+    },
+    "fuelConsumed": {
+      "title": "Brændstofforbrug",
+      "noDataFallback": "Ingen brændstofdata for {{requested}} endnu — viser den nærmeste dag med brændstofdata: {{actual}}.",
+      "noData": "Ingen brændstofdata for denne dag.",
+      "travelIdle": "kørsel / tomgang"
+    }
+  },
+  "trends": {
+    "title": "Tendenser",
+    "monthlyNote": "⚠ Den månedlige visning viser kun få punkter her — denne prøveperiodes historik er stadig kort. Dette vil vokse, efterhånden som flere data indsamles over tid.",
+    "kpiNote": {
+      "vsLast": "ift. sidste"
+    },
+    "metrics": {
+      "operatingHours": {
+        "label": "Driftstimer"
+      },
+      "waterRecycled": {
+        "label": "Genanvendt Vand"
+      },
+      "fuelUsed": {
+        "label": "Brugt Brændstof"
+      },
+      "fuelRate": {
+        "label": "Brændstofrate"
+      },
+      "engineRpm": {
+        "label": "Motor-RPM"
+      },
+      "safetyEvents": {
+        "label": "Sikkerhedshændelser"
+      }
+    },
+    "safetyTimeline": {
+      "title": "Sikkerhedshændelser",
+      "inThisPeriod": "{{count}} i denne periode",
+      "noEvents": "Ingen sikkerhedshændelser i denne periode — intet at rapportere.",
+      "tooltip_one": "{{count}} hændelse · {{when}}",
+      "tooltip_other": "{{count}} hændelser · {{when}}"
+    },
+    "rpmChart": {
+      "title": "Motor-RPM — Gennemsnit",
+      "noData": "Ingen RPM registreret.",
+      "ptoOff": "PTO fra (tomgang eller kørsel)",
+      "atWork": "på arbejde (PTO til)"
+    }
+  },
+  "sustainability": {
+    "title": "Bæredygtighed",
+    "kpi": {
+      "co2": {
+        "label": "CO₂ · Periode",
+        "note": "brændstof × 2,68 (estimat)"
+      },
+      "recyclingRate": {
+        "label": "Genanvendelsesrate",
+        "note": "seneste periode"
+      },
+      "avgUtilisation": {
+        "label": "Gns. Udnyttelse",
+        "note": "motor tændt på arbejde"
+      },
+      "fuel": {
+        "label": "Brændstof · Periode"
+      },
+      "waterRecycled": {
+        "label": "Genanvendt Vand"
+      }
+    },
+    "charts": {
+      "co2": {
+        "label": "Udledt CO₂",
+        "info": "Brændstof brugt i løbet af denne periode."
+      },
+      "fuelUsed": {
+        "label": "Brugt Brændstof",
+        "info": "Ændring i samlet brændstofforbrug i løbet af perioden."
+      },
+      "utilisation": {
+        "label": "Udnyttelse",
+        "info": "PTO-arbejdstid i løbet af denne periode."
+      },
+      "recyclingRate": {
+        "label": "Genanvendelsesrate",
+        "info": "Andel af PTO-aktiv tid brugt på genanvendelse, beregnet som genanvendelsespumpens driftstid ÷ PTO-driftstid - ikke et forhold for vandmængde.",
+        "zeroNote": "Genanvendelsespumpen har ikke kørt i denne periode."
+      },
+      "waterRecycled": {
+        "label": "Genanvendt Vand",
+        "info": "Beregnet ud fra genanvendelsespumpens driftstid x 350 L/min (den kendte gennemstrømning for genanvendelsesstemplet), ikke en direkte måling af vandmængde.",
+        "zeroNote": "Genanvendelsespumpen har ikke kørt i denne periode."
+      }
+    },
+    "info": {
+      "co2": "Udledt CO₂: estimeret ud fra brugt brændstof (diesel × 2,68 kg/L pr. liter).",
+      "fuelUsed": "Brugt Brændstof: samlet antal liter brugt i denne periode.",
+      "utilisation": "Udnyttelse: andel af tiden med tændt motor brugt på arbejde (PTO eller en pumpe aktiveret).",
+      "recyclingRate": "Genanvendelsesrate: andel af PTO-aktiv tid brugt på genanvendelse.",
+      "waterRecycled": "Genanvendt Vand: samlet antal liter genanvendt vand i denne periode."
+    }
+  },
+  "health": {
+    "title": "Maskinens Tilstand",
+    "updated": "opdateret {{date}}",
+    "thresholdsPlaceholder": "⚠ Grænseværdier er midlertidige placeholders.",
+    "kpi": {
+      "healthy": {
+        "label": "Sund",
+        "note": "inden for grænser"
+      },
+      "serviceSoon": {
+        "label": "Service Snart",
+        "note": "nærmer sig grænsen"
+      },
+      "serviceDue": {
+        "label": "Service Påkrævet",
+        "note": "over grænseværdi"
+      },
+      "pointsTracked": {
+        "label": "Sporede Punkter",
+        "note": "livstidstællere"
+      }
+    },
+    "groups": {
+      "ptoAndPumps": "PTO og Pumper",
+      "bodyAndCycles": "Karrosseri og Cyklusser",
+      "chassisMileage": "Chassis-kilometertal",
+      "engine": "Motor"
+    },
+    "points": {
+      "pto": "",
+      "vacuumPump": "Vakuumpumpe",
+      "jettingPump": "Spulepumpe",
+      "recyclePump": "Genanvendelsespumpe",
+      "pistonMovesCompleted": "Fuldførte Stempelbevægelser",
+      "cassetteMovements": "Kassettebevægelser",
+      "rearCoverOpenings": "Åbninger af Bagdæksel",
+      "chassisMileage": "Chassis-kilometertal",
+      "engineHours": "Motortimer",
+      "coolantTemp": "Kølevæsketemperatur",
+      "oilTemp": "Olietemperatur"
+    },
+    "probes": {
+      "cycloneProbe": "Cyklonføler",
+      "dynasetProbe": "Dynaset-føler",
+      "frontLevelProbe": "Forreste Niveauføler",
+      "hydraulicPressureProbe": "Hydraulisk Trykføler",
+      "jettingProbe": "Spuleføler",
+      "pistonProbe": "Stempelføler",
+      "rearLevelProbe": "Bageste Niveauføler",
+      "vacuumProbe": "Vakuumføler"
+    },
+    "status": {
+      "ok": "OK",
+      "serviceSoon": "Service snart",
+      "serviceDue": "Service påkrævet",
+      "noReading": "Ingen aflæsning"
+    },
+    "gauge": {
+      "limit": "grænse"
+    },
+    "cycleCounts": {
+      "title": "Cyklusantal",
+      "note": "Kumulativt antal stempelbevægelser, kassettebevægelser og åbninger af bagdæksel."
+    },
+    "periodPicker": {
+      "day": "Dag",
+      "week": "Uge",
+      "month": "Måned",
+      "range": "Interval"
+    }
+  },
+  "alerts": {
+    "kpi": {
+      "emergencyStops": {
+        "label": "Nødstop",
+        "note": "i registret"
+      },
+      "overrides": {
+        "label": "Tilsidesættelser",
+        "note": "tilsidesættelser af interlock"
+      },
+      "machineFaults": {
+        "label": "Maskinfejl",
+        "note": "i registret"
+      }
+    },
+    "alarmStatus": {
+      "title": "Alarmstatus",
+      "manual": "Manuel",
+      "automatic": "Automatisk",
+      "noData": "Ingen data",
+      "ok": "OK"
+    },
+    "alarms": {
+      "lowLevelOverride": {
+        "label": "Lavniveau-tilsidesættelse",
+        "activeLabel": "Trykket"
+      },
+      "safetyCircuit": {
+        "label": "Sikkerhedskredsløb",
+        "activeLabel": "Udløst"
+      },
+      "oilLevel": {
+        "label": "Olieniveau",
+        "activeLabel": "Lavt"
+      },
+      "oilTemperature": {
+        "label": "Olietemperatur",
+        "activeLabel": "Højt"
+      }
+    },
+    "emergencyStopsLog": {
+      "title": "Nødstopslog"
+    },
+    "operationalOverridesLog": {
+      "title": "Log over Driftstilsidesættelser"
+    },
+    "machineFaultsLog": {
+      "title": "Maskinfejl"
+    },
+    "eventList": {
+      "none": "Ingen registreret."
+    },
+    "sensorHealth": {
+      "title": "Sensortilstand",
+      "fault": "Fejl",
+      "ok": "OK",
+      "noData": "Ingen data",
+      "dataUnavailable": "Data ikke tilgængelige i øjeblikket",
+      "lastReading": "Seneste aflæsning: {{when}}",
+      "noDataNote": "Ingen data: der er endnu ikke registreret sensoraflæsninger for en eller flere sensorer ovenfor."
+    },
+    "estop": {
+      "warriorButton": {
+        "label": "Nødstop — knap trykket (Warrior)",
+        "cause": "Nødstopknap på køretøjet trykket"
+      },
+      "remoteButton": {
+        "label": "Nødstop — knap trykket (fjernbetjening)",
+        "cause": "Nødstopknap på håndholdt fjernbetjening trykket"
+      },
+      "remoteOutOfRange": {
+        "label": "Nødstop — fjernbetjening uden for rækkevidde",
+        "cause": "Fjernbetjeningen mistede forbindelsen til køretøjet"
+      },
+      "remoteFallDetection": {
+        "label": "Nødstop — faldregistrering på fjernbetjening",
+        "cause": "Fjernbetjeningen registrerede et fald hos operatøren"
+      },
+      "safetyCircuitTripped": {
+        "label": "Nødstop — sikkerhedskredsløb udløst",
+        "cause": "Sikkerhedsinterlock-kredsløb udløst"
+      },
+      "fallback": "Nødstop"
+    },
+    "override": {
+      "lowLevel": {
+        "label": "Lavniveau-tilsidesættelse trykket",
+        "cause": "Spulepumpe tvunget til at køre med tanken på eller under 20% — anbefales ikke"
+      },
+      "fallback": "Driftstilsidesættelse"
+    },
+    "fault": {
+      "lowOil": {
+        "label": "Lavt olieniveau",
+        "cause": "Hydraulikolieniveau under den sikre grænseværdi"
+      },
+      "highOilTemp": {
+        "label": "Høj olietemperatur",
+        "cause": "Hydraulikolietemperatur over den sikre grænseværdi"
+      },
+      "fallback": "Maskinfejl"
+    }
+  },
+  "routes": {
+    "workLocationLog": {
+      "title": "Log over Arbejdssteder",
+      "info": "Overalt hvor PTO og en pumpe var aktive samtidig, med GPS-data - over hele historikken, de seneste {{limit}} vises.",
+      "noData": "Ingen arbejdssteder registreret endnu."
+    },
+    "truckStopsLog": {
+      "title": "Log over Lastbilstop",
+      "info": "Overalt hvor lastbilen stoppede med at bevæge sig, med GPS-data - over hele historikken, de seneste {{limit}} vises.",
+      "noData": "Ingen stop registreret endnu."
+    },
+    "weatherUnavailable": "vejrdata ikke tilgængelige",
+    "historicalWeatherUnavailable": "historiske vejrdata ikke tilgængelige endnu"
+  },
+  "pumps": {
+    "labels": {
+      "pto": "",
+      "idle": "PTO Tomgang",
+      "vacuum": "Vakuum",
+      "jet": "Spule",
+      "recycle": "Genanvendelse"
+    },
+    "utilisation": {
+      "title": "PTO-udnyttelse",
+      "subtitle": "Andel af PTO-tid",
+      "note": "Arbejde og tomgang lægges sammen til denne periodes PTO-tid. Hver pumpes bjælke viser dens andel af den PTO-tid — pumperne overlapper, så de summerer ikke til ét samlet tal.",
+      "noPto": "Ingen PTO-forbrug registreret.",
+      "noPtoPeriod": "Ingen PTO-tid registreret for denne periode.",
+      "pumpsActive": "pumper aktive",
+      "ptoIdle": "PTO tomgang",
+      "notFitted": "Ikke monteret på dette køretøj"
+    },
+    "timeline": {
+      "title": "PTO- og Pumpetidslinje",
+      "subtitle": "Nøjagtige til/fra-overgange for én dag",
+      "noData": "Ingen PTO/pumpe-tidslinjedata for dette køretøj.",
+      "noDayData": "Ingen tidslinjedata for denne dag.",
+      "on": "Til",
+      "off": "Fra"
+    },
+    "usage": {
+      "title": "PTO-tid — Arbejde vs. Tomgang",
+      "noData": "Ingen PTO-forbrug registreret.",
+      "pumpsActiveLong": "Pumper aktive (≥1 pumpe)",
+      "ptoIdleLong": "PTO tomgang (til, ingen pumpe)"
+    },
+    "trend": {
+      "title": "Pumpedriftstid — Pr. Pumpe",
+      "noData": "Ingen pumpeforbrug registreret."
+    },
+    "activityBars": {
+      "title": "PTO-/Pumpeaktivitet",
+      "subtitle": "Minutter pr. periode",
+      "noData": "Ingen PTO-forbrug registreret."
+    },
+    "activitySingle": {
+      "title": "Forbrug — Minutter Kørt",
+      "noData": "Intet {{pump}}-forbrug registreret."
+    },
+    "activationLog": {
+      "title": "Pumpeaktiveringslog",
+      "note": "Individuelle til/fra-cyklusser for vakuum-, spule- og genanvendelsespumper, nyeste først, over hele historikken.",
+      "noData": "Ingen pumpeaktivitet registreret endnu.",
+      "ongoing": "i gang"
+    }
+  },
+  "fleet": {
+    "title": "Flådesammenligning",
+    "clickToOpen": "klik på et køretøj for at åbne det",
+    "subtitle": "Alle indlæste køretøjer side om side — sorter efter enhver kolonne. Sammensat ud fra hvert køretøjs egen telemetri; en streg betyder, at den kanal ikke er til stede.",
+    "loading": "Indlæser flåde…",
+    "noVehicles": "Ingen køretøjer indlæst.",
+    "noGps": "ingen GPS",
+    "columns": {
+      "vehicle": "Køretøj",
+      "hoursPerWeek": "Timer/Uge",
+      "utilisation": "Udnyttelse",
+      "fuelPerWeek": "Brændstof/Uge",
+      "alerts": "Advarsler",
+      "lastSeen": "Sidst Set"
+    },
+    "kpi": {
+      "vehicles": {
+        "label": "Køretøjer",
+        "note": "i flåden"
+      },
+      "totalHours": {
+        "label": "Timer i Alt/Uge"
+      },
+      "avgUtilisation": {
+        "label": "Gns. Udnyttelse"
+      },
+      "totalFuel": {
+        "label": "Brændstof i Alt/Uge"
+      },
+      "openAlerts": {
+        "label": "Åbne Advarsler",
+        "note": "på tværs af flåden"
+      }
+    }
+  },
+  "costing": {
+    "title": "Brændstofomkostninger",
+    "rangeFullHistory": "hele historikken",
+    "measuredNote": "Omkostningen er et interval baseret på lastbilens egen spredning i brændstofforbrug mellem arbejde og ikke-arbejde; brændstofpris og timeløn er dine egne antagelser.",
+    "noFuelData": "Ingen brændstofdata for dette køretøj — omkostningsberegning kræver brændstofrate-kanalen, som denne lastbils telemetri ikke har.",
+    "measured": {
+      "fuelBurned": {
+        "label": "Forbrugt Brændstof",
+        "sub": "over {{range}}"
+      },
+      "workingHours": {
+        "label": "Arbejdstimer",
+        "sub": "PTO eller pumpe aktiveret"
+      },
+      "workingFuelRate": {
+        "label": "Brændstofrate ved Arbejde",
+        "sub": "interval {{low}}–{{high}}"
+      },
+      "offtaskFuelRate": {
+        "label": "Brændstofrate uden for Arbejde",
+        "sub": "interval {{low}}–{{high}} · inkl. tomgang"
+      }
+    },
+    "estimator": {
+      "title": "Omkostningsestimator for Opgave",
+      "currency": "Valuta",
+      "fuelPrice": "Brændstofpris ({{cur}}/L)",
+      "labourRate": "Timeløn ({{cur}}/t)",
+      "workingHours": "Arbejdstimer",
+      "travelIdleHours": "Kørsels-/tomgangstimer",
+      "estimatedCost": "Estimeret omkostning for denne opgave",
+      "lowBreakdown": "Lav · brændstof {{fuel}} + løn {{labour}}",
+      "highBreakdown": "Høj · brændstof {{fuel}} + løn {{labour}}",
+      "notEnoughData": "Ikke nok brændstofratedata til at lave et omkostningsestimat.",
+      "note": "Intervallet kommer fra denne lastbils p25–p75 spredning i brændstofrate: den lave omkostning antager det mest sparsommelige forbrug, den høje det tungeste. Lønnen er den samme i begge."
+    },
+    "measuredCost": {
+      "title": "Målt Brændstofomkostning",
+      "actualBurnedRange": "Faktisk forbrugt brændstof over {{range}}, til {{price}}/L",
+      "actualBurnedDays_one": "Faktisk forbrugt brændstof på {{count}} valgt dag, til {{price}}/L",
+      "actualBurnedDays_other": "Faktisk forbrugt brændstof på {{count}} valgte dage, til {{price}}/L",
+      "measuredBreakdown": "{{litres}} L målt · {{sel}} af {{total}} dage",
+      "corruptDiscarded_one": "· {{count}} korrupt aflæsning kasseret",
+      "corruptDiscarded_other": "· {{count}} korrupte aflæsninger kasseret",
+      "note": "Vælg de dage, der skal indgå — hver boble er en dag med brændstofdata. Omkostningen er de målte liter på de valgte dage (den daglige tællerdifference, prissat til din brændstofpris ovenfor); tællernulstillinger og usandsynlige udsving kasseres altid, tælles aldrig med."
+    },
+    "dayPicker": {
+      "daysOf": "{{selected}} af {{available}} dage",
+      "all": "Alle",
+      "clear": "Ryd",
+      "prevMonth": "Forrige måned",
+      "nextMonth": "Næste måned",
+      "toggleMonthTitle": "Vælg eller ryd hele denne måned",
+      "noFuelData": "ingen brændstofdata"
+    }
+  }
+}

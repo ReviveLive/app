@@ -1,0 +1,652 @@
+{
+  "common": {
+    "grain": {
+      "day": "Täglich",
+      "week": "Wöchentlich",
+      "month": "Monatlich"
+    },
+    "nav": {
+      "prev": "Zurück",
+      "next": "Weiter"
+    },
+    "loading": "Wird geladen…",
+    "noDataForPeriod": "Keine Daten für diesen Zeitraum.",
+    "routePanel": {
+      "title": "Streckenverlauf",
+      "noLocation": "Keine Standortdaten für dieses Fahrzeug.",
+      "noGpsForDay": "Keine GPS-Daten für diesen Tag.",
+      "noGpsFallback": "Noch kein GPS für {{requested}} — zeigt den nächstgelegenen Tag mit GPS: {{actual}}.",
+      "ptoActive": "",
+      "start": "Start",
+      "end": "Ende",
+      "driving": "fährt",
+      "stop": "Stopp",
+      "workingStop": "Arbeitsstopp",
+      "stops": "Stopps"
+    },
+    "mapPanel": {
+      "title": "Letzter bekannter Standort",
+      "noLocation": "Keine Standortdaten für dieses Fahrzeug."
+    },
+    "weatherPanel": {
+      "title": "Live-Wettervorhersage vor Ort",
+      "noLocation": "Kein Standort — keine Vorhersage.",
+      "unavailable": "Wettervorhersage nicht verfügbar.",
+      "now": "jetzt",
+      "overnightLow": "Nachttiefstwert",
+      "blowdown": "",
+      "storm": "Sturmwarnung — Ausrüstung vor dem Betrieb sichern",
+      "illustrative": "(veranschaulichend)",
+      "rainIn": "Regen in {{region}}",
+      "theArea": "der Umgebung",
+      "outlookUnavailable": "Vorhersage nicht verfügbar",
+      "unlikelyToday": "heute unwahrscheinlich",
+      "chance": "{{pct}}% Wahrscheinlichkeit",
+      "mm": "{{mm}} mm",
+      "expectedToday": "heute erwartet",
+      "heaviestAt": ", am stärksten {{time}}",
+      "peak": {
+        "overnight": "nachts",
+        "morning": "am Morgen",
+        "midday": "zur Mittagszeit",
+        "afternoon": "am Nachmittag",
+        "evening": "am Abend"
+      }
+    },
+    "weatherConditions": {
+      "clear": "Klar",
+      "mainlyClear": "Überwiegend klar",
+      "partlyCloudy": "Teilweise bewölkt",
+      "overcast": "Bedeckt",
+      "fog": "Nebel",
+      "drizzle": "Nieselregen",
+      "lightRain": "Leichter Regen",
+      "rain": "Regen",
+      "heavyRain": "Starker Regen",
+      "snow": "Schnee",
+      "showers": "Schauer",
+      "heavyShowers": "Starke Schauer",
+      "snowShowers": "Schneeschauer",
+      "thunderstorm": "Gewitter",
+      "cloudy": "Bewölkt"
+    },
+    "weekdaysShort": {
+      "mon": "M",
+      "tue": "D",
+      "wed": "M",
+      "thu": "D",
+      "fri": "F",
+      "sat": "S",
+      "sun": "S"
+    }
+  },
+  "nav": {
+    "overview": {
+      "label": "Übersicht",
+      "title": "Übersicht"
+    },
+    "fleet": {
+      "label": "Flotte",
+      "title": "Flotte",
+      "crumb": "Alle Fahrzeuge"
+    },
+    "trends": {
+      "label": "Trends",
+      "title": "Trends"
+    },
+    "sustainability": {
+      "label": "Nachhaltigkeit",
+      "title": "Nachhaltigkeit"
+    },
+    "health": {
+      "label": "Zustand",
+      "title": "Maschinenzustand"
+    },
+    "alerts": {
+      "label": "Warnungen",
+      "title": "Warnungen"
+    },
+    "pumps": {
+      "label": "Pumpen",
+      "title": "Pumpen"
+    },
+    "routes": {
+      "label": "Strecken",
+      "title": "Strecken"
+    },
+    "costing": {
+      "label": "Kosten",
+      "title": "Kraftstoffkosten"
+    },
+    "groups": {
+      "vehicle": "Fahrzeug",
+      "fleet": "Flotte"
+    }
+  },
+  "app": {
+    "menu": "Menü",
+    "generateReport": "Bericht erstellen",
+    "lastKnownValues": "Zuletzt bekannte Werte",
+    "vehicle": "Fahrzeug",
+    "selectVehicle": "Fahrzeug auswählen",
+    "live": "Live",
+    "offline": "Offline",
+    "toggleDarkMode": "Dunklen Modus umschalten",
+    "noVehiclesVisible": "Für diese Installation sind keine Fahrzeuge sichtbar.",
+    "apiError": {
+      "title": "Die API konnte nicht erreicht werden.",
+      "hint": "Stellen Sie sicher, dass die API (uvicorn) und die Datenbank beide laufen."
+    },
+    "footer": "Revive Live"
+  },
+  "overview": {
+    "dayStatusBar": {
+      "statusOnNamed": "Status von {{vehicle}} am",
+      "statusOnGeneric": "Status am",
+      "prevDay": "Vorheriger Tag",
+      "nextDay": "Nächster Tag",
+      "latest": "Neueste"
+    },
+    "kpi": {
+      "utilisation": {
+        "label": "Auslastung",
+        "note": "PTO-aktiver Anteil der aktiven Zeit"
+      },
+      "hours": {
+        "label": "Stunden",
+        "note": "aktive Zeit (Arbeit + Fahrt)"
+      },
+      "atWork": {
+        "label": "Bei der Arbeit",
+        "notePct": "{{pct}}% der aktiven Zeit",
+        "noteNoRoute": "keine Route"
+      },
+      "jobs": {
+        "label": "Einsätze",
+        "note": "PTO-aktive Stopps"
+      },
+      "stops": {
+        "label": "Stopps",
+        "note": "stationäre Cluster"
+      },
+      "openAlerts": {
+        "label": "Offene Warnungen",
+        "noteInRecord": "{{count}} im Protokoll"
+      }
+    },
+    "routeToggle": {
+      "routes": "Strecken",
+      "location": "Standort"
+    },
+    "activity": {
+      "title": "Aktivität",
+      "mismatch": "Noch keine Aktivität für {{requested}} — zeigt den nächstgelegenen Tag mit Aktivität: {{actual}}.",
+      "noData": "Keine Aktivitätsdaten für diesen Tag.",
+      "atWork": "bei der Arbeit",
+      "travel": "Fahrt",
+      "idle": "Leerlauf",
+      "jobs": "Einsätze",
+      "stops": "Stopps"
+    },
+    "currentStatus": {
+      "title": "Aktueller Status",
+      "segments": {
+        "offline": "Offline",
+        "live": "Live",
+        "travelling": "Unterwegs",
+        "idle": "Leerlauf",
+        "working": "In Betrieb"
+      },
+      "indicators": {
+        "pto": "",
+        "vac": "",
+        "jet": "",
+        "rec": ""
+      }
+    },
+    "tankLevels": {
+      "title": "Tankfüllstände",
+      "noData": "Kein Tankfüllstand für dieses Fahrzeug.",
+      "frontWater": "Wasser vorne",
+      "rearSludge": "Schlamm hinten",
+      "frontCompartmentWater": "vorderes Fach · Wasser",
+      "fullAria": "{{label}} zu {{pct}}% gefüllt"
+    },
+    "vehicleWeight": {
+      "title": "Fahrzeuggewicht",
+      "noData": "Keine Gewichtsdaten für dieses Fahrzeug.",
+      "total": "Gesamtgewicht des Fahrzeugs"
+    },
+    "fuelConsumed": {
+      "title": "Kraftstoffverbrauch",
+      "noDataFallback": "Noch keine Kraftstoffdaten für {{requested}} — zeigt den nächstgelegenen Tag mit Kraftstoffdaten: {{actual}}.",
+      "noData": "Keine Kraftstoffdaten für diesen Tag.",
+      "travelIdle": "Fahrt / Leerlauf"
+    }
+  },
+  "trends": {
+    "title": "Trends",
+    "monthlyNote": "⚠ Die monatliche Ansicht zeigt hier nur wenige Punkte — die Historie dieser Testphase ist noch kurz. Dies wird mit der Zeit wachsen, sobald mehr Daten gesammelt werden.",
+    "kpiNote": {
+      "vsLast": "im Vergleich zum letzten"
+    },
+    "metrics": {
+      "operatingHours": {
+        "label": "Betriebsstunden"
+      },
+      "waterRecycled": {
+        "label": "Recyceltes Wasser"
+      },
+      "fuelUsed": {
+        "label": "Verbrauchter Kraftstoff"
+      },
+      "fuelRate": {
+        "label": "Kraftstoffrate"
+      },
+      "engineRpm": {
+        "label": "Motordrehzahl"
+      },
+      "safetyEvents": {
+        "label": "Sicherheitsereignisse"
+      }
+    },
+    "safetyTimeline": {
+      "title": "Sicherheitsereignisse",
+      "inThisPeriod": "{{count}} in diesem Zeitraum",
+      "noEvents": "Keine Sicherheitsereignisse in diesem Zeitraum — nichts zu melden.",
+      "tooltip_one": "{{count}} Ereignis · {{when}}",
+      "tooltip_other": "{{count}} Ereignisse · {{when}}"
+    },
+    "rpmChart": {
+      "title": "Motordrehzahl — Durchschnitt",
+      "noData": "Keine Drehzahl aufgezeichnet.",
+      "ptoOff": "PTO aus (Leerlauf oder Fahrt)",
+      "atWork": "bei der Arbeit (PTO an)"
+    }
+  },
+  "sustainability": {
+    "title": "Nachhaltigkeit",
+    "kpi": {
+      "co2": {
+        "label": "CO₂ · Zeitraum",
+        "note": "Kraftstoff × 2,68 (Schätzung)"
+      },
+      "recyclingRate": {
+        "label": "Recyclingquote",
+        "note": "letzter Zeitraum"
+      },
+      "avgUtilisation": {
+        "label": "Durchschn. Auslastung",
+        "note": "Motor an, bei der Arbeit"
+      },
+      "fuel": {
+        "label": "Kraftstoff · Zeitraum"
+      },
+      "waterRecycled": {
+        "label": "Recyceltes Wasser"
+      }
+    },
+    "charts": {
+      "co2": {
+        "label": "Ausgestoßenes CO₂",
+        "info": "Kraftstoff, der in diesem Zeitraum verbraucht wurde."
+      },
+      "fuelUsed": {
+        "label": "Verbrauchter Kraftstoff",
+        "info": "Änderung des insgesamt verbrauchten Kraftstoffs über den Zeitraum."
+      },
+      "utilisation": {
+        "label": "Auslastung",
+        "info": "PTO-Arbeitszeit in diesem Zeitraum."
+      },
+      "recyclingRate": {
+        "label": "Recyclingquote",
+        "info": "Anteil der PTO-aktiven Zeit, der für das Recycling aufgewendet wurde, berechnet als Laufzeit der Recyclingpumpe ÷ PTO-Laufzeit - kein Verhältnis zur Wassermenge.",
+        "zeroNote": "Die Recyclingpumpe lief in diesem Zeitraum nicht."
+      },
+      "waterRecycled": {
+        "label": "Recyceltes Wasser",
+        "info": "Berechnet aus der Laufzeit der Recyclingpumpe x 350 L/min (die bekannte Durchflussrate des Recycling-Kolbens), keine direkte Messung der Wassermenge.",
+        "zeroNote": "Die Recyclingpumpe lief in diesem Zeitraum nicht."
+      }
+    },
+    "info": {
+      "co2": "Ausgestoßenes CO₂: geschätzt anhand des verbrauchten Kraftstoffs (Diesel × 2,68 kg/L pro Liter).",
+      "fuelUsed": "Verbrauchter Kraftstoff: Gesamtzahl der in diesem Zeitraum verbrauchten Liter.",
+      "utilisation": "Auslastung: Anteil der Zeit mit laufendem Motor, der für Arbeit aufgewendet wurde (PTO oder eine aktive Pumpe).",
+      "recyclingRate": "Recyclingquote: Anteil der PTO-aktiven Zeit, der für das Recycling aufgewendet wurde.",
+      "waterRecycled": "Recyceltes Wasser: Gesamtzahl der in diesem Zeitraum recycelten Liter Wasser."
+    }
+  },
+  "health": {
+    "title": "Maschinenzustand",
+    "updated": "aktualisiert {{date}}",
+    "thresholdsPlaceholder": "⚠ Grenzwerte sind Platzhalter.",
+    "kpi": {
+      "healthy": {
+        "label": "In Ordnung",
+        "note": "innerhalb der Grenzwerte"
+      },
+      "serviceSoon": {
+        "label": "Wartung bald fällig",
+        "note": "nähert sich dem Grenzwert"
+      },
+      "serviceDue": {
+        "label": "Wartung fällig",
+        "note": "über dem Grenzwert"
+      },
+      "pointsTracked": {
+        "label": "Erfasste Punkte",
+        "note": "Lebenszeitzähler"
+      }
+    },
+    "groups": {
+      "ptoAndPumps": "PTO und Pumpen",
+      "bodyAndCycles": "Aufbau und Zyklen",
+      "chassisMileage": "Fahrgestell-Kilometerstand",
+      "engine": "Motor"
+    },
+    "points": {
+      "pto": "",
+      "vacuumPump": "Vakuumpumpe",
+      "jettingPump": "Spülpumpe",
+      "recyclePump": "Recyclingpumpe",
+      "pistonMovesCompleted": "Abgeschlossene Kolbenbewegungen",
+      "cassetteMovements": "Kassettenbewegungen",
+      "rearCoverOpenings": "Öffnungen der Heckklappe",
+      "chassisMileage": "Fahrgestell-Kilometerstand",
+      "engineHours": "Motorstunden",
+      "coolantTemp": "Kühlmitteltemperatur",
+      "oilTemp": "Öltemperatur"
+    },
+    "probes": {
+      "cycloneProbe": "Zyklonsonde",
+      "dynasetProbe": "Dynaset-Sonde",
+      "frontLevelProbe": "Füllstandssonde vorne",
+      "hydraulicPressureProbe": "Hydraulikdrucksonde",
+      "jettingProbe": "Spülsonde",
+      "pistonProbe": "Kolbensonde",
+      "rearLevelProbe": "Füllstandssonde hinten",
+      "vacuumProbe": "Vakuumsonde"
+    },
+    "status": {
+      "ok": "OK",
+      "serviceSoon": "Wartung bald fällig",
+      "serviceDue": "Wartung fällig",
+      "noReading": "Kein Messwert"
+    },
+    "gauge": {
+      "limit": "Grenzwert"
+    },
+    "cycleCounts": {
+      "title": "Zyklenzähler",
+      "note": "Kumulierte Anzahl der Kolbenbewegungen, Kassettenbewegungen und Öffnungen der Heckklappe."
+    },
+    "periodPicker": {
+      "day": "Tag",
+      "week": "Woche",
+      "month": "Monat",
+      "range": "Zeitraum"
+    }
+  },
+  "alerts": {
+    "kpi": {
+      "emergencyStops": {
+        "label": "Nothalte",
+        "note": "im Protokoll"
+      },
+      "overrides": {
+        "label": "Übersteuerungen",
+        "note": "Übersteuerungen der Verriegelung"
+      },
+      "machineFaults": {
+        "label": "Maschinenfehler",
+        "note": "im Protokoll"
+      }
+    },
+    "alarmStatus": {
+      "title": "Alarmstatus",
+      "manual": "Manuell",
+      "automatic": "Automatisch",
+      "noData": "Keine Daten",
+      "ok": "OK"
+    },
+    "alarms": {
+      "lowLevelOverride": {
+        "label": "Übersteuerung bei niedrigem Füllstand",
+        "activeLabel": "Gedrückt"
+      },
+      "safetyCircuit": {
+        "label": "Sicherheitskreis",
+        "activeLabel": "Ausgelöst"
+      },
+      "oilLevel": {
+        "label": "Ölstand",
+        "activeLabel": "Niedrig"
+      },
+      "oilTemperature": {
+        "label": "Öltemperatur",
+        "activeLabel": "Hoch"
+      }
+    },
+    "emergencyStopsLog": {
+      "title": "Nothalt-Protokoll"
+    },
+    "operationalOverridesLog": {
+      "title": "Protokoll der Betriebsübersteuerungen"
+    },
+    "machineFaultsLog": {
+      "title": "Maschinenfehler"
+    },
+    "eventList": {
+      "none": "Nichts aufgezeichnet."
+    },
+    "sensorHealth": {
+      "title": "Sensorzustand",
+      "fault": "Fehler",
+      "ok": "OK",
+      "noData": "Keine Daten",
+      "dataUnavailable": "Daten derzeit nicht verfügbar",
+      "lastReading": "Letzter Messwert: {{when}}",
+      "noDataNote": "Keine Daten: Für einen oder mehrere Sensoren oben wurden noch keine Messwerte aufgezeichnet."
+    },
+    "estop": {
+      "warriorButton": {
+        "label": "Nothalt — Knopf gedrückt (Warrior)",
+        "cause": "Nothalt-Knopf am Fahrzeug gedrückt"
+      },
+      "remoteButton": {
+        "label": "Nothalt — Knopf gedrückt (Fernbedienung)",
+        "cause": "Nothalt-Knopf der Handfernbedienung gedrückt"
+      },
+      "remoteOutOfRange": {
+        "label": "Nothalt — Fernbedienung außer Reichweite",
+        "cause": "Fernbedienung hat die Verbindung zum Fahrzeug verloren"
+      },
+      "remoteFallDetection": {
+        "label": "Nothalt — Sturzerkennung der Fernbedienung",
+        "cause": "Fernbedienung hat einen Sturz des Bedieners erkannt"
+      },
+      "safetyCircuitTripped": {
+        "label": "Nothalt — Sicherheitskreis ausgelöst",
+        "cause": "Sicherheits-Verriegelungskreis ausgelöst"
+      },
+      "fallback": "Nothalt"
+    },
+    "override": {
+      "lowLevel": {
+        "label": "Übersteuerung bei niedrigem Füllstand gedrückt",
+        "cause": "Spülpumpe zum Betrieb gezwungen, während der Tank bei oder unter 20% liegt — nicht empfohlen"
+      },
+      "fallback": "Betriebsübersteuerung"
+    },
+    "fault": {
+      "lowOil": {
+        "label": "Niedriger Ölstand",
+        "cause": "Hydraulikölstand unter dem sicheren Grenzwert"
+      },
+      "highOilTemp": {
+        "label": "Hohe Öltemperatur",
+        "cause": "Hydrauliköltemperatur über dem sicheren Grenzwert"
+      },
+      "fallback": "Maschinenfehler"
+    }
+  },
+  "routes": {
+    "workLocationLog": {
+      "title": "Protokoll der Arbeitsorte",
+      "info": "Überall dort, wo PTO und eine Pumpe gleichzeitig aktiv waren, mit GPS-Daten - über die gesamte Historie, die letzten {{limit}} werden angezeigt.",
+      "noData": "Noch keine Arbeitsorte aufgezeichnet."
+    },
+    "truckStopsLog": {
+      "title": "Protokoll der Fahrzeugstopps",
+      "info": "Überall dort, wo das Fahrzeug angehalten hat, mit GPS-Daten - über die gesamte Historie, die letzten {{limit}} werden angezeigt.",
+      "noData": "Noch keine Stopps aufgezeichnet."
+    },
+    "weatherUnavailable": "Wetterdaten nicht verfügbar",
+    "historicalWeatherUnavailable": "Historische Wetterdaten noch nicht verfügbar"
+  },
+  "pumps": {
+    "labels": {
+      "pto": "",
+      "idle": "PTO Leerlauf",
+      "vacuum": "Vakuum",
+      "jet": "Spülen",
+      "recycle": "Recycling"
+    },
+    "utilisation": {
+      "title": "PTO-Auslastung",
+      "subtitle": "Anteil der PTO-Zeit",
+      "note": "Arbeit und Leerlauf summieren sich zur PTO-Zeit dieses Zeitraums. Der Balken jeder Pumpe zeigt ihren Anteil an dieser PTO-Zeit — die Pumpen überschneiden sich, sodass sie sich nicht zu einer Gesamtsumme addieren.",
+      "noPto": "Keine PTO-Nutzung aufgezeichnet.",
+      "noPtoPeriod": "Keine PTO-Zeit für diesen Zeitraum aufgezeichnet.",
+      "pumpsActive": "Pumpen aktiv",
+      "ptoIdle": "PTO Leerlauf",
+      "notFitted": "An diesem Fahrzeug nicht verbaut"
+    },
+    "timeline": {
+      "title": "PTO- und Pumpenzeitachse",
+      "subtitle": "Exakte Ein-/Aus-Übergänge für einen Tag",
+      "noData": "Keine PTO-/Pumpen-Zeitachsendaten für dieses Fahrzeug.",
+      "noDayData": "Keine Zeitachsendaten für diesen Tag.",
+      "on": "Ein",
+      "off": "Aus"
+    },
+    "usage": {
+      "title": "PTO-Zeit — Arbeit vs. Leerlauf",
+      "noData": "Keine PTO-Nutzung aufgezeichnet.",
+      "pumpsActiveLong": "Pumpen aktiv (≥1 Pumpe)",
+      "ptoIdleLong": "PTO Leerlauf (an, keine Pumpe)"
+    },
+    "trend": {
+      "title": "Pumpenlaufzeit — pro Pumpe",
+      "noData": "Keine Pumpennutzung aufgezeichnet."
+    },
+    "activityBars": {
+      "title": "PTO-/Pumpenaktivität",
+      "subtitle": "Minuten pro Zeitraum",
+      "noData": "Keine PTO-Nutzung aufgezeichnet."
+    },
+    "activitySingle": {
+      "title": "Nutzung — Laufminuten",
+      "noData": "Keine {{pump}}-Nutzung aufgezeichnet."
+    },
+    "activationLog": {
+      "title": "Pumpenaktivierungsprotokoll",
+      "note": "Einzelne Ein-/Aus-Zyklen der Vakuum-, Spül- und Recyclingpumpen, neueste zuerst, über die gesamte Historie.",
+      "noData": "Noch keine Pumpenaktivität aufgezeichnet.",
+      "ongoing": "läuft"
+    }
+  },
+  "fleet": {
+    "title": "Flottenvergleich",
+    "clickToOpen": "Auf ein Fahrzeug klicken, um es zu öffnen",
+    "subtitle": "Alle erfassten Fahrzeuge nebeneinander — sortierbar nach jeder Spalte. Zusammengestellt aus der eigenen Telemetrie jedes Fahrzeugs; ein Strich bedeutet, dass dieser Kanal nicht vorhanden ist.",
+    "loading": "Flotte wird geladen…",
+    "noVehicles": "Keine Fahrzeuge erfasst.",
+    "noGps": "kein GPS",
+    "columns": {
+      "vehicle": "Fahrzeug",
+      "hoursPerWeek": "Stunden/Woche",
+      "utilisation": "Auslastung",
+      "fuelPerWeek": "Kraftstoff/Woche",
+      "alerts": "Warnungen",
+      "lastSeen": "Zuletzt gesehen"
+    },
+    "kpi": {
+      "vehicles": {
+        "label": "Fahrzeuge",
+        "note": "in der Flotte"
+      },
+      "totalHours": {
+        "label": "Stunden gesamt/Woche"
+      },
+      "avgUtilisation": {
+        "label": "Durchschn. Auslastung"
+      },
+      "totalFuel": {
+        "label": "Kraftstoff gesamt/Woche"
+      },
+      "openAlerts": {
+        "label": "Offene Warnungen",
+        "note": "flottenweit"
+      }
+    }
+  },
+  "costing": {
+    "title": "Kraftstoffkosten",
+    "rangeFullHistory": "gesamte Historie",
+    "measuredNote": "Die Kosten sind eine Spanne, die auf der eigenen Streuung des Kraftstoffverbrauchs des Fahrzeugs zwischen Arbeit und Nicht-Arbeit basiert; Kraftstoffpreis und Lohnkosten sind Ihre eigenen Annahmen.",
+    "noFuelData": "Keine Kraftstoffdaten für dieses Fahrzeug — die Kostenberechnung benötigt den Kraftstoffraten-Kanal, den die Telemetrie dieses Fahrzeugs nicht liefert.",
+    "measured": {
+      "fuelBurned": {
+        "label": "Verbrauchter Kraftstoff",
+        "sub": "über {{range}}"
+      },
+      "workingHours": {
+        "label": "Arbeitsstunden",
+        "sub": "PTO oder Pumpe aktiv"
+      },
+      "workingFuelRate": {
+        "label": "Kraftstoffrate bei Arbeit",
+        "sub": "Spanne {{low}}–{{high}}"
+      },
+      "offtaskFuelRate": {
+        "label": "Kraftstoffrate außerhalb der Arbeit",
+        "sub": "Spanne {{low}}–{{high}} · inkl. Leerlauf"
+      }
+    },
+    "estimator": {
+      "title": "Kostenschätzer für Einsatz",
+      "currency": "Währung",
+      "fuelPrice": "Kraftstoffpreis ({{cur}}/L)",
+      "labourRate": "Lohnkosten ({{cur}}/Std)",
+      "workingHours": "Arbeitsstunden",
+      "travelIdleHours": "Fahrt-/Leerlaufstunden",
+      "estimatedCost": "Geschätzte Kosten für diesen Einsatz",
+      "lowBreakdown": "Niedrig · Kraftstoff {{fuel}} + Lohn {{labour}}",
+      "highBreakdown": "Hoch · Kraftstoff {{fuel}} + Lohn {{labour}}",
+      "notEnoughData": "Nicht genügend Kraftstoffratendaten für eine Kostenschätzung.",
+      "note": "Die Spanne ergibt sich aus der p25–p75-Streuung der Kraftstoffrate dieses Fahrzeugs: Die niedrigen Kosten gehen vom sparsamsten Verbrauch aus, die hohen vom stärksten. Die Lohnkosten sind in beiden Fällen gleich."
+    },
+    "measuredCost": {
+      "title": "Gemessene Kraftstoffkosten",
+      "actualBurnedRange": "Tatsächlich verbrauchter Kraftstoff über {{range}}, zu {{price}}/L",
+      "actualBurnedDays_one": "Tatsächlich verbrauchter Kraftstoff an {{count}} ausgewähltem Tag, zu {{price}}/L",
+      "actualBurnedDays_other": "Tatsächlich verbrauchter Kraftstoff an {{count}} ausgewählten Tagen, zu {{price}}/L",
+      "measuredBreakdown": "{{litres}} L gemessen · {{sel}} von {{total}} Tagen",
+      "corruptDiscarded_one": "· {{count}} fehlerhafter Messwert verworfen",
+      "corruptDiscarded_other": "· {{count}} fehlerhafte Messwerte verworfen",
+      "note": "Wählen Sie die einzubeziehenden Tage aus — jede Blase ist ein Tag mit Kraftstoffdaten. Die Kosten ergeben sich aus den gemessenen Litern an den ausgewählten Tagen (die tägliche Zählerdifferenz, bewertet zu Ihrem obigen Kraftstoffpreis); Zählerrücksetzungen und unplausible Ausreißer werden immer verworfen, nie mitgezählt."
+    },
+    "dayPicker": {
+      "daysOf": "{{selected}} von {{available}} Tagen",
+      "all": "Alle",
+      "clear": "Löschen",
+      "prevMonth": "Vorheriger Monat",
+      "nextMonth": "Nächster Monat",
+      "toggleMonthTitle": "Diesen ganzen Monat auswählen oder löschen",
+      "noFuelData": "keine Kraftstoffdaten"
+    }
+  }
+}

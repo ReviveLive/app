@@ -1,0 +1,66 @@
+# Standalone stack: this ingest API + its own TimescaleDB. Independent of
+# demo/docker-compose.yml (the sales demo) on purpose — different data,
+# different lifecycle. Run from inside this folder:
+#
+#   docker compose up -d --build
+#
+name: revive-ingest
+
+services:
+  db:
+    image: timescale/timescaledb:latest-pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-revive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set a strong POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-revive_ingest}
+    volumes:
+      - ingestdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-revive} -d ${POSTGRES_DB:-revive_ingest}"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+    # No published port: only the api container can reach it. If you need
+    # to inspect it directly (e.g. psql), add "127.0.0.1:5433:5432" here —
+    # never 0.0.0.0.
+
+  api:
+    build: .
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-revive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set a strong POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-revive_ingest}
+      POSTGRES_HOST: db
+      INGEST_TOKEN: ${INGEST_TOKEN:?set a token before exposing this beyond your own machine}
+    ports:
+      # Bind to all interfaces so a reverse proxy (Caddy) or tunnel on the
+      # same host can reach it. If testing purely on localhost, change to
+      # 127.0.0.1:8090:8090 instead.
+      - "8090:8090"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  netbiter-poller:
+    # Same image as `api`, different process — see README.md's Netbiter GPS
+    # section for why this is a separate service rather than a background
+    # task inside the API. Keep this at one instance: no locking between
+    # runs, so scaling it up would just double-poll Netbiter.
+    build: .
+    command: ["python", "-m", "app.poll_netbiter"]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-revive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set a strong POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-revive_ingest}
+      POSTGRES_HOST: db
+      NETBITER_ACCESS_KEY: ${NETBITER_ACCESS_KEY:?set NETBITER_ACCESS_KEY in .env}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  ingestdata:

@@ -1,0 +1,88 @@
+# Production demo stack: database + backend + Caddy (TLS, password, web server).
+# Run it from inside this folder, on the server:
+#
+#   docker compose up -d --build
+#
+# It reads settings/secrets from a .env file in THIS folder (copy .env.example).
+# Build context is "." (this folder = the repo root); it contains backend/ and
+# frontend/ source alongside these deployment files.
+name: revive-live-demo
+
+services:
+  # --- PostgreSQL + TimescaleDB. Internal only: it has NO published port, so it
+  #     is unreachable from the internet — only the api container can talk to it.
+  db:
+    image: timescale/timescaledb:latest-pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-revive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set a strong POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-revive_pilot}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      # Loads the schema automatically the first time the database is created.
+      - ./backend/revive/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-revive} -d ${POSTGRES_DB:-revive_pilot}"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+
+  # --- FastAPI read-only API. Internal only (no published port). Also the
+  #     container you exec into to ingest a new .xlsx.
+  api:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-revive}:${POSTGRES_PASSWORD:?set a strong POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-revive_pilot}?connect_timeout=5
+      INCOMING_DIR: /data/incoming
+      PROCESSED_DIR: /data/processed
+      # 'demo' (synthetic fleet) unless a stack's env file overrides it — the
+      # real-data stack sets DATA_SOURCE=pilot in .env.real.
+      DATA_SOURCE: ${DATA_SOURCE:-demo}
+    ports:
+      # Bound to localhost only (not 0.0.0.0) so this is never reachable from
+      # outside your machine. Local dev/testing convenience (e.g. Postman,
+      # /docs) — not needed in the real deployment, where only Caddy (web) is
+      # exposed. See CLAUDE.md non-negotiable #1.
+      - "127.0.0.1:${API_PORT:-8000}:8000"
+    volumes:
+      # Drop the periodic .xlsx into ./incoming on the server, then ingest.
+      # The host folders are configurable so a SECOND stack (e.g. a local
+      # real-data instance) can use its own drop/processed folders and never
+      # share files with the demo. Defaults keep the demo unchanged.
+      - ${INCOMING_HOST:-./incoming}:/data/incoming
+      - ${PROCESSED_HOST:-./processed}:/data/processed
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # --- Caddy: the ONLY thing exposed to the internet. TLS + password + serves
+  #     the built frontend and proxies the API.
+  web:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    environment:
+      DOMAIN: ${DOMAIN:?set your demo domain in .env}
+      BASIC_AUTH_USER: ${BASIC_AUTH_USER:-demo}
+      BASIC_AUTH_HASH: ${BASIC_AUTH_HASH:?generate a hash (see README) and put it in .env}
+    # Host ports are configurable so a SECOND stack can run alongside the demo
+    # without fighting over 80/443. Defaults keep the demo on the standard ports;
+    # the local real-data stack overrides these (e.g. HTTPS_PORT=8443).
+    ports:
+      - "${HTTP_PORT:-80}:80"     # needed so Caddy can obtain the HTTPS certificate
+      - "${HTTPS_PORT:-443}:443"  # the actual HTTPS site
+    depends_on:
+      - api
+    volumes:
+      - caddydata:/data      # keeps the TLS certificate across restarts
+      - caddyconfig:/config
+    restart: unless-stopped
+
+volumes:
+  dbdata:
+  caddydata:
+  caddyconfig:

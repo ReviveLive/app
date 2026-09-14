@@ -1,0 +1,7 @@
+# Lean stack. Nothing here is wired up yet — see step stubs in revive/.
+fastapi
+uvicorn[standard]
+psycopg[binary,pool]
+pandas
+openpyxl          # .xlsx reading (step 2)
+python-dotenv

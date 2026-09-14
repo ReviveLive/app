@@ -1,0 +1,1085 @@
+/* Revive Live — refined SaaS design system (2026 redesign).
+   Flat, landscape-first: hairline borders + restrained elevation instead of the
+   old neumorphic "clay". A persistent sidebar drives navigation; content fills
+   the width. Light and dark are both first-class and auto-detect the OS (see the
+   inline theme script in index.html + App.jsx). Brand accent is REI green.
+
+   Tokens live on :root (light) and html.dark (dark). Chart-series tokens mirror
+   src/theme.js — the charts read the JS copy (Recharts can't use CSS vars). */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #eef1f5;          /* app plane */
+  --surface: #ffffff;     /* panels */
+  --surface-2: #f4f7fa;   /* wells / insets / tracks */
+  --surface-3: #e9edf3;   /* hover / deeper track */
+  --sidebar-bg: #ffffff;
+  --topbar-bg: rgba(255, 255, 255, 0.82);
+
+  /* Hairlines */
+  --line: #e4e9f0;
+  --line-strong: #ccd5e1;
+
+  /* Ink */
+  --ink: #0f1b2d;
+  --ink-dim: #47566d;
+  --ink-faint: #7a8798;
+
+  /* Brand + status (light-tuned for text/marks on light surfaces) */
+  --brand: #14b053;
+  --brand-strong: #0e8a40;
+  --brand-soft: rgba(20, 176, 83, 0.12);
+  --amber: #d97706;
+  --amber-soft: rgba(217, 119, 6, 0.13);
+  --red: #dc2626;
+  --red-soft: rgba(220, 38, 38, 0.12);
+  --blue: #2a78d6;
+  --violet: #6d5ae0;
+
+  /* Elevation (flat + subtle) */
+  --elev-1: 0 1px 2px rgba(15, 27, 45, 0.05), 0 1px 3px rgba(15, 27, 45, 0.04);
+  --elev-2: 0 6px 18px rgba(15, 27, 45, 0.09), 0 2px 6px rgba(15, 27, 45, 0.05);
+  --elev-pop: 0 18px 44px rgba(15, 27, 45, 0.18);
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  /* Layout */
+  --sidebar-w: 240px;
+  --page-max: 1780px;
+
+  /* Chart chrome — mirrors src/theme.js (light column) */
+  --chart-grid: #e8edf3;
+  --chart-tick: #64748b;
+  --chart-axis: #cbd5e1;
+  --series-green: #14b053;
+  --series-blue: #2a78d6;
+  --series-violet: #6d5ae0;
+  --series-amber: #ea8c1c;
+  --series-teal: #0d9488;
+  --series-red: #dc2626;
+
+  --font-ui: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --bg: #0b111c;
+  --surface: #141c2b;
+  --surface-2: #1b2536;
+  --surface-3: #243044;
+  --sidebar-bg: #0f1826;
+  --topbar-bg: rgba(15, 24, 38, 0.82);
+
+  --line: #26314533;
+  --line: #273246;
+  --line-strong: #35435c;
+
+  --ink: #e8eef7;
+  --ink-dim: #a3b2c9;
+  --ink-faint: #71829a;
+
+  --brand: #2ecc71;
+  --brand-strong: #34d399;
+  --brand-soft: rgba(46, 204, 113, 0.15);
+  --amber: #f5b13a;
+  --amber-soft: rgba(245, 177, 58, 0.15);
+  --red: #f2726f;
+  --red-soft: rgba(242, 114, 111, 0.15);
+  --blue: #4d9bf0;
+  --violet: #9b87f5;
+
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-2: 0 8px 22px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --elev-pop: 0 20px 48px rgba(0, 0, 0, 0.6);
+
+  --chart-grid: #232e40;
+  --chart-tick: #8595ab;
+  --chart-axis: #33415a;
+  --series-green: #2ecc71;
+  --series-blue: #4d9bf0;
+  --series-violet: #9b87f5;
+  --series-amber: #eaa93a;
+  --series-teal: #26c6ad;
+  --series-red: #f2726f;
+}
+
+/* ---------- base ---------- */
+* { box-sizing: border-box; }
+html { scrollbar-gutter: stable; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--brand-soft); }
+a { color: var(--brand-strong); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Global soft transitions for the theme flip (kept off hover-only props). */
+.panel, .kpi-card, .stamp, .nav-item, .tool, .toggle, .toggle button, .navbtn,
+.map, .fleet-table, .fleet-row, .tank, .schematic, .sust-card, .gauge-card,
+.mnt-section, .alert-row, .estop-row, .cost-input, .cost-select, .sidebar,
+.topbar, .kpi-spark, .chip, body {
+  transition: background-color 0.35s ease, color 0.35s ease,
+    border-color 0.35s ease, box-shadow 0.35s ease;
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ---------- app shell ---------- */
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 14px;
+  gap: 4px;
+  z-index: 30;
+}
+.sidebar-brand { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px 10px 18px; }
+.sidebar-brand .logo { height: 26px; width: auto; max-width: 100%; display: block; }
+.sidebar-tag { font-family: var(--font-mono); font-size: 14px; font-weight: 500;
+  letter-spacing: 0.04em; color: var(--brand-strong); background: var(--brand-soft);
+  padding: 3px 8px; border-radius: var(--r-pill); }
+.nav-group-label { font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-faint); padding: 14px 12px 6px; }
+.nav-item {
+  position: relative;
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; text-align: left;
+  padding: 10px 12px; border: none; background: transparent;
+  border-radius: var(--r-md); cursor: pointer;
+  font-family: var(--font-ui); font-weight: 700; font-size: 14.5px;
+  color: var(--ink-dim);
+}
+.nav-item:hover { background: var(--surface-3); color: var(--ink); }
+.nav-item.active { background: var(--brand-soft); color: var(--brand-strong); }
+.nav-item.active::before {
+  content: ""; position: absolute; left: -14px; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 20px; border-radius: 0 3px 3px 0; background: var(--brand);
+}
+.nav-ico { width: 20px; height: 20px; flex: none; display: grid; place-items: center;
+  color: currentColor; opacity: 0.9; }
+.nav-ico svg { width: 18px; height: 18px; stroke: currentColor; fill: none;
+  stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.nav-spacer { flex: 1; }
+.nav-item.tool-action { color: var(--ink-dim); }
+
+.sidebar-foot { padding: 12px 12px 2px; font-family: var(--font-mono);
+  font-size: 10.5px; color: var(--ink-faint); line-height: 1.6; }
+
+/* Backdrop is only used for the mobile drawer; never a grid item on desktop. */
+.sidebar-backdrop { display: none; }
+
+/* Main column */
+.content { min-width: 0; display: flex; flex-direction: column; }
+
+.topbar {
+  /* Above the sidebar (30) and above Leaflet's internal panes/controls, which
+     the maps also contain via `isolation` below — so a map can never paint over
+     the sticky header when scrolling. */
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 12px clamp(16px, 2vw, 28px);
+  background: var(--topbar-bg);
+  backdrop-filter: saturate(1.4) blur(10px);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-title { min-width: 0; }
+.topbar-title h1 { font-family: var(--font-ui); font-weight: 800; font-size: 19px;
+  margin: 0; color: var(--ink); letter-spacing: -0.01em; }
+.topbar-title .crumb { display: flex; align-items: center; gap: 6px; min-width: 0;
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
+/* The vehicle name is the one part allowed to give way - truncated with an
+   ellipsis so the status dot/pill after it is never pushed onto its own
+   line for lack of room (crumb is a flex row now, so nothing here wraps). */
+.crumb-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.status-pill { display: inline-flex; align-items: center; gap: 5px; flex: none;
+  font-size: 12px; font-weight: 700; font-family: var(--font-ui); }
+.status-pill.status-live { color: var(--brand-strong); }
+.status-pill.status-offline { color: var(--red); }
+.status-pill.status-clear { color: var(--brand-strong); }
+.status-pill.status-alarm { color: var(--red); }
+.status-pill.status-unknown { color: var(--ink-faint); }
+.status-dot { width: 0.7em; height: 0.7em; border-radius: 50%; background: currentColor; flex: none; }
+
+/* Alarm Status panel (AlertsPage.jsx) - Manual/Automatic sub-columns. */
+.alarm-status-head { font-family: var(--font-ui); font-weight: 800; font-size: 12px;
+  color: var(--ink-dim); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+.alarm-status-row { display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.alarm-status-row:last-child { border-bottom: none; }
+
+/* Marks a card/panel as depending on a data source the real trial vehicle
+   doesn't have wired up yet - originally GPS specifically (kept the name),
+   now also used for anything needing a cumulative counter this vehicle
+   only has a rate for (e.g. Sustainability/Costing's fuel totals). A
+   visual "come back to this" reminder, not an error state. Remove per-use
+   once that specific gap is closed. */
+.panel.gps-pending, .kpi-card.gps-pending, .gauge-card.gps-pending {
+  border: 2px solid var(--red);
+}
+.gps-pending-text .v { color: var(--red); }
+.pending-note { color: var(--red); }
+
+.topbar-actions { display: flex; align-items: center; gap: 12px; flex: none;
+  flex-wrap: wrap; justify-content: flex-end; }
+
+.page {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(16px, 2vw, 28px);
+  display: flex; flex-direction: column; gap: 18px;
+}
+
+/* Header controls */
+.theme-btn { width: 40px; height: 40px; border-radius: var(--r-md);
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  font-size: 17px; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+.theme-btn:hover { background: var(--surface-3); }
+.truck-select {
+  font-family: var(--font-ui); font-weight: 700; font-size: 14.5px; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 10px 40px 10px 16px; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath d='M2 2l5 5 5-5' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  /* Now also used on VehiclePicker.jsx's closed-state <button>, which needs
+     what a native <select> gets for free. */
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  text-align: left; display: inline-block;
+}
+.truck-select:hover { border-color: var(--line-strong); }
+.truck-select:focus-visible, .theme-btn:focus-visible { outline: 2px solid var(--brand);
+  outline-offset: 2px; }
+.select-wrap { display: inline-flex; flex-direction: column; }
+.select-wrap .caplbl { font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint);
+  margin: 0 0 3px 2px; }
+
+/* VehiclePicker.jsx - custom dropdown replacing a plain <select>, needed so
+   the closed button and the open option list can show different content
+   (see the component's own comment). */
+.vehicle-pick { position: relative; }
+.vehicle-pick-list { position: absolute; top: calc(100% + 6px); right: 0; z-index: 100;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  box-shadow: var(--elev-pop); padding: 6px; margin: 0; list-style: none;
+  min-width: 200px; max-width: calc(100vw - 32px); }
+.vehicle-pick-opt { width: 100%; display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-ui); font-weight: 700; font-size: 14px; color: var(--ink);
+  background: transparent; border: 0; border-radius: var(--r-sm); padding: 8px 10px;
+  cursor: pointer; text-align: left;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vehicle-pick-opt:hover { background: var(--surface-3); }
+.vehicle-pick-opt.active { background: var(--brand-soft); color: var(--brand-strong); }
+.vehicle-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.vehicle-dot.live { background: var(--brand-strong); }
+.vehicle-dot.offline { background: var(--red); }
+
+/* LanguageToggle.jsx - same custom-dropdown pattern as VehiclePicker.jsx
+   above, just narrower (the closed trigger only ever shows a 2-letter
+   code, not a vehicle name, so .truck-select's generous select-style
+   padding/min-width is trimmed down here). */
+.lang-pick { position: relative; }
+.lang-select { padding: 10px 32px 10px 14px; font-size: 13px; }
+.lang-pick-list { position: absolute; top: calc(100% + 6px); right: 0; z-index: 100;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  box-shadow: var(--elev-pop); padding: 6px; margin: 0; list-style: none;
+  min-width: 160px; max-width: calc(100vw - 32px); }
+.lang-pick-opt { width: 100%; display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; font-family: var(--font-ui); font-weight: 700; font-size: 14px; color: var(--ink);
+  background: transparent; border: 0; border-radius: var(--r-sm); padding: 8px 10px;
+  cursor: pointer; text-align: left; }
+.lang-pick-opt:hover { background: var(--surface-3); }
+.lang-pick-opt.active { background: var(--brand-soft); color: var(--brand-strong); }
+.lang-pick-code { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }
+.lang-pick-opt.active .lang-pick-code { color: var(--brand-strong); }
+
+/* ---------- panels ---------- */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+  box-shadow: var(--elev-1);
+  min-width: 0;
+}
+.panel h2, .panel-head {
+  font-family: var(--font-ui); font-weight: 800; font-size: 15.5px;
+  color: var(--ink); margin: 0 0 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  letter-spacing: -0.01em;
+}
+/* h2 that shares a usage-head row shouldn't also claim the full width */
+.usage-head h2 { margin: 0; flex: 0 1 auto; }
+.panel-sub { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint);
+  font-weight: 500; margin: -8px 0 14px; line-height: 1.5; }
+.stamp { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint);
+  font-weight: 500; background: var(--surface-2); border: 1px solid var(--line);
+  padding: 4px 10px; border-radius: var(--r-pill); white-space: nowrap; }
+.trend-unit { font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--ink-faint); }
+
+/* ---------- landscape grids ---------- */
+.grid { display: grid; gap: 18px; }
+.grid.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.auto { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+.col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.span-2 { grid-column: span 2; }
+.span-all { grid-column: 1 / -1; }
+/* 12-column canvas for the overview */
+.canvas { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; }
+.c-3 { grid-column: span 3; } .c-4 { grid-column: span 4; } .c-5 { grid-column: span 5; }
+.c-6 { grid-column: span 6; } .c-7 { grid-column: span 7; } .c-8 { grid-column: span 8; }
+.c-12 { grid-column: span 12; }
+@media (max-width: 1180px) {
+  .canvas { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .c-7, .c-8, .c-5 { grid-column: span 6; } .c-4, .c-3 { grid-column: span 3; }
+  .grid.g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .canvas { grid-template-columns: 1fr; }
+  .canvas > * { grid-column: 1 / -1 !important; }
+  .grid.g2, .grid.g3 { grid-template-columns: 1fr; }
+  .span-2, .span-all { grid-column: auto; }
+}
+
+/* ---------- KPI strip / tiles ---------- */
+.kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+.kpi-strip.k6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+@media (max-width: 1180px) { .kpi-strip.k6 { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 620px) { .kpi-strip.k6, .kpi-strip { grid-template-columns: repeat(2, 1fr); } }
+.kpi-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 15px 16px; box-shadow: var(--elev-1);
+  display: flex; flex-direction: column; gap: 8px; min-width: 0; position: relative;
+}
+.kpi-card.accent { border-color: color-mix(in srgb, var(--brand) 40%, var(--line)); }
+.kpi-top { display: flex; align-items: center; gap: 8px; }
+.kpi-ico { width: 26px; height: 26px; border-radius: 8px; flex: none; display: grid;
+  place-items: center; background: var(--brand-soft); color: var(--brand-strong); }
+.kpi-ico svg { width: 15px; height: 15px; stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.kpi-label { font-size: 12px; font-weight: 800; color: var(--ink-faint);
+  letter-spacing: 0.01em; }
+.kpi-value { font-family: var(--font-mono); font-size: 23px; font-weight: 500;
+  color: var(--ink); line-height: 1.05; font-variant-numeric: tabular-nums;
+  display: flex; align-items: baseline; gap: 5px; }
+.kpi-unit { font-size: 12.5px; color: var(--ink-faint); font-family: var(--font-mono); }
+.kpi-delta { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+  color: var(--ink-faint); display: flex; align-items: center; gap: 5px; }
+.kpi-delta.good { color: var(--brand-strong); }
+.kpi-delta.bad { color: var(--red); }
+.kpi-delta-note { color: var(--ink-faint); }
+/* Info-icon disclosure (see InfoTip.jsx) - a <details>/<summary> pair, so the
+   open/close toggle needs no JS and works the same on mouse and touch.
+   Shared by KpiStrip cards and panel headers (e.g. PumpUtilisation) alike;
+   .kpi-top positions it within a KPI card specifically. */
+.info-tip { position: relative; }
+.kpi-top .info-tip { margin-left: auto; }
+.info-tip summary { list-style: none; cursor: pointer; color: var(--ink-faint);
+  font-size: 15px; line-height: 1; width: 18px; height: 18px; display: flex;
+  align-items: center; justify-content: center; border-radius: 50%; }
+.info-tip summary::-webkit-details-marker { display: none; }
+.info-tip summary:hover { color: var(--ink); background: var(--surface-3); }
+.info-tip[open] summary { color: var(--brand-strong); }
+.info-tip-pop { position: absolute; top: calc(100% + 6px); z-index: 100;
+  /* --brand-soft alone is too transparent here - it floats freely over other
+     content (unlike the sidebar/badges, which layer it on an already-opaque
+     panel), so whatever's underneath shows through. A backdrop-filter blur
+     worked over plain text but broke down over something busier/saturated
+     (e.g. the Pump Utilisation bars) - tried, not reliable enough to keep.
+     Composited onto an opaque surface instead: same tint, fully solid,
+     legible over anything. */
+  background: linear-gradient(var(--brand-soft), var(--brand-soft)), var(--surface);
+  color: var(--brand-strong);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  box-shadow: var(--elev-pop); padding: 8px 10px; font-family: var(--font-mono);
+  font-size: 11.5px; font-weight: 500; width: max-content;
+  max-width: 200px; }
+/* Default: extends right from the icon. Flipped by KpiStrip.jsx after
+   measuring the card's actual position - a card near the row's right edge
+   would otherwise overflow off-screen regardless of viewport width. */
+.info-tip-pop.align-left { left: 0; }
+.info-tip-pop.align-right { right: 0; }
+.kpi-spark { margin-top: 2px; }
+
+/* ---------- toggles / pills / buttons ---------- */
+.usage-head { display: flex; justify-content: space-between; align-items: center;
+  gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.toggle { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 3px; gap: 2px; }
+.toggle button { background: transparent; border: 0; color: var(--ink-faint);
+  font-family: var(--font-ui); font-size: 13px; font-weight: 700;
+  padding: 6px 14px; border-radius: 9px; cursor: pointer; }
+.toggle button:hover { color: var(--ink); }
+.toggle button.active { background: var(--surface); color: var(--brand-strong);
+  box-shadow: var(--elev-1); }
+.daybar { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 16px; }
+.daybar-title { font-family: var(--font-ui); font-size: 13.5px; color: var(--ink-dim); }
+.daybar-title strong { color: var(--ink); font-weight: 800; }
+.daybar-pick { position: relative; }
+.daybar-btn { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-pill);
+  padding: 7px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.daybar-btn:hover { background: var(--surface-3); }
+.daybar-pop { position: absolute; top: calc(100% + 8px); right: 0; z-index: 20;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  box-shadow: var(--elev-pop); padding: 12px; display: flex; flex-direction: column;
+  gap: 10px; min-width: 220px; max-width: calc(100vw - 40px); }
+.daybar-steps { display: flex; gap: 8px; }
+.daybar-steps .navbtn { flex: 1; padding: 6px 10px; font-size: 12px; }
+.daybar-latest { align-self: flex-start; font-family: var(--font-mono); font-size: 12px;
+  color: var(--brand-strong); background: var(--brand-soft); border: 0; border-radius: var(--r-pill);
+  padding: 6px 12px; cursor: pointer; font-weight: 700; }
+
+/* Below ~480px the popover was right-anchored to a button sitting near the
+   row's right edge, so it could overflow past the left edge of the screen
+   entirely (worse the narrower the phone). Rather than chase exact anchored
+   positioning, drop it into normal flow instead - but only while OPEN
+   (.daybar-pick.open): closed, the button stays compact so it can sit right
+   beside the "<vehicle> status on" text on the same line; opening it expands
+   the row to full width so the now-static popover has room to lay out in,
+   and it can't overflow off-screen either way. */
+@media (max-width: 480px) {
+  .daybar-date { display: none; }
+  .daybar-pick.open { flex: 1 1 100%; }
+  .daybar-pick.open .daybar-btn { width: 100%; justify-content: space-between; }
+  .daybar-pick.open .daybar-pop { position: static; width: 100%; max-width: none;
+    margin-top: 8px; box-shadow: none; }
+}
+
+.period-picker { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.period-input { padding: 6px 10px; }
+.period-sep { color: var(--ink-faint); }
+.period-range { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+.navbtn { background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+  font-weight: 700; font-family: var(--font-ui); font-size: 13px; padding: 8px 16px;
+  border-radius: var(--r-md); cursor: pointer; }
+.navbtn:not(:disabled):hover { background: var(--surface-3); }
+.navbtn:disabled { opacity: 0.45; cursor: not-allowed; }
+.route-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin-bottom: 16px; }
+.route-day { font-family: var(--font-mono); font-size: 13px; color: var(--ink);
+  font-weight: 500; min-width: 140px; text-align: center; }
+.btn-ghost { font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--brand-strong); background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r-pill); padding: 7px 16px; cursor: pointer; }
+.btn-ghost:hover { background: var(--surface-3); }
+.pill-clear { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint);
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-pill);
+  padding: 4px 12px; cursor: pointer; }
+.pill-clear:hover { color: var(--ink); border-color: var(--line-strong); }
+
+/* ---------- map / coords ---------- */
+.map { height: 260px; border-radius: var(--r-md); overflow: hidden;
+  background: var(--surface-2); border: 1px solid var(--line); position: relative;
+  /* Contain Leaflet's internal z-indexes (panes/controls run up to 1000) inside
+     the map box so they can't rise over the sticky header on scroll. */
+  isolation: isolate; }
+.map.tall { height: 320px; }
+
+/* The map lives inside a positioning wrapper so the Map/Satellite toggle can be
+   overlaid on it; the wrapper carries the flex sizing and the map fills it. */
+.map-wrap { position: relative; display: flex; flex-direction: column;
+  /* .map-toggle sits beside .map, not inside it, so .map's own `isolation`
+     doesn't contain its z-index: 1000 — without this, the toggle escapes to
+     the document root and floats above the sidebar/topbar. */
+  isolation: isolate; }
+.map-wrap > .map { flex: 1 1 auto; min-height: 0; }
+.map-toggle { position: absolute; top: 10px; right: 10px; z-index: 1000;
+  box-shadow: var(--elev-1); }
+
+/* Current Status (2026-09-12) - the top-of-page snapshot panel, above the
+   route/map row. */
+.status-segpill { display: inline-flex; border: 1px solid var(--line);
+  border-radius: var(--r-pill); overflow: hidden; }
+.status-segpill .seg { padding: 6px 16px; font-family: var(--font-ui);
+  font-size: 12.5px; font-weight: 700; color: var(--ink-faint); }
+.status-segpill .seg.active.travel { background: color-mix(in srgb, var(--series-green) 16%, transparent);
+  color: var(--series-green); }
+.status-segpill .seg.active.work { background: color-mix(in srgb, var(--series-violet) 16%, transparent);
+  color: var(--series-violet); }
+.status-segpill .seg.active.idle { background: color-mix(in srgb, var(--series-amber) 16%, transparent);
+  color: var(--series-amber); }
+.status-segpill .seg.active.offline { background: color-mix(in srgb, var(--series-red) 16%, transparent);
+  color: var(--series-red); }
+.status-segpill .seg.active.live { background: color-mix(in srgb, var(--series-green) 16%, transparent);
+  color: var(--series-green); }
+.status-ind-grid { display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 12px; margin-top: 16px; }
+.status-ind { display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r-md);
+  background: var(--surface-2); }
+/* Default (no modifier) is grey - covers both "off" (vac/jet/rec) and
+   "offline" (any dot, incl. PTO) - a stale reading never gets a confident
+   colour. */
+.status-ind-dot { width: 12px; height: 12px; border-radius: 50%; flex: none;
+  background: var(--line); }
+.status-ind-dot.on { background: var(--series-violet); }       /* on, and online: vac/jet/rec active, or PTO active */
+.status-ind-dot.pto-travel { background: var(--series-green); } /* PTO off, but online: travelling */
+.status-ind-label { font-family: var(--font-mono); font-weight: 700;
+  font-size: 13.5px; color: var(--ink); }
+@media (max-width: 620px) { .status-ind-grid { grid-template-columns: 1fr; } }
+
+/* Overview top row: a half-width route map beside a stacked last-known map +
+   tank. Both columns stretch to equal height (grid default); in each column the
+   map grows from a small floor to absorb the slack, so neither column leaves a
+   gap while the fixed cards keep their natural size. */
+.ov-route { display: flex; flex-direction: column; }
+.ov-route > .panel { flex: 1; display: flex; flex-direction: column; }
+.ov-route .map-wrap.tall { flex: 1 1 0; min-height: 240px; }
+/* Routes/Location toggle (2026-09-12) sits above whichever panel is shown -
+   a fixed-size sibling, not a flex:1 one, so it never grows into the map's
+   space. */
+.ov-route-toggle { flex: none; align-self: flex-start; margin-bottom: 12px; }
+/* Inactive Routes/Location panel: hidden via CSS, not unmounted - both stay
+   mounted so switching is instant and never re-fetches (see OverviewPage). */
+.panel.ov-route-hidden { display: none; }
+.ov-side > .panel:first-child { flex: 1; display: flex; flex-direction: column; }
+.ov-side .map-wrap { flex: 1 1 0; min-height: 200px; }
+/* Lower row (PTO utilisation + activity): natural heights, no forced stretch. */
+.ov-lower { align-self: start; }
+.coords { margin-top: 14px; font-family: var(--font-mono); font-size: 12.5px;
+  color: var(--ink-dim); display: flex; gap: 10px 22px; flex-wrap: wrap;
+  align-items: center; }
+.coords b { color: var(--ink); font-weight: 500; }
+.coords .sep { color: var(--line-strong); }
+.leaflet-container { background: var(--surface-2); font-family: var(--font-mono); }
+html.dark .leaflet-container { background: #0f1826; }
+html.dark .leaflet-tile { filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.92); }
+/* Satellite imagery is a photo — the dark-mode tile-invert above would wreck it,
+   so opt the Esri layers (tagged .sat-tile in basemaps.js) out of the filter. */
+html.dark .sat-tile .leaflet-tile { filter: none; }
+
+/* legend swatches */
+.sw { display: inline-block; width: 20px; height: 5px; border-radius: 3px;
+  vertical-align: middle; margin-right: 7px; background: var(--series-green); }
+.sw.work { background: var(--series-violet); }
+.sw.drive { background: var(--series-green); }
+/* Pump series (Overview pump cards): colour follows the pump, not its rank. */
+.sw.vac { background: var(--series-blue); }
+.sw.jet { background: var(--series-violet); }
+.sw.recycle { background: var(--series-teal); }
+.sw.active { background: var(--series-green); }
+.sw.idle { background: var(--series-amber); }
+.sw.dot { width: 12px; height: 12px; border-radius: 50%; border: 3px solid var(--brand-strong);
+  background: var(--surface); }
+.sw.dot.work { border-color: var(--violet); background: var(--violet); }
+
+/* ---------- empty / error / loading ---------- */
+.empty { color: var(--ink-faint); font-size: 13.5px; font-weight: 600;
+  padding: 26px 0; text-align: center; }
+.err { background: var(--red-soft); border: 1px solid var(--red);
+  color: var(--red); padding: 14px 18px; border-radius: var(--r-md);
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.6; }
+.note { display: inline-flex; align-items: center; gap: 8px; background: var(--amber-soft);
+  color: var(--amber); font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  padding: 9px 15px; border-radius: var(--r-md); line-height: 1.5; margin-bottom: 16px; }
+.mnt-note { display: inline-block; background: var(--amber-soft); color: var(--amber);
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  padding: 9px 15px; border-radius: var(--r-md); margin-bottom: 16px; line-height: 1.5; }
+
+.skel-line { position: relative; overflow: hidden; background: var(--surface-3);
+  border-radius: var(--r-pill); }
+.skel-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--surface-3); }
+.skel-line::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: skel-sweep 1.4s ease-in-out infinite; }
+html.dark .skel-line::after { background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent); }
+@keyframes skel-sweep { 100% { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .skel-line::after { animation: none; } }
+
+/* ---------- pump utilisation (working vs idle + per-pump share) ---------- */
+.util-panel { height: 100%; display: flex; flex-direction: column; }
+.util-panel .empty { flex: 1; display: flex; align-items: center; justify-content: center; }
+.util-body { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+/* Headline working-vs-idle split bar reuses the activity-bar + activity-legend. */
+.pto-split { display: flex; flex-direction: column; gap: 12px; }
+/* When a segment is too narrow to centre its label (e.g. a small idle sliver
+   when working is above ~86%), let the label overflow toward the bar's outer
+   edge so it stays fully visible rather than being clipped away. The bar still
+   clips at its rounded edges, so the number spills over the neighbour, not out. */
+.pto-split .activity-seg.edge { overflow: visible; }
+.pto-split .activity-seg.active.edge { justify-content: flex-start; padding-left: 4px; }
+.pto-split .activity-seg.idle.edge { justify-content: flex-end; padding-right: 4px; }
+.activity-seg.active { background: var(--brand); }
+.activity-seg.idle { background: var(--amber); }
+.activity-legend .lg i.active { background: var(--brand); }
+.activity-legend .lg i.idle { background: var(--amber); }
+.util-rows { display: grid; gap: 14px 16px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.util-row { display: flex; flex-direction: column; gap: 8px; }
+.util-head { display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--font-mono); font-size: 13px; color: var(--ink-dim); }
+.util-lbl { display: inline-flex; align-items: center; }
+.util-val { display: inline-flex; align-items: baseline; gap: 8px; font-size: 18px; color: var(--ink);
+  font-variant-numeric: tabular-nums; }
+.util-sub { font-size: 12px; color: var(--ink-faint); }
+.util-track { height: 14px; border-radius: var(--r-pill); background: var(--surface-3);
+  border: 1px solid var(--line); overflow: hidden; }
+.util-fill { height: 100%; transition: width 0.6s ease; }
+.util-fill.vac { background: var(--series-blue); }
+.util-fill.jet { background: var(--series-violet); }
+.util-fill.recycle { background: var(--series-teal); }
+.util-empty { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint);
+  padding: 4px 0; }
+
+/* ---------- water level + local forecast ---------- */
+/* Card body: vessel-and-reading on the left, forecast on the right; wraps so the
+   forecast drops below the vessel in the narrow sidebar. */
+.tank { display: flex; align-items: stretch; gap: 22px; flex-wrap: wrap; }
+.tank-gauge { display: flex; flex-direction: column; }
+.tank-gauge-body { display: flex; align-items: center; gap: 22px; flex: 1; }
+/* Two peer headers ("Water level" / "Live local forecast"), one per column, in
+   the same UI font/size as a .panel-head so they read as one header row across
+   the card and top-align (the .tank row stretches both columns from the top). */
+.tank-head { font-family: var(--font-ui); font-weight: 800; font-size: 15.5px;
+  letter-spacing: -0.01em; color: var(--ink); margin: 0 0 14px; line-height: 1.2; }
+.tank-vessel { position: relative; width: 92px; height: 150px; flex: none;
+  border: 2px solid var(--line-strong); border-radius: 14px; overflow: hidden;
+  background: var(--surface-2); }
+.tank-fill { position: absolute; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--blue) 78%, transparent), var(--blue));
+  transition: height 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.tank-fill.low { background: linear-gradient(180deg, color-mix(in srgb, var(--amber) 78%, transparent), var(--amber)); }
+.tank-wave { position: absolute; left: 0; right: 0; top: -6px; height: 8px;
+  background: color-mix(in srgb, var(--blue) 50%, var(--surface));
+  border-radius: 50%; opacity: 0.6; }
+.tank-fill.low .tank-wave { background: color-mix(in srgb, var(--amber) 50%, var(--surface)); }
+.tank-ticks { position: absolute; inset: 0; pointer-events: none; }
+.tank-tick { position: absolute; right: 0; width: 8px; height: 2px; background: var(--line-strong); }
+.tank-meta { min-width: 0; }
+.tank-value { font-family: var(--font-mono); font-weight: 500; font-size: 34px;
+  color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.tank-value .u { font-size: 16px; color: var(--ink-faint); margin-left: 4px; }
+.tank-pct { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); margin-top: 6px; }
+
+/* forecast block (right of the vessel; wraps below it when the card is narrow) */
+.tank-weather { flex: 1; min-width: 160px; display: flex; flex-direction: column;
+  gap: 6px; padding-left: 22px; border-left: 1px solid var(--line); }
+/* The header spans the full column; only the state message/rows carry the gap. */
+.tank-weather > .tank-head { margin-bottom: 8px; }
+.wx-note { color: var(--ink-faint); font-family: var(--font-mono); font-size: 12px; }
+.wx-row { display: flex; align-items: baseline; gap: 8px; }
+.wx-icon { font-size: 20px; line-height: 1; align-self: center; }
+.wx-temp { font-family: var(--font-mono); font-weight: 500; font-size: 22px;
+  color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.wx-temp-sm { font-size: 17px; }
+.wx-lbl { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+.wx-rain { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-dim);
+  line-height: 1.5; margin-top: 2px; }
+.wx-rain b { color: var(--ink); font-weight: 500; }
+.tank-warn { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+  line-height: 1.35; color: var(--amber); background: var(--amber-soft);
+  border-radius: var(--r-sm); padding: 6px 9px; margin: 2px 0; }
+.tank-warn.storm { color: var(--red); background: var(--red-soft); }
+.wx-illustrative { color: var(--ink-faint); font-weight: 400; }
+
+/* On very wide cards the left border reads best flush; when wrapped, drop it. */
+@media (max-width: 520px) {
+  .tank-weather { border-left: none; padding-left: 0; padding-top: 14px;
+    border-top: 1px solid var(--line); width: 100%; }
+}
+
+/* Keep the two tank vessels side by side on a phone (they were wrapping onto
+   separate rows below ~600px, leaving one vessel stranded with a lot of
+   empty space beside it) by shrinking everything proportionally instead. */
+@media (max-width: 600px) {
+  .tank { gap: 10px; flex-wrap: nowrap; }
+  .tank-gauge-body { gap: 10px; }
+  .tank-vessel { width: 56px; height: 96px; }
+  .tank-value { font-size: 21px; }
+  .tank-value .u { font-size: 11px; }
+  .tank-pct { font-size: 11px; margin-top: 3px; }
+}
+
+/* ---------- vehicle schematic ---------- */
+.schematic { background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 16px; }
+.schematic svg { width: 100%; height: auto; display: block; }
+.sc-body { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; }
+.sc-part { fill: var(--surface-3); stroke: var(--line-strong); stroke-width: 1.5;
+  transition: fill 0.3s ease, stroke 0.3s ease; }
+.sc-part.on { fill: var(--brand-soft); stroke: var(--brand); }
+.sc-label { font-family: var(--font-mono); font-size: 9px; fill: var(--ink-faint); }
+.tank-lvl { font-family: var(--font-mono); font-size: 15px; font-weight: 500; fill: #fff;
+  paint-order: stroke; stroke: rgba(15, 27, 45, 0.55); stroke-width: 2.5px;
+  stroke-linejoin: round; }
+.sc-dot { transition: fill 0.3s ease; }
+.sc-dot.on { fill: var(--brand); }
+.sc-dot.off { fill: var(--line-strong); }
+.schematic-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px;
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-dim); }
+.schematic-legend .lg { display: inline-flex; align-items: center; gap: 6px; }
+.schematic-legend .lg i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.schematic-legend .lg i.on { background: var(--brand); }
+.schematic-legend .lg i.off { background: var(--line-strong); }
+
+/* ---------- activity breakdown (condensed — sits in the right sidebar) ---------- */
+.activity-panel { display: flex; flex-direction: column; }
+.activity-body { display: flex; flex-direction: column; }
+.activity-bar { display: flex; height: 28px; border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid var(--line); }
+.activity-seg { display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; color: #fff;
+  white-space: nowrap; overflow: hidden; transition: flex-basis 0.6s ease; }
+.activity-seg.work { background: var(--violet); }
+.activity-seg.travel { background: var(--brand); }
+.activity-legend { display: flex; gap: 10px 16px; margin-top: 12px; flex-wrap: wrap;
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim); }
+/* In the narrow sidebar, lay the four figures out two-across so they stay compact. */
+.activity-panel .activity-legend { display: grid; grid-template-columns: 1fr 1fr; }
+.activity-stat { display: flex; flex-direction: column; gap: 2px; }
+.activity-stat .v { font-size: 15px; color: var(--ink); }
+.activity-legend .lg { display: inline-flex; align-items: center; gap: 6px; }
+.activity-legend .lg i { width: 10px; height: 10px; border-radius: 3px; }
+.activity-legend .lg i.work { background: var(--violet); }
+.activity-legend .lg i.travel { background: var(--brand); }
+
+/* ---------- health / gauges ---------- */
+.mnt-h2 { justify-content: flex-start; gap: 12px; }
+.mnt-h2 .stamp { margin-left: auto; }
+.mnt-sections { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.mnt-section { background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 16px; }
+.mnt-section h3 { font-family: var(--font-ui); font-weight: 800; font-size: 12px;
+  color: var(--ink-dim); margin: 0 0 14px; text-transform: uppercase; letter-spacing: 0.06em; }
+.mnt-gauges { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.sensor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.sensor-chip { display: flex; flex-direction: column; gap: 6px;
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 10px 14px; }
+.sensor-chip-row { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--ink); }
+.sensor-chip-nodata { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }
+.gauge-card { background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 16px; text-align: center; }
+.gauge-card.compact { display: flex; align-items: center; gap: 14px; text-align: left; padding: 12px 14px; }
+.gauge-card.compact .gauge-svg { width: 88px; flex: none; }
+.gauge-card.compact .gauge-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; }
+.gauge-svg { display: block; width: 100%; height: auto; }
+.gauge-track { stroke: var(--surface-3); }
+.gauge-zone.green { stroke: var(--brand); }
+.gauge-zone.amber { stroke: var(--amber); }
+.gauge-zone.red { stroke: var(--red); }
+.gauge-zone.unknown { stroke: var(--ink-faint); opacity: 0.4; }
+.gauge-limit-tick { stroke: var(--ink); stroke-width: 2.5; opacity: 0.5; }
+.gauge-needle { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; transition: all 0.5s ease; }
+.gauge-hub { fill: var(--ink); }
+.gauge-needle.red, .gauge-hub.red { stroke: var(--red); fill: var(--red); }
+.gauge-label { font-size: 13.5px; font-weight: 800; color: var(--ink); }
+.gauge-val { font-family: var(--font-mono); font-weight: 500; font-size: 22px; color: var(--ink); margin: 3px 0 1px; }
+.gauge-val.green { color: var(--brand-strong); }
+.gauge-val.amber { color: var(--amber); }
+.gauge-val.red { color: var(--red); }
+.gauge-sub { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 8px; }
+
+/* status badges */
+.mnt-badge { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  padding: 3px 11px; border-radius: var(--r-pill); display: inline-flex; align-items: center; gap: 5px; }
+.mnt-badge.green { background: var(--brand-soft); color: var(--brand-strong); }
+.mnt-badge.amber { background: var(--amber-soft); color: var(--amber); }
+.mnt-badge.red { background: var(--red-soft); color: var(--red); }
+.mnt-badge.unknown { background: var(--surface-3); color: var(--ink-faint); }
+.mnt-badge.sample { background: var(--brand-soft); color: var(--brand-strong); }
+
+/* ---------- alerts ---------- */
+.alerts-section { margin-bottom: 22px; }
+.alerts-section:last-child { margin-bottom: 0; }
+.alerts-subhead { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; }
+.alerts-subhead h3, .alerts-subhead-plain { font-family: var(--font-ui); font-weight: 800;
+  font-size: 14.5px; color: var(--ink); margin: 0; }
+.alerts-subhead-plain { margin: 0 0 12px; }
+.alerts-planned { display: flex; flex-direction: column; gap: 12px; }
+.alert-row { display: flex; align-items: center; gap: 16px; background: var(--surface-2);
+  border: 1px solid var(--line); border-radius: var(--r-md); padding: 14px 16px; }
+.alert-title { font-size: 14px; font-weight: 800; color: var(--ink); }
+.alert-detail { font-size: 12.5px; color: var(--ink-faint); margin-top: 3px; line-height: 1.45; }
+.alert-row .mnt-badge { margin-left: auto; flex: none; white-space: nowrap; }
+.estop-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.estop-row { display: flex; align-items: center; gap: 14px; background: var(--surface-2);
+  border: 1px solid var(--line); border-radius: var(--r-md); padding: 13px 16px; }
+.estop-dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--red);
+  box-shadow: 0 0 0 4px var(--red-soft); }
+.estop-dot.warn { background: var(--amber); box-shadow: 0 0 0 4px var(--amber-soft); }
+.estop-text { min-width: 0; flex: 1; }
+.estop-title { font-size: 14px; font-weight: 800; color: var(--ink); }
+.estop-cause { font-size: 12.5px; color: var(--ink-faint); margin-top: 3px; line-height: 1.45; }
+.estop-time { flex: none; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+
+/* ---------- costing ---------- */
+.cost-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+.cost-field { display: flex; flex-direction: column; gap: 6px; }
+.cost-field label { font-size: 12px; font-weight: 800; color: var(--ink-faint); }
+.cost-input, .cost-select { font-family: var(--font-mono); font-size: 14.5px; font-weight: 500;
+  color: var(--ink); background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 10px 12px; width: 100%; }
+.cost-input:focus, .cost-select:focus { outline: none; border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--brand-soft); }
+.cost-quote { margin-top: 16px; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 18px; }
+.cost-quote.hero { border-color: color-mix(in srgb, var(--brand) 40%, var(--line)); }
+.cost-quote-label { font-size: 12.5px; font-weight: 800; color: var(--ink-faint); }
+.cost-quote-range { font-family: var(--font-mono); font-size: 28px; font-weight: 500;
+  color: var(--brand-strong); line-height: 1.1; margin: 8px 0; font-variant-numeric: tabular-nums; }
+/* A quieter variant for the measured-cost card, where the figure sits above a
+   day picker and needn't dominate like the standalone estimator quote. */
+.cost-quote.compact { padding: 14px; }
+.cost-quote.compact .cost-quote-range { font-size: 20px; margin: 6px 0; }
+.cost-quote-break { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); line-height: 1.7; }
+.cost-note { font-size: 12px; color: var(--ink-faint); margin-top: 14px; line-height: 1.5; }
+
+/* day picker */
+.daypick { margin-top: 16px; max-width: 280px; }
+.daypick-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 12px; flex-wrap: wrap; }
+.daypick-count { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+.daypick-actions { display: flex; gap: 8px; }
+.daypick-actions button { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  color: var(--brand-strong); background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r-pill); padding: 5px 13px; cursor: pointer; }
+.daypick-actions button:hover { background: var(--surface-3); }
+.daypick-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.daypick-arrow { width: 28px; height: 28px; flex: none; border: 1px solid var(--line); border-radius: var(--r-md);
+  cursor: pointer; background: var(--surface); color: var(--ink-dim); font-size: 15px; line-height: 1; }
+.daypick-arrow:hover:not(:disabled) { background: var(--surface-3); color: var(--brand-strong); }
+.daypick-arrow:disabled { opacity: 0.35; cursor: default; }
+.daypick-month-lbl { flex: 1; text-align: center; cursor: pointer; font-family: var(--font-ui);
+  font-weight: 800; font-size: 13px; color: var(--ink); background: transparent; border: none; padding: 5px; border-radius: var(--r-md); }
+.daypick-month-lbl:hover { color: var(--brand-strong); }
+.daypick-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.daypick-wd { text-align: center; font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint); padding-bottom: 3px; }
+.daypick-cell { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim); background: var(--surface-2);
+  border: 1px solid var(--line); border-radius: var(--r-sm); cursor: pointer; padding: 0; }
+.daypick-cell:hover:not(:disabled) { border-color: var(--brand); }
+.daypick-cell.on { background: var(--brand); color: #fff; border-color: var(--brand); }
+.daypick-cell.nodata { opacity: 0.3; background: transparent; border-color: transparent; cursor: default; }
+.daypick-cell.empty { background: transparent; border-color: transparent; cursor: default; }
+
+/* ---------- safety timeline ---------- */
+.safety-count { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+.safety-timeline { padding: 28px 10px 6px; }
+.safety-track { position: relative; height: 40px; }
+.safety-line { position: absolute; left: 0; right: 0; top: 50%; height: 2px; transform: translateY(-50%);
+  background: var(--line-strong); border-radius: 2px; }
+.safety-monthtick { position: absolute; top: 50%; width: 1px; height: 14px; transform: translate(-50%, -50%);
+  background: var(--line-strong); opacity: 0.7; }
+.safety-dot { position: absolute; top: 50%; width: 13px; height: 13px; transform: translate(-50%, -50%);
+  background: var(--red); border-radius: 50%; border: 3px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--red); cursor: default; }
+.safety-dot:hover { z-index: 3; }
+.safety-dot::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 9px); left: 50%;
+  transform: translateX(-50%); white-space: nowrap; background: var(--ink); color: var(--surface);
+  font-family: var(--font-mono); font-size: 11px; padding: 5px 9px; border-radius: 8px; opacity: 0;
+  pointer-events: none; transition: opacity 0.12s; }
+.safety-dot:hover::after { opacity: 1; }
+.safety-dot.tip-end::after { left: auto; right: 0; transform: none; }
+.safety-dot.tip-start::after { left: 0; right: auto; transform: none; }
+.safety-axis { position: relative; height: 16px; margin-top: 6px; }
+.safety-monthlabel { position: absolute; transform: translateX(-50%); font-family: var(--font-mono);
+  font-size: 11px; color: var(--ink-faint); white-space: nowrap; }
+.safety-monthlabel.start { transform: none; }
+.safety-monthlabel.end { transform: translateX(-100%); }
+
+/* ---------- fleet compare ---------- */
+.fleet-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
+.fleet-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; padding: 10px 14px;
+  border-bottom: 1px solid var(--line); cursor: pointer; user-select: none; white-space: nowrap; }
+.fleet-table th.num { text-align: right; }
+.fleet-table th:hover { color: var(--ink); }
+.fleet-table th .arrow { color: var(--brand-strong); margin-left: 4px; }
+.fleet-table td { padding: 14px; border-bottom: 1px solid var(--line); color: var(--ink);
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.fleet-table td.num { text-align: right; }
+.fleet-row { cursor: pointer; }
+.fleet-row:hover td { background: var(--surface-2); }
+.fleet-name { font-family: var(--font-ui); font-weight: 800; display: flex; align-items: center; gap: 10px; }
+.fleet-name .loc { font-family: var(--font-mono); font-weight: 500; font-size: 11.5px; color: var(--ink-faint); }
+.fleet-mini { display: inline-block; width: 66px; height: 8px; border-radius: 4px; background: var(--surface-3);
+  overflow: hidden; vertical-align: middle; margin-left: 8px; }
+.fleet-mini > i { display: block; height: 100%; background: var(--brand); border-radius: 4px; }
+.fleet-dash { color: var(--ink-faint); }
+
+/* ---------- sustainability ---------- */
+.sust-hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.sust-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 20px; box-shadow: var(--elev-1); display: flex; flex-direction: column; gap: 8px; }
+.sust-card .ico { width: 38px; height: 38px; border-radius: var(--r-md); display: grid; place-items: center;
+  background: var(--brand-soft); color: var(--brand-strong); }
+.sust-card .ico svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.9;
+  stroke-linecap: round; stroke-linejoin: round; }
+.sust-value { font-family: var(--font-mono); font-weight: 500; font-size: 30px; color: var(--ink);
+  line-height: 1; font-variant-numeric: tabular-nums; }
+.sust-value .u { font-size: 15px; color: var(--ink-faint); margin-left: 4px; }
+.sust-label { font-size: 13px; font-weight: 800; color: var(--ink-dim); }
+.sust-sub { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); line-height: 1.5; }
+
+/* ---------- report dialog ---------- */
+.report-overlay { position: fixed; inset: 0; background: rgba(11, 17, 28, 0.55);
+  display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow: auto; z-index: 1000; }
+.report-sheet { position: relative; background: var(--surface); color: var(--ink); width: 100%;
+  max-width: 820px; border-radius: var(--r-lg); padding: 36px 40px; box-shadow: var(--elev-pop); }
+.report-close { position: absolute; top: 16px; right: 18px; border: 1px solid var(--line); background: var(--surface-2);
+  width: 32px; height: 32px; border-radius: var(--r-md); font-size: 18px; line-height: 1; color: var(--ink-faint); cursor: pointer; }
+.report-close:hover { background: var(--surface-3); }
+.report-head { display: flex; align-items: center; gap: 16px; padding-bottom: 16px; margin-bottom: 4px;
+  border-bottom: 2px solid var(--brand); }
+.report-logo { height: 36px; width: auto; flex: none; }
+.report-title { flex: 1; }
+.report-head h1 { font-family: var(--font-ui); font-weight: 900; font-size: 24px; color: var(--ink); margin: 0 0 6px; }
+.report-meta { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; font-family: var(--font-mono); }
+.report-truck { font-weight: 500; color: var(--brand-strong); font-size: 14px; }
+.report-date { color: var(--ink-faint); font-size: 12.5px; }
+.report-config { margin: 20px 0; display: flex; flex-direction: column; gap: 16px; }
+.report-fieldgroup { display: flex; flex-direction: column; gap: 8px; }
+.report-fieldlabel { font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--ink-faint); }
+.report-checklist { display: flex; gap: 10px; flex-wrap: wrap; }
+.report-check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-family: var(--font-mono);
+  font-size: 12.5px; font-weight: 500; color: var(--ink-faint); background: var(--surface-2); border: 1px solid var(--line);
+  padding: 8px 14px; border-radius: var(--r-pill); user-select: none; }
+.report-check.on { color: var(--brand-strong); border-color: var(--brand); background: var(--brand-soft); }
+.report-check input { accent-color: var(--brand); width: 15px; height: 15px; cursor: pointer; }
+.report-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 18px 0; }
+.report-controls .route-nav.report-nav { margin: 0; }
+.usage-report-list { list-style: none; padding: 0; margin: 8px 0 0; }
+.usage-report-list li { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 4px; border-bottom: 1px solid var(--line); }
+.ur-label { font-family: var(--font-ui); font-weight: 800; font-size: 15px; color: var(--ink); }
+.ur-val { font-family: var(--font-mono); font-weight: 500; font-size: 17px; color: var(--brand-strong); }
+.report-vehicle { margin-top: 14px; }
+.report-vehicle + .report-vehicle { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+.report-vehicle-name { font-family: var(--font-ui); font-weight: 900; font-size: 18px; color: var(--brand-strong); margin: 0; }
+.report-group { margin-top: 20px; }
+.report-group h2 { display: block; font-family: var(--font-ui); font-weight: 800; font-size: 12px; color: var(--ink-dim);
+  text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 8px; }
+.report-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.report-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--ink-faint);
+  text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 10px; border-bottom: 2px solid var(--line); }
+.report-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); color: var(--ink); }
+.report-foot { margin-top: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); line-height: 1.6; }
+.report-brandfoot { margin-top: 18px; padding-top: 12px; border-top: 2px solid var(--brand); font-family: var(--font-ui);
+  font-weight: 800; font-size: 12px; letter-spacing: 0.04em; color: var(--brand-strong); }
+.report-actions { margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px; }
+.btn-print, .btn-secondary { border: 1px solid var(--line); border-radius: var(--r-md); padding: 11px 26px;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500; cursor: pointer; }
+.btn-secondary { color: var(--ink); background: var(--surface-2); }
+.btn-print { color: #fff; background: var(--brand); border-color: var(--brand); }
+.btn-print:disabled, .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------- recharts theming ---------- */
+.recharts-cartesian-grid line { stroke: var(--chart-grid); }
+.recharts-cartesian-axis-line { stroke: var(--chart-axis); }
+.recharts-cartesian-axis-tick-value { fill: var(--chart-tick); }
+.recharts-cartesian-grid line, .recharts-cartesian-axis-line { transition: stroke 0.35s ease; }
+.recharts-cartesian-axis-tick-value { transition: fill 0.35s ease; }
+.recharts-default-tooltip { border-radius: var(--r-md) !important; }
+
+/* ---------- footer ---------- */
+.foot { margin-top: 8px; padding: 20px clamp(16px, 2vw, 28px) 28px; color: var(--ink-faint);
+  font-size: 12px; font-family: var(--font-mono); text-align: center; line-height: 1.8; border-top: 1px solid var(--line); }
+
+/* ---------- splash ---------- */
+.splash { position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center;
+  background: var(--bg); animation: splash-out 2.6s ease forwards; overflow: hidden; }
+.splash-mark { position: relative; display: flex; align-items: center; justify-content: center; }
+.splash-logo { width: min(460px, 80vw); height: auto; position: relative; z-index: 1; opacity: 0;
+  will-change: transform, opacity; filter: drop-shadow(0 12px 28px rgba(20, 176, 83, 0.25)); }
+.splash-logo.ready { animation: splash-logo-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.ring { position: absolute; left: 50%; top: 50%; width: min(520px, 70vmin); height: min(520px, 70vmin);
+  border-radius: 50%; border: 2px solid var(--brand); opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  will-change: transform, opacity; animation: splash-ripple 2.6s ease-out infinite; }
+.ring:nth-child(2) { animation-delay: 0.7s; }
+.ring:nth-child(3) { animation-delay: 1.4s; }
+@keyframes splash-ripple {
+  0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.9); }
+}
+@keyframes splash-logo-in { 0% { opacity: 0; transform: scale(0.85) translateY(8px); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes splash-out { 0%, 65% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+html.dark .splash-logo, html.dark .report-logo, html.dark .sidebar-brand .logo { filter: none; }
+html.dark .sidebar-brand .logo, html.dark .report-logo { filter: invert(1) hue-rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .splash-logo, .ring { animation: none; }
+  .splash-logo { opacity: 1; }
+  .ring { display: none; }
+  .splash { animation: splash-out 2.6s steps(1, end) forwards; }
+}
+
+/* count-up number entrance */
+@keyframes kpi-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.kpi-value, .sust-value, .tank-value { animation: kpi-in 0.4s ease both; }
+@media (prefers-reduced-motion: reduce) { .kpi-value, .sust-value, .tank-value { animation: none; } }
+
+/* ---------- responsive: sidebar -> top drawer ---------- */
+.mobile-menu-btn { display: none; }
+/* Sidebar's own language/theme toggles (see App.jsx) only ever show on
+   mobile, where the topbar's copy is hidden instead - never both at once. */
+.sidebar-tools { display: none; }
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { position: fixed; top: 0; left: 0; width: 260px; transform: translateX(-100%);
+    transition: transform 0.25s ease; box-shadow: var(--elev-pop); }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(11, 17, 28, 0.45); z-index: 29; }
+  .sidebar-backdrop.open { display: block; }
+  .mobile-menu-btn { display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r-md);
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-size: 18px; }
+  .topbar-title h1 { font-size: 17px; }
+  /* Crumb line is now vehicle name + status; drop the text label and keep just
+     the coloured dot so it doesn't crowd the name on a narrow screen. */
+  .status-pill .status-label { display: none; }
+  .sidebar-tools { display: flex; align-items: center; gap: 8px; padding: 0 12px 16px; }
+  .topbar-actions .lang-pick, .topbar-actions .theme-btn { display: none; }
+  /* The dropdown list defaults to right-anchored (matching its topbar
+     position, next to VehiclePicker on the right); the sidebar copy sits at
+     the left edge of a narrow drawer instead, so anchor its list left so it
+     opens into the drawer's own space rather than off the left edge. */
+  .sidebar-tools .lang-pick-list { left: 0; right: auto; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  html.dark {
+    --bg: #eef1f5; --surface: #ffffff; --surface-2: #f4f7fa; --surface-3: #e9edf3;
+    --line: #e4e9f0; --line-strong: #ccd5e1; --ink: #0f1b2d; --ink-dim: #47566d; --ink-faint: #7a8798;
+    --brand-strong: #0e8a40;
+  }
+  html.dark .report-truck, html.dark .report-vehicle-name, html.dark .report-brandfoot,
+  html.dark .ur-val, html.dark .mnt-badge.green { color: #0e8a40; }
+  html.dark .report-logo { filter: none; }
+  .app > *:not(.report-overlay), .foot, .topbar, .sidebar { display: none !important; }
+  .report-overlay { position: static; background: none; padding: 0; overflow: visible; display: block; }
+  .report-sheet { position: static; width: 100%; max-width: none; box-shadow: none; border-radius: 0; padding: 0;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none !important; }
+  .report-vehicle + .report-vehicle { break-before: page; border-top: none; margin-top: 0; padding-top: 0; }
+  .report-group, .report-table { break-inside: avoid; }
+}

@@ -1,0 +1,19 @@
+# env / secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# node
+node_modules/
+dist/
+
+# incoming telemetry files (contain vehicle location — never commit)
+incoming/*
+!incoming/.gitkeep
+
+# db data
+pgdata/

@@ -1,0 +1,652 @@
+{
+  "common": {
+    "grain": {
+      "day": "Laethúil",
+      "week": "Seachtainiúil",
+      "month": "Míosúil"
+    },
+    "nav": {
+      "prev": "Siar",
+      "next": "Ar Aghaidh"
+    },
+    "loading": "Ag lódáil…",
+    "noDataForPeriod": "Níl aon sonraí don tréimhse seo.",
+    "routePanel": {
+      "title": "Stair an Aistir",
+      "noLocation": "Níl aon sonraí suímh don fheithicil seo.",
+      "noGpsForDay": "Níl aon sonraí GPS don lá seo.",
+      "noGpsFallback": "Níl GPS ann do {{requested}} fós — ag taispeáint an lae is gaire a bhfuil GPS aige: {{actual}}.",
+      "ptoActive": "",
+      "start": "Tús",
+      "end": "Deireadh",
+      "driving": "ag tiomáint",
+      "stop": "stad",
+      "workingStop": "stad oibre",
+      "stops": "stadanna"
+    },
+    "mapPanel": {
+      "title": "An Suíomh is Déanaí",
+      "noLocation": "Níl aon sonraí suímh don fheithicil seo."
+    },
+    "weatherPanel": {
+      "title": "Réamhaisnéis Áitiúil Bheo",
+      "noLocation": "Níl aon suíomh — níl réamhaisnéis ar fáil.",
+      "unavailable": "Níl an réamhaisnéis ar fáil.",
+      "now": "anois",
+      "overnightLow": "íosmhéid oíche",
+      "blowdown": "Ní mór séideadh geimhridh a dhéanamh roimh oibriú",
+      "storm": "Foláireamh stoirme — daingnigh an trealamh roimh oibriú",
+      "illustrative": "(léiritheach)",
+      "rainIn": "Báisteach i {{region}}",
+      "theArea": "an ceantar",
+      "outlookUnavailable": "níl réamhaisnéis ar fáil",
+      "unlikelyToday": "neamhdhóchúil inniu",
+      "chance": "{{pct}}% seans",
+      "mm": "{{mm}} mm",
+      "expectedToday": "ag súil leis inniu",
+      "heaviestAt": ", is troime {{time}}",
+      "peak": {
+        "overnight": "thar oíche",
+        "morning": "ar maidin",
+        "midday": "i lár an lae",
+        "afternoon": "tráthnóna",
+        "evening": "san oíche"
+      }
+    },
+    "weatherConditions": {
+      "clear": "Glan",
+      "mainlyClear": "Glan den chuid is mó",
+      "partlyCloudy": "Scamallach go páirteach",
+      "overcast": "Modartha",
+      "fog": "Ceo",
+      "drizzle": "Brádán",
+      "lightRain": "Fearthainn éadrom",
+      "rain": "Fearthainn",
+      "heavyRain": "Fearthainn throm",
+      "snow": "Sneachta",
+      "showers": "Cithanna",
+      "heavyShowers": "Cithanna troma",
+      "snowShowers": "Cithanna sneachta",
+      "thunderstorm": "Stoirm Thoirní",
+      "cloudy": "Scamallach"
+    },
+    "weekdaysShort": {
+      "mon": "L",
+      "tue": "M",
+      "wed": "C",
+      "thu": "D",
+      "fri": "A",
+      "sat": "S",
+      "sun": "D"
+    }
+  },
+  "nav": {
+    "overview": {
+      "label": "Forbhreathnú",
+      "title": "Forbhreathnú"
+    },
+    "fleet": {
+      "label": "Flít",
+      "title": "Flít",
+      "crumb": "Gach feithicil"
+    },
+    "trends": {
+      "label": "Treochtaí",
+      "title": "Treochtaí"
+    },
+    "sustainability": {
+      "label": "Inbhuanaitheacht",
+      "title": "Inbhuanaitheacht"
+    },
+    "health": {
+      "label": "Sláinte",
+      "title": "Sláinte an Innill"
+    },
+    "alerts": {
+      "label": "Foláirimh",
+      "title": "Foláirimh"
+    },
+    "pumps": {
+      "label": "Caidéil",
+      "title": "Caidéil"
+    },
+    "routes": {
+      "label": "Bealaí",
+      "title": "Bealaí"
+    },
+    "costing": {
+      "label": "Costas",
+      "title": "Costas Breosla"
+    },
+    "groups": {
+      "vehicle": "Feithicil",
+      "fleet": "Flít"
+    }
+  },
+  "app": {
+    "menu": "Roghchlár",
+    "generateReport": "Gin Tuairisc",
+    "lastKnownValues": "Luachanna is déanaí ar eolas",
+    "vehicle": "Feithicil",
+    "selectVehicle": "Roghnaigh feithicil",
+    "live": "Beo",
+    "offline": "As Líne",
+    "toggleDarkMode": "Scoránaigh an mód dorcha",
+    "noVehiclesVisible": "Níl aon fheithicil le feiceáil don imscaradh seo.",
+    "apiError": {
+      "title": "Níorbh fhéidir teacht ar an API.",
+      "hint": "Deimhnigh go bhfuil an API (uvicorn) agus an bunachar sonraí araon ag rith."
+    },
+    "footer": "Revive Live"
+  },
+  "overview": {
+    "dayStatusBar": {
+      "statusOnNamed": "Stádas {{vehicle}} ar",
+      "statusOnGeneric": "Stádas ar",
+      "prevDay": "An lá roimhe",
+      "nextDay": "An chéad lá eile",
+      "latest": "Is déanaí"
+    },
+    "kpi": {
+      "utilisation": {
+        "label": "Úsáid",
+        "note": "sciar ama ghníomhaigh le PTO air"
+      },
+      "hours": {
+        "label": "Uaireanta",
+        "note": "am gníomhach (obair + taisteal)"
+      },
+      "atWork": {
+        "label": "Ag Obair",
+        "notePct": "{{pct}}% den am gníomhach",
+        "noteNoRoute": "gan bhealach"
+      },
+      "jobs": {
+        "label": "Jabanna",
+        "note": "stadanna le PTO gníomhach"
+      },
+      "stops": {
+        "label": "Stadanna",
+        "note": "bailiúcháin stadta"
+      },
+      "openAlerts": {
+        "label": "Foláirimh Oscailte",
+        "noteInRecord": "{{count}} sa taifead"
+      }
+    },
+    "routeToggle": {
+      "routes": "Bealaí",
+      "location": "Suíomh"
+    },
+    "activity": {
+      "title": "Gníomhaíocht",
+      "mismatch": "Níl gníomhaíocht ann do {{requested}} fós — ag taispeáint an lae is gaire a bhfuil gníomhaíocht aige: {{actual}}.",
+      "noData": "Níl aon sonraí gníomhaíochta don lá seo.",
+      "atWork": "ag obair",
+      "travel": "ag taisteal",
+      "idle": "díomhaoin",
+      "jobs": "jabanna",
+      "stops": "stadanna"
+    },
+    "currentStatus": {
+      "title": "Stádas Reatha",
+      "segments": {
+        "offline": "As Líne",
+        "live": "Beo",
+        "travelling": "Ag Taisteal",
+        "idle": "Díomhaoin",
+        "working": "Ag Obair"
+      },
+      "indicators": {
+        "pto": "",
+        "vac": "",
+        "jet": "",
+        "rec": ""
+      }
+    },
+    "tankLevels": {
+      "title": "Leibhéil na dTancanna",
+      "noData": "Níl aon leibhéal umair don fheithicil seo.",
+      "frontWater": "Uisce Tosaigh",
+      "rearSludge": "Draoib Deiridh",
+      "frontCompartmentWater": "urrann tosaigh · uisce",
+      "fullAria": "{{label}} líonta {{pct}}%"
+    },
+    "vehicleWeight": {
+      "title": "Meáchan na Feithicle",
+      "noData": "Níl aon sonraí meáchain don fheithicil seo.",
+      "total": "Meáchan iomlán na feithicle"
+    },
+    "fuelConsumed": {
+      "title": "Breosla Caite",
+      "noDataFallback": "Níl sonraí breosla ann do {{requested}} fós — ag taispeáint an lae is gaire a bhfuil breosla aige: {{actual}}.",
+      "noData": "Níl aon sonraí breosla don lá seo.",
+      "travelIdle": "taisteal / díomhaoin"
+    }
+  },
+  "trends": {
+    "title": "Treochtaí",
+    "monthlyNote": "⚠ Ní thaispeánann an t-amharc míosúil ach cúpla pointe anseo — tá stair na trialach seo gearr fós. Fásfaidh sé seo de réir mar a bhaileofar tuilleadh sonraí le himeacht ama.",
+    "kpiNote": {
+      "vsLast": "i gcomparáid leis an gceann deireanach"
+    },
+    "metrics": {
+      "operatingHours": {
+        "label": "Uaireanta Oibríochta"
+      },
+      "waterRecycled": {
+        "label": "Uisce Athchúrsáilte"
+      },
+      "fuelUsed": {
+        "label": "Breosla Úsáidte"
+      },
+      "fuelRate": {
+        "label": "Ráta Breosla"
+      },
+      "engineRpm": {
+        "label": "RPM an Innill"
+      },
+      "safetyEvents": {
+        "label": "Teagmhais Sábháilteachta"
+      }
+    },
+    "safetyTimeline": {
+      "title": "Teagmhais Sábháilteachta",
+      "inThisPeriod": "{{count}} sa tréimhse seo",
+      "noEvents": "Níl aon teagmhas sábháilteachta sa tréimhse seo — níl aon rud le tuairisciú.",
+      "tooltip_one": "{{count}} theagmhas · {{when}}",
+      "tooltip_other": "{{count}} teagmhas · {{when}}"
+    },
+    "rpmChart": {
+      "title": "RPM an Innill — Meán",
+      "noData": "Níor taifeadadh RPM ar bith.",
+      "ptoOff": "PTO as (díomhaoin nó ag tiomáint)",
+      "atWork": "ag obair (PTO air)"
+    }
+  },
+  "sustainability": {
+    "title": "Inbhuanaitheacht",
+    "kpi": {
+      "co2": {
+        "label": "CO₂ · Tréimhse",
+        "note": "breosla × 2.68 (meastachán)"
+      },
+      "recyclingRate": {
+        "label": "Ráta Athchúrsála",
+        "note": "an tréimhse is déanaí"
+      },
+      "avgUtilisation": {
+        "label": "Meán-Úsáid",
+        "note": "inneall ar siúl ag obair"
+      },
+      "fuel": {
+        "label": "Breosla · Tréimhse"
+      },
+      "waterRecycled": {
+        "label": "Uisce Athchúrsáilte"
+      }
+    },
+    "charts": {
+      "co2": {
+        "label": "CO₂ Astaithe",
+        "info": "Breosla a caitheadh i rith na tréimhse seo."
+      },
+      "fuelUsed": {
+        "label": "Breosla Úsáidte",
+        "info": "Athrú san iomlán breosla a úsáideadh i rith na tréimhse."
+      },
+      "utilisation": {
+        "label": "Úsáid",
+        "info": "Am oibre PTO i rith na tréimhse seo."
+      },
+      "recyclingRate": {
+        "label": "Ráta Athchúrsála",
+        "info": "Sciar den am a raibh PTO gníomhach a caitheadh ag athchúrsáil, ó am reatha an chaidéil athchúrsála ÷ am reatha PTO - ní cóimheas toirte uisce é.",
+        "zeroNote": "Níor oibrigh an caidéal athchúrsála i rith na tréimhse seo."
+      },
+      "waterRecycled": {
+        "label": "Uisce Athchúrsáilte",
+        "info": "Ríofa ó am reatha an chaidéil athchúrsála x 350 L/nóim (ráta sreafa aitheanta an loine athchúrsála), ní léamh díreach ar thoirt uisce é.",
+        "zeroNote": "Níor oibrigh an caidéal athchúrsála i rith na tréimhse seo."
+      }
+    },
+    "info": {
+      "co2": "CO₂ Astaithe: meastachán bunaithe ar bhreosla a úsáideadh (díosal × 2.68 kg/L an lítear).",
+      "fuelUsed": "Breosla Úsáidte: iomlán na lítear a dódh sa tréimhse seo.",
+      "utilisation": "Úsáid: sciar den am a raibh an t-inneall ar siúl a caitheadh ag obair (PTO nó caidéal gníomhach).",
+      "recyclingRate": "Ráta Athchúrsála: sciar den am a raibh PTO gníomhach a caitheadh ag athchúrsáil.",
+      "waterRecycled": "Uisce Athchúrsáilte: iomlán na lítear uisce a athchúrsáladh sa tréimhse seo."
+    }
+  },
+  "health": {
+    "title": "Sláinte an Innill",
+    "updated": "nuashonraithe {{date}}",
+    "thresholdsPlaceholder": "⚠ Is sealbhóirí áite iad na tairseacha.",
+    "kpi": {
+      "healthy": {
+        "label": "Sláintiúil",
+        "note": "laistigh de theorainneacha"
+      },
+      "serviceSoon": {
+        "label": "Seirbhís go Luath",
+        "note": "ag druidim leis an teorainn"
+      },
+      "serviceDue": {
+        "label": "Seirbhís Dlite",
+        "note": "os cionn na tairsí"
+      },
+      "pointsTracked": {
+        "label": "Pointí Rianaithe",
+        "note": "cuntair saoil"
+      }
+    },
+    "groups": {
+      "ptoAndPumps": "PTO agus Caidéil",
+      "bodyAndCycles": "Comhlacht agus Timthriallta",
+      "chassisMileage": "Míleáiste an tSaisiaigh",
+      "engine": "Inneall"
+    },
+    "points": {
+      "pto": "",
+      "vacuumPump": "Caidéal Tarraingthe",
+      "jettingPump": "Caidéal Scairdeála",
+      "recyclePump": "Caidéal Athchúrsála",
+      "pistonMovesCompleted": "Gluaiseachtaí Loine Críochnaithe",
+      "cassetteMovements": "Gluaiseachtaí Caiséid",
+      "rearCoverOpenings": "Oscailtí an Chlúdaigh Deiridh",
+      "chassisMileage": "Míleáiste an tSaisiaigh",
+      "engineHours": "Uaireanta an Innill",
+      "coolantTemp": "Teocht an Fhuaraitheora",
+      "oilTemp": "Teocht na hOla"
+    },
+    "probes": {
+      "cycloneProbe": "Braiteoir Cioclóin",
+      "dynasetProbe": "Braiteoir Dynaset",
+      "frontLevelProbe": "Braiteoir Leibhéil Tosaigh",
+      "hydraulicPressureProbe": "Braiteoir Brú Hiodrálach",
+      "jettingProbe": "Braiteoir Scairdeála",
+      "pistonProbe": "Braiteoir Loine",
+      "rearLevelProbe": "Braiteoir Leibhéil Deiridh",
+      "vacuumProbe": "Braiteoir Tarraingthe"
+    },
+    "status": {
+      "ok": "OK",
+      "serviceSoon": "Seirbhís go luath",
+      "serviceDue": "Seirbhís dlite",
+      "noReading": "Gan léamh"
+    },
+    "gauge": {
+      "limit": "teorainn"
+    },
+    "cycleCounts": {
+      "title": "Cuntais Timthriall",
+      "note": "Comhaireamh carnach de ghluaiseachtaí loine, gluaiseachtaí caiséid agus oscailtí an chlúdaigh deiridh."
+    },
+    "periodPicker": {
+      "day": "Lá",
+      "week": "Seachtain",
+      "month": "Mí",
+      "range": "Raon"
+    }
+  },
+  "alerts": {
+    "kpi": {
+      "emergencyStops": {
+        "label": "Stopanna Éigeandála",
+        "note": "sa taifead"
+      },
+      "overrides": {
+        "label": "Sáruithe",
+        "note": "sáruithe glais idirlocála"
+      },
+      "machineFaults": {
+        "label": "Lochtanna Innill",
+        "note": "sa taifead"
+      }
+    },
+    "alarmStatus": {
+      "title": "Stádas Aláraim",
+      "manual": "Láimhe",
+      "automatic": "Uathoibríoch",
+      "noData": "Gan sonraí",
+      "ok": "OK"
+    },
+    "alarms": {
+      "lowLevelOverride": {
+        "label": "Sárú Leibhéal Íseal",
+        "activeLabel": "Brúite"
+      },
+      "safetyCircuit": {
+        "label": "Ciorcad Sábháilteachta",
+        "activeLabel": "Gafa"
+      },
+      "oilLevel": {
+        "label": "Leibhéal Ola",
+        "activeLabel": "Íseal"
+      },
+      "oilTemperature": {
+        "label": "Teocht Ola",
+        "activeLabel": "Ard"
+      }
+    },
+    "emergencyStopsLog": {
+      "title": "Loga Stopanna Éigeandála"
+    },
+    "operationalOverridesLog": {
+      "title": "Loga Sáruithe Oibríochta"
+    },
+    "machineFaultsLog": {
+      "title": "Lochtanna Innill"
+    },
+    "eventList": {
+      "none": "Níor taifeadadh aon rud."
+    },
+    "sensorHealth": {
+      "title": "Sláinte na mBraiteoirí",
+      "fault": "Locht",
+      "ok": "OK",
+      "noData": "Gan sonraí",
+      "dataUnavailable": "Níl sonraí ar fáil faoi láthair",
+      "lastReading": "Léamh deireanach: {{when}}",
+      "noDataNote": "Gan sonraí: níor taifeadadh léamha braiteora fós do bhraiteoir amháin nó níos mó thuas."
+    },
+    "estop": {
+      "warriorButton": {
+        "label": "Stad éigeandála — cnaipe brúite (Warrior)",
+        "cause": "Cnaipe stad-éigeandála ar an bhfeithicil brúite"
+      },
+      "remoteButton": {
+        "label": "Stad éigeandála — cnaipe brúite (cianrialtán)",
+        "cause": "Cnaipe stad-éigeandála an chianrialtáin láimhe brúite"
+      },
+      "remoteOutOfRange": {
+        "label": "Stad éigeandála — cianrialtán as raon",
+        "cause": "Chaill an cianrialtán a nasc leis an bhfeithicil"
+      },
+      "remoteFallDetection": {
+        "label": "Stad éigeandála — brath titime ar an gcianrialtán",
+        "cause": "Bhraith an cianrialtán titim oibreora"
+      },
+      "safetyCircuitTripped": {
+        "label": "Stad éigeandála — ciorcad sábháilteachta gafa",
+        "cause": "Gabhadh an ciorcad idirlocála sábháilteachta"
+      },
+      "fallback": "Stad éigeandála"
+    },
+    "override": {
+      "lowLevel": {
+        "label": "Sárú leibhéal íseal brúite",
+        "cause": "Caidéal scairdeála fórsáilte a rith agus an t-umar ag 20% nó faoina bhun — ní mholtar é"
+      },
+      "fallback": "Sárú oibríochta"
+    },
+    "fault": {
+      "lowOil": {
+        "label": "Leibhéal ola íseal",
+        "cause": "Leibhéal ola hiodrálach faoi bhun na tairsí sábháilte"
+      },
+      "highOilTemp": {
+        "label": "Teocht ola ard",
+        "cause": "Teocht ola hiodrálach os cionn na tairsí sábháilte"
+      },
+      "fallback": "Locht innill"
+    }
+  },
+  "routes": {
+    "workLocationLog": {
+      "title": "Loga Suíomhanna Oibre",
+      "info": "Áit ar bith a raibh PTO agus caidéal gníomhach ag an am céanna, le sonraí GPS - thar an stair iomlán, an {{limit}} is déanaí ar taispeáint.",
+      "noData": "Níor taifeadadh aon suíomh oibre fós."
+    },
+    "truckStopsLog": {
+      "title": "Loga Stadanna an Trucail",
+      "info": "Áit ar bith ar stad an trucail ag gluaiseacht, le sonraí GPS - thar an stair iomlán, an {{limit}} is déanaí ar taispeáint.",
+      "noData": "Níor taifeadadh aon stad fós."
+    },
+    "weatherUnavailable": "níl an aimsir ar fáil",
+    "historicalWeatherUnavailable": "níl aimsir stairiúil ar fáil fós"
+  },
+  "pumps": {
+    "labels": {
+      "pto": "",
+      "idle": "PTO Díomhaoin",
+      "vacuum": "Tarraingt",
+      "jet": "Scaird",
+      "recycle": "Athchúrsáil"
+    },
+    "utilisation": {
+      "title": "Úsáid PTO",
+      "subtitle": "Sciar d'am PTO",
+      "note": "Suimíonn am oibre agus am díomhaoin le chéile go dtí am PTO na tréimhse seo. Léiríonn barra gach caidéil a sciar féin den am PTO sin — forluíonn na caidéil, mar sin ní shuimíonn siad go dtí iomlán amháin.",
+      "noPto": "Níor taifeadadh aon úsáid PTO.",
+      "noPtoPeriod": "Níor taifeadadh aon am PTO don tréimhse seo.",
+      "pumpsActive": "caidéil ghníomhacha",
+      "ptoIdle": "PTO díomhaoin",
+      "notFitted": "Níl sé feistithe ar an bhfeithicil seo"
+    },
+    "timeline": {
+      "title": "Amlíne PTO agus Caidéal",
+      "subtitle": "Na haistrithe ar/as beacht do lá amháin",
+      "noData": "Níl aon sonraí amlíne PTO/caidéil don fheithicil seo.",
+      "noDayData": "Níl aon sonraí amlíne don lá seo.",
+      "on": "Ar Siúl",
+      "off": "As"
+    },
+    "usage": {
+      "title": "Am PTO — Ag Obair vs Díomhaoin",
+      "noData": "Níor taifeadadh aon úsáid PTO.",
+      "pumpsActiveLong": "Caidéil ghníomhacha (≥1 chaidéal)",
+      "ptoIdleLong": "PTO díomhaoin (ar siúl, gan chaidéal)"
+    },
+    "trend": {
+      "title": "Am Reatha na gCaidéal — de réir Caidéil",
+      "noData": "Níor taifeadadh aon úsáid caidéil."
+    },
+    "activityBars": {
+      "title": "Gníomhaíocht PTO / Caidéil",
+      "subtitle": "Nóiméid in aghaidh na tréimhse",
+      "noData": "Níor taifeadadh aon úsáid PTO."
+    },
+    "activitySingle": {
+      "title": "Úsáid — Nóiméid Reatha",
+      "noData": "Níor taifeadadh aon úsáid {{pump}}."
+    },
+    "activationLog": {
+      "title": "Loga Gníomhachtaithe Caidéal",
+      "note": "Timthriallta aonair ar/as na gcaidéal tarraingthe/scairdeála/athchúrsála, na cinn is déanaí ar dtús, thar an stair iomlán.",
+      "noData": "Níor taifeadadh aon ghníomhaíocht caidéil fós.",
+      "ongoing": "ar siúl fós"
+    }
+  },
+  "fleet": {
+    "title": "Comparáid Flíte",
+    "clickToOpen": "cliceáil ar fheithicil chun í a oscailt",
+    "subtitle": "Gach feithicil ionghabhtha, taobh le taobh — sórtáil de réir aon cholúin. Cóimeáilte ó theileimhéadracht féin gach feithicle; ciallaíonn dais nach bhfuil an cainéal sin i láthair.",
+    "loading": "Ag lódáil na flíte…",
+    "noVehicles": "Níor ionghabhadh aon fheithicil.",
+    "noGps": "gan GPS",
+    "columns": {
+      "vehicle": "Feithicil",
+      "hoursPerWeek": "Uaireanta / Sheachtain",
+      "utilisation": "Úsáid",
+      "fuelPerWeek": "Breosla / Sheachtain",
+      "alerts": "Foláirimh",
+      "lastSeen": "Feicthe go Deireanach"
+    },
+    "kpi": {
+      "vehicles": {
+        "label": "Feithiclí",
+        "note": "sa fhlít"
+      },
+      "totalHours": {
+        "label": "Uaireanta Iomlána / Sheachtain"
+      },
+      "avgUtilisation": {
+        "label": "Meán-Úsáid"
+      },
+      "totalFuel": {
+        "label": "Breosla Iomlán / Sheachtain"
+      },
+      "openAlerts": {
+        "label": "Foláirimh Oscailte",
+        "note": "ar fud na flíte"
+      }
+    }
+  },
+  "costing": {
+    "title": "Costas Breosla",
+    "rangeFullHistory": "an stair iomlán",
+    "measuredNote": "Is raon é an costas bunaithe ar scaipeadh ráta breosla an trucail féin idir am oibre agus am neamhoibre; is glacadh leatsa iad praghas an bhreosla agus an ráta saothair.",
+    "noFuelData": "Níl sonraí breosla ann don fheithicil seo — teastaíonn an cainéal Ráta Breosla ón gcostáil, rud nach bhfuil i dteileimhéadracht an trucail seo.",
+    "measured": {
+      "fuelBurned": {
+        "label": "Breosla dóite",
+        "sub": "thar {{range}}"
+      },
+      "workingHours": {
+        "label": "Uaireanta oibre",
+        "sub": "PTO nó caidéal gníomhach"
+      },
+      "workingFuelRate": {
+        "label": "Ráta breosla oibre",
+        "sub": "banda {{low}}–{{high}}"
+      },
+      "offtaskFuelRate": {
+        "label": "Ráta breosla neamhoibre",
+        "sub": "banda {{low}}–{{high}} · díomhaoin san áireamh"
+      }
+    },
+    "estimator": {
+      "title": "Meastachán Costais Jab",
+      "currency": "Airgeadra",
+      "fuelPrice": "Praghas breosla ({{cur}} / L)",
+      "labourRate": "Ráta saothair ({{cur}} / u)",
+      "workingHours": "Uaireanta oibre",
+      "travelIdleHours": "Uaireanta taistil / díomhaoin",
+      "estimatedCost": "Costas measta don jab seo",
+      "lowBreakdown": "Íseal · breosla {{fuel}} + saothar {{labour}}",
+      "highBreakdown": "Ard · breosla {{fuel}} + saothar {{labour}}",
+      "notEnoughData": "Níl go leor sonraí ráta breosla ann chun meastachán costais a dhéanamh.",
+      "note": "Tagann an raon ó scaipeadh p25–p75 ráta breosla an trucail seo: glacann an costas íseal leis an dó is éadroime, agus an costas ard leis an dó is troime. Tá an saothar mar an gcéanna sa dá chás."
+    },
+    "measuredCost": {
+      "title": "Costas Breosla Tomhaiste",
+      "actualBurnedRange": "Breosla iarbhír dóite thar {{range}}, ag {{price}}/L",
+      "actualBurnedDays_one": "Breosla iarbhír dóite ar {{count}} lá roghnaithe, ag {{price}}/L",
+      "actualBurnedDays_other": "Breosla iarbhír dóite ar {{count}} lá roghnaithe, ag {{price}}/L",
+      "measuredBreakdown": "{{litres}} L tomhaiste · {{sel}} as {{total}} lá",
+      "corruptDiscarded_one": "· {{count}} léamh truaillithe caite i leataobh",
+      "corruptDiscarded_other": "· {{count}} léamh truaillithe caite i leataobh",
+      "note": "Roghnaigh na laethanta le cur san áireamh — is lá le sonraí breosla é gach bolgán. Is iad na lítir tomhaiste ar na laethanta roghnaithe an costas (difríocht an chuntair laethúil, praghsáilte ag do phraghas breosla thuas); caitear athshocruithe cuntair agus spící neamhréadúla i leataobh i gcónaí, ní chomhairtear iad go deo."
+    },
+    "dayPicker": {
+      "daysOf": "{{selected}} as {{available}} lá",
+      "all": "Uile",
+      "clear": "Glan",
+      "prevMonth": "An mhí roimhe",
+      "nextMonth": "An chéad mhí eile",
+      "toggleMonthTitle": "Roghnaigh nó glan an mhí ar fad seo",
+      "noFuelData": "gan sonraí breosla"
+    }
+  }
+}

@@ -1,0 +1,652 @@
+{
+  "common": {
+    "grain": {
+      "day": "Daily",
+      "week": "Weekly",
+      "month": "Monthly"
+    },
+    "nav": {
+      "prev": "Prev",
+      "next": "Next"
+    },
+    "loading": "Loading…",
+    "noDataForPeriod": "No data for this period.",
+    "routePanel": {
+      "title": "Route History",
+      "noLocation": "No location data for this vehicle.",
+      "noGpsForDay": "No GPS data for this day.",
+      "noGpsFallback": "No GPS for {{requested}} yet — showing the nearest day GPS has: {{actual}}.",
+      "ptoActive": "PTO active",
+      "start": "Start",
+      "end": "End",
+      "driving": "driving",
+      "stop": "stop",
+      "workingStop": "working stop",
+      "stops": "stops"
+    },
+    "mapPanel": {
+      "title": "Last-Known Location",
+      "noLocation": "No location data for this vehicle."
+    },
+    "weatherPanel": {
+      "title": "Live Local Forecast",
+      "noLocation": "No location — no forecast.",
+      "unavailable": "Forecast unavailable.",
+      "now": "now",
+      "overnightLow": "overnight low",
+      "blowdown": "Winter Blowdown required before operation",
+      "storm": "Storm warning — secure equipment before operation",
+      "illustrative": "(illustrative)",
+      "rainIn": "Rain in {{region}}",
+      "theArea": "the area",
+      "outlookUnavailable": "outlook unavailable",
+      "unlikelyToday": "unlikely today",
+      "chance": "{{pct}}% chance",
+      "mm": "{{mm}} mm",
+      "expectedToday": "expected today",
+      "heaviestAt": ", heaviest {{time}}",
+      "peak": {
+        "overnight": "overnight",
+        "morning": "in the morning",
+        "midday": "around midday",
+        "afternoon": "mid-afternoon",
+        "evening": "in the evening"
+      }
+    },
+    "weatherConditions": {
+      "clear": "Clear",
+      "mainlyClear": "Mainly clear",
+      "partlyCloudy": "Partly cloudy",
+      "overcast": "Overcast",
+      "fog": "Fog",
+      "drizzle": "Drizzle",
+      "lightRain": "Light rain",
+      "rain": "Rain",
+      "heavyRain": "Heavy rain",
+      "snow": "Snow",
+      "showers": "Showers",
+      "heavyShowers": "Heavy showers",
+      "snowShowers": "Snow showers",
+      "thunderstorm": "Thunderstorm",
+      "cloudy": "Cloudy"
+    },
+    "weekdaysShort": {
+      "mon": "M",
+      "tue": "T",
+      "wed": "W",
+      "thu": "T",
+      "fri": "F",
+      "sat": "S",
+      "sun": "S"
+    }
+  },
+  "overview": {
+    "dayStatusBar": {
+      "statusOnNamed": "{{vehicle}} status on",
+      "statusOnGeneric": "Status on",
+      "prevDay": "Prev day",
+      "nextDay": "Next day",
+      "latest": "Latest"
+    },
+    "kpi": {
+      "utilisation": {
+        "label": "Utilisation",
+        "note": "PTO-on share of active time"
+      },
+      "hours": {
+        "label": "Hours",
+        "note": "active time (work + travel)"
+      },
+      "atWork": {
+        "label": "At Work",
+        "notePct": "{{pct}}% of active time",
+        "noteNoRoute": "no route"
+      },
+      "jobs": {
+        "label": "Jobs",
+        "note": "PTO-engaged stops"
+      },
+      "stops": {
+        "label": "Stops",
+        "note": "stationary clusters"
+      },
+      "openAlerts": {
+        "label": "Open Alerts",
+        "noteInRecord": "{{count}} in record"
+      }
+    },
+    "routeToggle": {
+      "routes": "Routes",
+      "location": "Location"
+    },
+    "activity": {
+      "title": "Activity",
+      "mismatch": "No activity for {{requested}} yet — showing the nearest day activity has: {{actual}}.",
+      "noData": "No activity data for this day.",
+      "atWork": "at work",
+      "travel": "travel",
+      "idle": "idle",
+      "jobs": "jobs",
+      "stops": "stops"
+    },
+    "currentStatus": {
+      "title": "Current Status",
+      "segments": {
+        "offline": "Offline",
+        "live": "Live",
+        "travelling": "Travelling",
+        "idle": "Idle",
+        "working": "Working"
+      },
+      "indicators": {
+        "pto": "PTO",
+        "vac": "VAC",
+        "jet": "JET",
+        "rec": "REC"
+      }
+    },
+    "tankLevels": {
+      "title": "Tank Levels",
+      "noData": "No tank level for this vehicle.",
+      "frontWater": "Front water",
+      "rearSludge": "Rear sludge",
+      "frontCompartmentWater": "front compartment · water",
+      "fullAria": "{{label}} {{pct}}% full"
+    },
+    "vehicleWeight": {
+      "title": "Vehicle Weight",
+      "noData": "No weight data for this vehicle.",
+      "total": "Total vehicle weight"
+    },
+    "fuelConsumed": {
+      "title": "Fuel Consumed",
+      "noDataFallback": "No fuel data for {{requested}} yet — showing the nearest day fuel has: {{actual}}.",
+      "noData": "No fuel data for this day.",
+      "travelIdle": "travel / idle"
+    }
+  },
+  "trends": {
+    "title": "Trends",
+    "monthlyNote": "⚠ Monthly shows only a few points here — this trial's history is still short. This will grow as more data is collected over time.",
+    "kpiNote": {
+      "vsLast": "vs last"
+    },
+    "metrics": {
+      "operatingHours": {
+        "label": "Operating Hours"
+      },
+      "waterRecycled": {
+        "label": "Water Recycled"
+      },
+      "fuelUsed": {
+        "label": "Fuel Used"
+      },
+      "fuelRate": {
+        "label": "Fuel Rate"
+      },
+      "engineRpm": {
+        "label": "Engine RPM"
+      },
+      "safetyEvents": {
+        "label": "Safety Events"
+      }
+    },
+    "safetyTimeline": {
+      "title": "Safety Events",
+      "inThisPeriod": "{{count}} in this period",
+      "noEvents": "No safety events in this period — nothing to report.",
+      "tooltip_one": "{{count}} event · {{when}}",
+      "tooltip_other": "{{count}} events · {{when}}"
+    },
+    "rpmChart": {
+      "title": "Engine RPM — Average",
+      "noData": "No RPM recorded.",
+      "ptoOff": "PTO off (idle or driving)",
+      "atWork": "at work (PTO on)"
+    }
+  },
+  "sustainability": {
+    "title": "Sustainability",
+    "kpi": {
+      "co2": {
+        "label": "CO₂ · Period",
+        "note": "fuel × 2.68 (estimate)"
+      },
+      "recyclingRate": {
+        "label": "Recycling Rate",
+        "note": "latest period"
+      },
+      "avgUtilisation": {
+        "label": "Avg Utilisation",
+        "note": "engine-on at work"
+      },
+      "fuel": {
+        "label": "Fuel · Period"
+      },
+      "waterRecycled": {
+        "label": "Water Recycled"
+      }
+    },
+    "charts": {
+      "co2": {
+        "label": "CO₂ Emitted",
+        "info": "Fuel consumed during this period."
+      },
+      "fuelUsed": {
+        "label": "Fuel Used",
+        "info": "Change in total fuel used across the period."
+      },
+      "utilisation": {
+        "label": "Utilisation",
+        "info": "PTO work time during this period."
+      },
+      "recyclingRate": {
+        "label": "Recycling Rate",
+        "info": "Share of PTO-active time spent recycling, from recycling pump run-time ÷ PTO run-time - not a water-volume ratio.",
+        "zeroNote": "The recycling pump hasn't run during this period."
+      },
+      "waterRecycled": {
+        "label": "Water Recycled",
+        "info": "Calculated from recycling pump run-time x 350 L/min (the recycling piston's known flow rate), not a direct water-volume reading.",
+        "zeroNote": "The recycling pump hasn't run during this period."
+      }
+    },
+    "info": {
+      "co2": "CO₂ Emitted: estimated from fuel used (diesel × 2.68 kg/L per litre).",
+      "fuelUsed": "Fuel Used: total litres burned this period.",
+      "utilisation": "Utilisation: share of engine-on time spent working (PTO or a pump engaged).",
+      "recyclingRate": "Recycling Rate: share of PTO-active time spent recycling.",
+      "waterRecycled": "Water Recycled: total litres of water recycled this period."
+    }
+  },
+  "health": {
+    "title": "Machine Health",
+    "updated": "updated {{date}}",
+    "thresholdsPlaceholder": "⚠ Thresholds are placeholders.",
+    "kpi": {
+      "healthy": {
+        "label": "Healthy",
+        "note": "within limits"
+      },
+      "serviceSoon": {
+        "label": "Service Soon",
+        "note": "approaching limit"
+      },
+      "serviceDue": {
+        "label": "Service Due",
+        "note": "over threshold"
+      },
+      "pointsTracked": {
+        "label": "Points Tracked",
+        "note": "lifetime counters"
+      }
+    },
+    "groups": {
+      "ptoAndPumps": "PTO & Pumps",
+      "bodyAndCycles": "Body & Cycles",
+      "chassisMileage": "Chassis Mileage",
+      "engine": "Engine"
+    },
+    "points": {
+      "pto": "PTO",
+      "vacuumPump": "Vacuum Pump",
+      "jettingPump": "Jetting Pump",
+      "recyclePump": "Recycle Pump",
+      "pistonMovesCompleted": "Piston Moves Completed",
+      "cassetteMovements": "Cassette Movements",
+      "rearCoverOpenings": "Rear Cover Openings",
+      "chassisMileage": "Chassis Mileage",
+      "engineHours": "Engine Hours",
+      "coolantTemp": "Coolant Temp",
+      "oilTemp": "Oil Temp"
+    },
+    "probes": {
+      "cycloneProbe": "Cyclone Probe",
+      "dynasetProbe": "Dynaset Probe",
+      "frontLevelProbe": "Front Level Probe",
+      "hydraulicPressureProbe": "Hydraulic Pressure Probe",
+      "jettingProbe": "Jetting Probe",
+      "pistonProbe": "Piston Probe",
+      "rearLevelProbe": "Rear Level Probe",
+      "vacuumProbe": "Vacuum Probe"
+    },
+    "status": {
+      "ok": "OK",
+      "serviceSoon": "Service soon",
+      "serviceDue": "Service due",
+      "noReading": "No reading"
+    },
+    "gauge": {
+      "limit": "limit"
+    },
+    "cycleCounts": {
+      "title": "Cycle Counts",
+      "note": "Cumulative count of piston moves, cassette movements and rear cover openings."
+    },
+    "periodPicker": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "range": "Range"
+    }
+  },
+  "alerts": {
+    "kpi": {
+      "emergencyStops": {
+        "label": "Emergency Stops",
+        "note": "in the record"
+      },
+      "overrides": {
+        "label": "Overrides",
+        "note": "interlock overrides"
+      },
+      "machineFaults": {
+        "label": "Machine Faults",
+        "note": "in the record"
+      }
+    },
+    "alarmStatus": {
+      "title": "Alarm Status",
+      "manual": "Manual",
+      "automatic": "Automatic",
+      "noData": "No data",
+      "ok": "OK"
+    },
+    "alarms": {
+      "lowLevelOverride": {
+        "label": "Low-Level Override",
+        "activeLabel": "Pressed"
+      },
+      "safetyCircuit": {
+        "label": "Safety Circuit",
+        "activeLabel": "Tripped"
+      },
+      "oilLevel": {
+        "label": "Oil Level",
+        "activeLabel": "Low"
+      },
+      "oilTemperature": {
+        "label": "Oil Temperature",
+        "activeLabel": "High"
+      }
+    },
+    "emergencyStopsLog": {
+      "title": "Emergency Stops Log"
+    },
+    "operationalOverridesLog": {
+      "title": "Operational Overrides Log"
+    },
+    "machineFaultsLog": {
+      "title": "Machine Faults"
+    },
+    "eventList": {
+      "none": "None recorded."
+    },
+    "sensorHealth": {
+      "title": "Sensor Health",
+      "fault": "Fault",
+      "ok": "OK",
+      "noData": "No data",
+      "dataUnavailable": "Data currently unavailable",
+      "lastReading": "Last reading: {{when}}",
+      "noDataNote": "No data: no sensor readings logged yet for one or more sensors above."
+    },
+    "estop": {
+      "warriorButton": {
+        "label": "Emergency stop — button pressed (Warrior)",
+        "cause": "On-vehicle E-stop button pressed"
+      },
+      "remoteButton": {
+        "label": "Emergency stop — button pressed (remote)",
+        "cause": "Handheld remote E-stop button pressed"
+      },
+      "remoteOutOfRange": {
+        "label": "Emergency stop — remote out of range",
+        "cause": "Remote lost its link with the vehicle"
+      },
+      "remoteFallDetection": {
+        "label": "Emergency stop — remote fall detection",
+        "cause": "Remote detected an operator fall"
+      },
+      "safetyCircuitTripped": {
+        "label": "Emergency stop — safety circuit tripped",
+        "cause": "Safety interlock circuit tripped"
+      },
+      "fallback": "Emergency stop"
+    },
+    "override": {
+      "lowLevel": {
+        "label": "Low-level override pressed",
+        "cause": "Jet pump forced to run with the tank at or below 20% — not recommended"
+      },
+      "fallback": "Operational override"
+    },
+    "fault": {
+      "lowOil": {
+        "label": "Low oil level",
+        "cause": "Hydraulic oil level below the safe threshold"
+      },
+      "highOilTemp": {
+        "label": "High oil temperature",
+        "cause": "Hydraulic oil temperature above the safe threshold"
+      },
+      "fallback": "Machine fault"
+    }
+  },
+  "routes": {
+    "workLocationLog": {
+      "title": "Work Location Log",
+      "info": "Anywhere PTO and a pump were active at the same time, with GPS data - across the full history, last {{limit}} shown.",
+      "noData": "No work locations recorded yet."
+    },
+    "truckStopsLog": {
+      "title": "Truck Stops Log",
+      "info": "Anywhere the truck stopped moving, with GPS data - across the full history, last {{limit}} shown.",
+      "noData": "No stops recorded yet."
+    },
+    "weatherUnavailable": "weather unavailable",
+    "historicalWeatherUnavailable": "historical weather not available yet"
+  },
+  "pumps": {
+    "labels": {
+      "pto": "PTO",
+      "idle": "PTO Idle",
+      "vacuum": "Vacuum",
+      "jet": "Jet",
+      "recycle": "Recycle"
+    },
+    "utilisation": {
+      "title": "PTO Utilisation",
+      "subtitle": "Share of PTO time",
+      "note": "Working vs idle add up to this period’s PTO time. Each pump’s bar is its share of that PTO time — the pumps overlap, so they don’t sum to a single total.",
+      "noPto": "No PTO usage recorded.",
+      "noPtoPeriod": "No PTO time recorded for this period.",
+      "pumpsActive": "pumps active",
+      "ptoIdle": "PTO idle",
+      "notFitted": "Not fitted on this vehicle"
+    },
+    "timeline": {
+      "title": "PTO & Pump Timeline",
+      "subtitle": "Exact on/off transitions for one day",
+      "noData": "No PTO/pump timeline data for this vehicle.",
+      "noDayData": "No timeline data for this day.",
+      "on": "On",
+      "off": "Off"
+    },
+    "usage": {
+      "title": "PTO Time — Working vs Idle",
+      "noData": "No PTO usage recorded.",
+      "pumpsActiveLong": "Pumps active (≥1 pump)",
+      "ptoIdleLong": "PTO idle (on, no pump)"
+    },
+    "trend": {
+      "title": "Pump Run-Time — By Pump",
+      "noData": "No pump usage recorded."
+    },
+    "activityBars": {
+      "title": "PTO / Pump Activity",
+      "subtitle": "Minutes per period",
+      "noData": "No PTO usage recorded."
+    },
+    "activitySingle": {
+      "title": "Usage — Minutes Run",
+      "noData": "No {{pump}} usage recorded."
+    },
+    "activationLog": {
+      "title": "Pump Activation Log",
+      "note": "Individual vacuum/jet/recycle pump on/off cycles, newest first, across the full history.",
+      "noData": "No pump activity recorded yet.",
+      "ongoing": "ongoing"
+    }
+  },
+  "fleet": {
+    "title": "Fleet Comparison",
+    "clickToOpen": "click a vehicle to open it",
+    "subtitle": "Every ingested vehicle side by side — sort by any column. Assembled from each vehicle's own telemetry; a dash means that channel isn't present.",
+    "loading": "Loading fleet…",
+    "noVehicles": "No vehicles ingested.",
+    "noGps": "no GPS",
+    "columns": {
+      "vehicle": "Vehicle",
+      "hoursPerWeek": "Hours / Wk",
+      "utilisation": "Utilisation",
+      "fuelPerWeek": "Fuel / Wk",
+      "alerts": "Alerts",
+      "lastSeen": "Last Seen"
+    },
+    "kpi": {
+      "vehicles": {
+        "label": "Vehicles",
+        "note": "in the fleet"
+      },
+      "totalHours": {
+        "label": "Total Hours / Wk"
+      },
+      "avgUtilisation": {
+        "label": "Avg Utilisation"
+      },
+      "totalFuel": {
+        "label": "Total Fuel / Wk"
+      },
+      "openAlerts": {
+        "label": "Open Alerts",
+        "note": "across fleet"
+      }
+    }
+  },
+  "costing": {
+    "title": "Fuel Costing",
+    "rangeFullHistory": "full history",
+    "measuredNote": "The cost is a range from the truck's own working vs off-task fuel-rate spread; fuel price and labour rate are your assumptions.",
+    "noFuelData": "No fuel data for this vehicle — costing needs the Fuel Rate channel, which this truck's telemetry doesn't carry.",
+    "measured": {
+      "fuelBurned": {
+        "label": "Fuel burned",
+        "sub": "over {{range}}"
+      },
+      "workingHours": {
+        "label": "Working hours",
+        "sub": "PTO or pump engaged"
+      },
+      "workingFuelRate": {
+        "label": "Working fuel rate",
+        "sub": "band {{low}}–{{high}}"
+      },
+      "offtaskFuelRate": {
+        "label": "Off-task fuel rate",
+        "sub": "band {{low}}–{{high}} · incl. idle"
+      }
+    },
+    "estimator": {
+      "title": "Job Cost Estimator",
+      "currency": "Currency",
+      "fuelPrice": "Fuel price ({{cur}} / L)",
+      "labourRate": "Labour rate ({{cur}} / h)",
+      "workingHours": "Working hours",
+      "travelIdleHours": "Travel / idle hours",
+      "estimatedCost": "Estimated cost for this job",
+      "lowBreakdown": "Low · fuel {{fuel}} + labour {{labour}}",
+      "highBreakdown": "High · fuel {{fuel}} + labour {{labour}}",
+      "notEnoughData": "Not enough fuel-rate data to build a cost estimate.",
+      "note": "The range comes from this truck's p25–p75 fuel-rate spread: the low cost assumes its leaner burn, the high its heavier burn. Labour is the same in both."
+    },
+    "measuredCost": {
+      "title": "Measured Fuel Cost",
+      "actualBurnedRange": "Actual fuel burned over {{range}}, at {{price}}/L",
+      "actualBurnedDays_one": "Actual fuel burned on {{count}} selected day, at {{price}}/L",
+      "actualBurnedDays_other": "Actual fuel burned on {{count}} selected days, at {{price}}/L",
+      "measuredBreakdown": "{{litres}} L measured · {{sel}} of {{total}} days",
+      "corruptDiscarded_one": "· {{count}} corrupt reading discarded",
+      "corruptDiscarded_other": "· {{count}} corrupt readings discarded",
+      "note": "Pick the days to include — each bubble is a day with fuel data. The cost is the measured litres on the selected days (the daily counter delta, priced at your fuel price above); counter resets and implausible spikes are discarded, never counted."
+    },
+    "dayPicker": {
+      "daysOf": "{{selected}} of {{available}} days",
+      "all": "All",
+      "clear": "Clear",
+      "prevMonth": "Previous month",
+      "nextMonth": "Next month",
+      "toggleMonthTitle": "Select or clear this whole month",
+      "noFuelData": "no fuel data"
+    }
+  },
+  "nav": {
+    "overview": {
+      "label": "Overview",
+      "title": "Overview"
+    },
+    "fleet": {
+      "label": "Fleet",
+      "title": "Fleet",
+      "crumb": "All vehicles"
+    },
+    "trends": {
+      "label": "Trends",
+      "title": "Trends"
+    },
+    "sustainability": {
+      "label": "Sustainability",
+      "title": "Sustainability"
+    },
+    "health": {
+      "label": "Health",
+      "title": "Machine Health"
+    },
+    "alerts": {
+      "label": "Alerts",
+      "title": "Alerts"
+    },
+    "pumps": {
+      "label": "Pumps",
+      "title": "Pumps"
+    },
+    "routes": {
+      "label": "Routes",
+      "title": "Routes"
+    },
+    "costing": {
+      "label": "Costing",
+      "title": "Fuel Costing"
+    },
+    "groups": {
+      "vehicle": "Vehicle",
+      "fleet": "Fleet"
+    }
+  },
+  "app": {
+    "menu": "Menu",
+    "generateReport": "Generate report",
+    "lastKnownValues": "Last known values",
+    "vehicle": "Vehicle",
+    "selectVehicle": "Select vehicle",
+    "live": "Live",
+    "offline": "Offline",
+    "toggleDarkMode": "Toggle dark mode",
+    "noVehiclesVisible": "No vehicles are visible to this deployment.",
+    "apiError": {
+      "title": "Couldn't reach the API.",
+      "hint": "Check that the API (uvicorn) and the database are both running."
+    },
+    "footer": "Revive Live"
+  }
+}

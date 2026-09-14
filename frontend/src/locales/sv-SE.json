@@ -1,0 +1,652 @@
+{
+  "common": {
+    "grain": {
+      "day": "Daglig",
+      "week": "Veckovis",
+      "month": "Månatlig"
+    },
+    "nav": {
+      "prev": "Föregående",
+      "next": "Nästa"
+    },
+    "loading": "Läser in…",
+    "noDataForPeriod": "Inga data för denna period.",
+    "routePanel": {
+      "title": "Rutthistorik",
+      "noLocation": "Inga platsdata för detta fordon.",
+      "noGpsForDay": "Inga GPS-data för denna dag.",
+      "noGpsFallback": "Ingen GPS för {{requested}} än — visar närmaste dag med GPS: {{actual}}.",
+      "ptoActive": "",
+      "start": "Start",
+      "end": "Slut",
+      "driving": "kör",
+      "stop": "stopp",
+      "workingStop": "arbetsstopp",
+      "stops": "stopp"
+    },
+    "mapPanel": {
+      "title": "Senast Kända Plats",
+      "noLocation": "Inga platsdata för detta fordon."
+    },
+    "weatherPanel": {
+      "title": "Live Lokal Väderprognos",
+      "noLocation": "Ingen plats — ingen prognos.",
+      "unavailable": "Väderprognos ej tillgänglig.",
+      "now": "nu",
+      "overnightLow": "lägsta nattemperatur",
+      "blowdown": "",
+      "storm": "Stormvarning — säkra utrustning innan användning",
+      "illustrative": "(illustrativt)",
+      "rainIn": "Regn i {{region}}",
+      "theArea": "området",
+      "outlookUnavailable": "prognos ej tillgänglig",
+      "unlikelyToday": "osannolikt idag",
+      "chance": "{{pct}}% sannolikhet",
+      "mm": "{{mm}} mm",
+      "expectedToday": "väntas idag",
+      "heaviestAt": ", kraftigast {{time}}",
+      "peak": {
+        "overnight": "under natten",
+        "morning": "på morgonen",
+        "midday": "mitt på dagen",
+        "afternoon": "på eftermiddagen",
+        "evening": "på kvällen"
+      }
+    },
+    "weatherConditions": {
+      "clear": "Klart",
+      "mainlyClear": "Mestadels klart",
+      "partlyCloudy": "Delvis molnigt",
+      "overcast": "Mulet",
+      "fog": "Dimma",
+      "drizzle": "Duggregn",
+      "lightRain": "Lätt regn",
+      "rain": "Regn",
+      "heavyRain": "Kraftigt regn",
+      "snow": "Snö",
+      "showers": "Skurar",
+      "heavyShowers": "Kraftiga skurar",
+      "snowShowers": "Snöbyar",
+      "thunderstorm": "Åska",
+      "cloudy": "Molnigt"
+    },
+    "weekdaysShort": {
+      "mon": "M",
+      "tue": "T",
+      "wed": "O",
+      "thu": "T",
+      "fri": "F",
+      "sat": "L",
+      "sun": "S"
+    }
+  },
+  "nav": {
+    "overview": {
+      "label": "Översikt",
+      "title": "Översikt"
+    },
+    "fleet": {
+      "label": "Flotta",
+      "title": "Flotta",
+      "crumb": "Alla fordon"
+    },
+    "trends": {
+      "label": "Trender",
+      "title": "Trender"
+    },
+    "sustainability": {
+      "label": "Hållbarhet",
+      "title": "Hållbarhet"
+    },
+    "health": {
+      "label": "Hälsa",
+      "title": "Maskinens Hälsa"
+    },
+    "alerts": {
+      "label": "Larm",
+      "title": "Larm"
+    },
+    "pumps": {
+      "label": "Pumpar",
+      "title": "Pumpar"
+    },
+    "routes": {
+      "label": "Rutter",
+      "title": "Rutter"
+    },
+    "costing": {
+      "label": "Kostnad",
+      "title": "Bränslekostnad"
+    },
+    "groups": {
+      "vehicle": "Fordon",
+      "fleet": "Flotta"
+    }
+  },
+  "app": {
+    "menu": "Meny",
+    "generateReport": "Skapa rapport",
+    "lastKnownValues": "Senast kända värden",
+    "vehicle": "Fordon",
+    "selectVehicle": "Välj fordon",
+    "live": "Live",
+    "offline": "Offline",
+    "toggleDarkMode": "Växla mörkt läge",
+    "noVehiclesVisible": "Inga fordon är synliga för denna installation.",
+    "apiError": {
+      "title": "Kunde inte nå API:et.",
+      "hint": "Kontrollera att API:et (uvicorn) och databasen båda körs."
+    },
+    "footer": "Revive Live"
+  },
+  "overview": {
+    "dayStatusBar": {
+      "statusOnNamed": "Status för {{vehicle}} den",
+      "statusOnGeneric": "Status den",
+      "prevDay": "Föregående dag",
+      "nextDay": "Nästa dag",
+      "latest": "Senaste"
+    },
+    "kpi": {
+      "utilisation": {
+        "label": "Utnyttjande",
+        "note": "PTO-på andel av aktiv tid"
+      },
+      "hours": {
+        "label": "Timmar",
+        "note": "aktiv tid (arbete + körning)"
+      },
+      "atWork": {
+        "label": "I Arbete",
+        "notePct": "{{pct}}% av aktiv tid",
+        "noteNoRoute": "ingen rutt"
+      },
+      "jobs": {
+        "label": "Jobb",
+        "note": "PTO-aktiva stopp"
+      },
+      "stops": {
+        "label": "Stopp",
+        "note": "stillastående kluster"
+      },
+      "openAlerts": {
+        "label": "Öppna Larm",
+        "noteInRecord": "{{count}} i registret"
+      }
+    },
+    "routeToggle": {
+      "routes": "Rutter",
+      "location": "Plats"
+    },
+    "activity": {
+      "title": "Aktivitet",
+      "mismatch": "Ingen aktivitet för {{requested}} än — visar närmaste dag med aktivitet: {{actual}}.",
+      "noData": "Inga aktivitetsdata för denna dag.",
+      "atWork": "i arbete",
+      "travel": "körning",
+      "idle": "tomgång",
+      "jobs": "jobb",
+      "stops": "stopp"
+    },
+    "currentStatus": {
+      "title": "Nuvarande Status",
+      "segments": {
+        "offline": "Offline",
+        "live": "Live",
+        "travelling": "Kör",
+        "idle": "Tomgång",
+        "working": "Arbetar"
+      },
+      "indicators": {
+        "pto": "",
+        "vac": "",
+        "jet": "",
+        "rec": ""
+      }
+    },
+    "tankLevels": {
+      "title": "Tanknivåer",
+      "noData": "Ingen tanknivå för detta fordon.",
+      "frontWater": "Vatten Fram",
+      "rearSludge": "Slam Bak",
+      "frontCompartmentWater": "främre facket · vatten",
+      "fullAria": "{{label}} {{pct}}% fullt"
+    },
+    "vehicleWeight": {
+      "title": "Fordonets Vikt",
+      "noData": "Inga viktdata för detta fordon.",
+      "total": "Total fordonsvikt"
+    },
+    "fuelConsumed": {
+      "title": "Bränsleförbrukning",
+      "noDataFallback": "Inga bränsledata för {{requested}} än — visar närmaste dag med bränsledata: {{actual}}.",
+      "noData": "Inga bränsledata för denna dag.",
+      "travelIdle": "körning / tomgång"
+    }
+  },
+  "trends": {
+    "title": "Trender",
+    "monthlyNote": "⚠ Den månatliga vyn visar bara några få punkter här — denna provperiods historik är fortfarande kort. Detta kommer att växa allteftersom mer data samlas in över tid.",
+    "kpiNote": {
+      "vsLast": "jmf. senaste"
+    },
+    "metrics": {
+      "operatingHours": {
+        "label": "Drifttimmar"
+      },
+      "waterRecycled": {
+        "label": "Återvunnet Vatten"
+      },
+      "fuelUsed": {
+        "label": "Använt Bränsle"
+      },
+      "fuelRate": {
+        "label": "Bränsleförbrukning"
+      },
+      "engineRpm": {
+        "label": "Motor-RPM"
+      },
+      "safetyEvents": {
+        "label": "Säkerhetshändelser"
+      }
+    },
+    "safetyTimeline": {
+      "title": "Säkerhetshändelser",
+      "inThisPeriod": "{{count}} under denna period",
+      "noEvents": "Inga säkerhetshändelser under denna period — inget att rapportera.",
+      "tooltip_one": "{{count}} händelse · {{when}}",
+      "tooltip_other": "{{count}} händelser · {{when}}"
+    },
+    "rpmChart": {
+      "title": "Motor-RPM — Genomsnitt",
+      "noData": "Inget RPM registrerat.",
+      "ptoOff": "PTO av (tomgång eller körning)",
+      "atWork": "i arbete (PTO på)"
+    }
+  },
+  "sustainability": {
+    "title": "Hållbarhet",
+    "kpi": {
+      "co2": {
+        "label": "CO₂ · Period",
+        "note": "bränsle × 2,68 (uppskattning)"
+      },
+      "recyclingRate": {
+        "label": "Återvinningsgrad",
+        "note": "senaste perioden"
+      },
+      "avgUtilisation": {
+        "label": "Gen. Utnyttjande",
+        "note": "motor på, i arbete"
+      },
+      "fuel": {
+        "label": "Bränsle · Period"
+      },
+      "waterRecycled": {
+        "label": "Återvunnet Vatten"
+      }
+    },
+    "charts": {
+      "co2": {
+        "label": "Utsläppt CO₂",
+        "info": "Bränsle förbrukat under denna period."
+      },
+      "fuelUsed": {
+        "label": "Använt Bränsle",
+        "info": "Förändring i total bränsleförbrukning under perioden."
+      },
+      "utilisation": {
+        "label": "Utnyttjande",
+        "info": "PTO-arbetstid under denna period."
+      },
+      "recyclingRate": {
+        "label": "Återvinningsgrad",
+        "info": "Andel av PTO-aktiv tid som ägnas åt återvinning, beräknad som återvinningspumpens drifttid ÷ PTO-drifttid - inget mått på vattenvolym.",
+        "zeroNote": "Återvinningspumpen har inte körts under denna period."
+      },
+      "waterRecycled": {
+        "label": "Återvunnet Vatten",
+        "info": "Beräknat från återvinningspumpens drifttid x 350 L/min (kolvens kända flödeshastighet), inte en direkt mätning av vattenvolym.",
+        "zeroNote": "Återvinningspumpen har inte körts under denna period."
+      }
+    },
+    "info": {
+      "co2": "Utsläppt CO₂: uppskattat utifrån förbrukat bränsle (diesel × 2,68 kg/L per liter).",
+      "fuelUsed": "Använt Bränsle: totalt antal liter förbrukade under denna period.",
+      "utilisation": "Utnyttjande: andel av tiden med motorn på som ägnats åt arbete (PTO eller en pump aktiverad).",
+      "recyclingRate": "Återvinningsgrad: andel av PTO-aktiv tid som ägnas åt återvinning.",
+      "waterRecycled": "Återvunnet Vatten: totalt antal liter återvunnet vatten under denna period."
+    }
+  },
+  "health": {
+    "title": "Maskinens Hälsa",
+    "updated": "uppdaterad {{date}}",
+    "thresholdsPlaceholder": "⚠ Gränsvärden är platshållare.",
+    "kpi": {
+      "healthy": {
+        "label": "Frisk",
+        "note": "inom gränsvärden"
+      },
+      "serviceSoon": {
+        "label": "Service Snart",
+        "note": "närmar sig gränsvärde"
+      },
+      "serviceDue": {
+        "label": "Service Krävs",
+        "note": "över gränsvärde"
+      },
+      "pointsTracked": {
+        "label": "Spårade Punkter",
+        "note": "livstidsräknare"
+      }
+    },
+    "groups": {
+      "ptoAndPumps": "PTO och Pumpar",
+      "bodyAndCycles": "Kaross och Cykler",
+      "chassisMileage": "Chassiets Miltal",
+      "engine": "Motor"
+    },
+    "points": {
+      "pto": "",
+      "vacuumPump": "Vakuumpump",
+      "jettingPump": "Spolpump",
+      "recyclePump": "Återvinningspump",
+      "pistonMovesCompleted": "Fullförda Kolvrörelser",
+      "cassetteMovements": "Kassettrörelser",
+      "rearCoverOpenings": "Öppningar av Bakre Lucka",
+      "chassisMileage": "Chassiets Miltal",
+      "engineHours": "Motortimmar",
+      "coolantTemp": "Kylvätsketemperatur",
+      "oilTemp": "Oljetemperatur"
+    },
+    "probes": {
+      "cycloneProbe": "Cyklongivare",
+      "dynasetProbe": "Dynaset-givare",
+      "frontLevelProbe": "Främre Nivågivare",
+      "hydraulicPressureProbe": "Hydraultryckgivare",
+      "jettingProbe": "Spolgivare",
+      "pistonProbe": "Kolvgivare",
+      "rearLevelProbe": "Bakre Nivågivare",
+      "vacuumProbe": "Vakuumgivare"
+    },
+    "status": {
+      "ok": "OK",
+      "serviceSoon": "Service snart",
+      "serviceDue": "Service krävs",
+      "noReading": "Ingen avläsning"
+    },
+    "gauge": {
+      "limit": "gräns"
+    },
+    "cycleCounts": {
+      "title": "Cykelantal",
+      "note": "Kumulativt antal kolvrörelser, kassettrörelser och öppningar av bakre lucka."
+    },
+    "periodPicker": {
+      "day": "Dag",
+      "week": "Vecka",
+      "month": "Månad",
+      "range": "Intervall"
+    }
+  },
+  "alerts": {
+    "kpi": {
+      "emergencyStops": {
+        "label": "Nödstopp",
+        "note": "i registret"
+      },
+      "overrides": {
+        "label": "Åsidosättanden",
+        "note": "åsidosättanden av spärr"
+      },
+      "machineFaults": {
+        "label": "Maskinfel",
+        "note": "i registret"
+      }
+    },
+    "alarmStatus": {
+      "title": "Larmstatus",
+      "manual": "Manuell",
+      "automatic": "Automatisk",
+      "noData": "Inga data",
+      "ok": "OK"
+    },
+    "alarms": {
+      "lowLevelOverride": {
+        "label": "Åsidosättande av Lågnivå",
+        "activeLabel": "Intryckt"
+      },
+      "safetyCircuit": {
+        "label": "Säkerhetskrets",
+        "activeLabel": "Utlöst"
+      },
+      "oilLevel": {
+        "label": "Oljenivå",
+        "activeLabel": "Låg"
+      },
+      "oilTemperature": {
+        "label": "Oljetemperatur",
+        "activeLabel": "Hög"
+      }
+    },
+    "emergencyStopsLog": {
+      "title": "Logg för Nödstopp"
+    },
+    "operationalOverridesLog": {
+      "title": "Logg för Driftåsidosättanden"
+    },
+    "machineFaultsLog": {
+      "title": "Maskinfel"
+    },
+    "eventList": {
+      "none": "Inget registrerat."
+    },
+    "sensorHealth": {
+      "title": "Sensorernas Hälsa",
+      "fault": "Fel",
+      "ok": "OK",
+      "noData": "Inga data",
+      "dataUnavailable": "Data ej tillgängliga just nu",
+      "lastReading": "Senaste avläsning: {{when}}",
+      "noDataNote": "Inga data: inga sensoravläsningar har registrerats ännu för en eller flera sensorer ovan."
+    },
+    "estop": {
+      "warriorButton": {
+        "label": "Nödstopp — knapp intryckt (Warrior)",
+        "cause": "Nödstoppsknapp på fordonet intryckt"
+      },
+      "remoteButton": {
+        "label": "Nödstopp — knapp intryckt (fjärrkontroll)",
+        "cause": "Nödstoppsknapp på handhållen fjärrkontroll intryckt"
+      },
+      "remoteOutOfRange": {
+        "label": "Nödstopp — fjärrkontroll utom räckhåll",
+        "cause": "Fjärrkontrollen tappade sin länk till fordonet"
+      },
+      "remoteFallDetection": {
+        "label": "Nödstopp — falldetektering på fjärrkontroll",
+        "cause": "Fjärrkontrollen upptäckte att operatören fallit"
+      },
+      "safetyCircuitTripped": {
+        "label": "Nödstopp — säkerhetskrets utlöst",
+        "cause": "Säkerhetsspärrens krets utlöst"
+      },
+      "fallback": "Nödstopp"
+    },
+    "override": {
+      "lowLevel": {
+        "label": "Åsidosättande av lågnivå intryckt",
+        "cause": "Spolpump tvingad att köra med tanken vid eller under 20% — rekommenderas ej"
+      },
+      "fallback": "Driftåsidosättande"
+    },
+    "fault": {
+      "lowOil": {
+        "label": "Låg oljenivå",
+        "cause": "Hydrauloljenivå under den säkra gränsen"
+      },
+      "highOilTemp": {
+        "label": "Hög oljetemperatur",
+        "cause": "Hydrauloljetemperatur över den säkra gränsen"
+      },
+      "fallback": "Maskinfel"
+    }
+  },
+  "routes": {
+    "workLocationLog": {
+      "title": "Logg för Arbetsplatser",
+      "info": "Överallt där PTO och en pump var aktiva samtidigt, med GPS-data - över hela historiken, de senaste {{limit}} visas.",
+      "noData": "Inga arbetsplatser registrerade än."
+    },
+    "truckStopsLog": {
+      "title": "Logg för Lastbilsstopp",
+      "info": "Överallt där lastbilen slutade röra sig, med GPS-data - över hela historiken, de senaste {{limit}} visas.",
+      "noData": "Inga stopp registrerade än."
+    },
+    "weatherUnavailable": "väderdata ej tillgängliga",
+    "historicalWeatherUnavailable": "historiska väderdata ej tillgängliga än"
+  },
+  "pumps": {
+    "labels": {
+      "pto": "",
+      "idle": "PTO Tomgång",
+      "vacuum": "Vakuum",
+      "jet": "Spol",
+      "recycle": "Återvinning"
+    },
+    "utilisation": {
+      "title": "PTO-utnyttjande",
+      "subtitle": "Andel av PTO-tid",
+      "note": "Arbete och tomgång summerar till denna periods PTO-tid. Varje pumps stapel visar dess andel av den PTO-tiden — pumparna överlappar, så de summeras inte till en enda totalsumma.",
+      "noPto": "Ingen PTO-användning registrerad.",
+      "noPtoPeriod": "Ingen PTO-tid registrerad för denna period.",
+      "pumpsActive": "pumpar aktiva",
+      "ptoIdle": "PTO tomgång",
+      "notFitted": "Ej monterad på detta fordon"
+    },
+    "timeline": {
+      "title": "PTO- och Pumptidslinje",
+      "subtitle": "Exakta på/av-övergångar för en dag",
+      "noData": "Inga PTO-/pumptidslinjedata för detta fordon.",
+      "noDayData": "Inga tidslinjedata för denna dag.",
+      "on": "På",
+      "off": "Av"
+    },
+    "usage": {
+      "title": "PTO-tid — Arbete vs. Tomgång",
+      "noData": "Ingen PTO-användning registrerad.",
+      "pumpsActiveLong": "Pumpar aktiva (≥1 pump)",
+      "ptoIdleLong": "PTO tomgång (på, ingen pump)"
+    },
+    "trend": {
+      "title": "Pumpdrifttid — Per Pump",
+      "noData": "Ingen pumpanvändning registrerad."
+    },
+    "activityBars": {
+      "title": "PTO-/Pumpaktivitet",
+      "subtitle": "Minuter per period",
+      "noData": "Ingen PTO-användning registrerad."
+    },
+    "activitySingle": {
+      "title": "Användning — Minuter Körda",
+      "noData": "Ingen {{pump}}-användning registrerad."
+    },
+    "activationLog": {
+      "title": "Pumpaktiveringslogg",
+      "note": "Enskilda på/av-cykler för vakuum-, spol- och återvinningspumpar, senaste först, över hela historiken.",
+      "noData": "Ingen pumpaktivitet registrerad än.",
+      "ongoing": "pågående"
+    }
+  },
+  "fleet": {
+    "title": "Flottjämförelse",
+    "clickToOpen": "klicka på ett fordon för att öppna det",
+    "subtitle": "Alla registrerade fordon sida vid sida — sortera efter valfri kolumn. Sammanställt från varje fordons egen telemetri; ett streck betyder att den kanalen inte finns.",
+    "loading": "Läser in flotta…",
+    "noVehicles": "Inga fordon registrerade.",
+    "noGps": "ingen GPS",
+    "columns": {
+      "vehicle": "Fordon",
+      "hoursPerWeek": "Timmar/Vecka",
+      "utilisation": "Utnyttjande",
+      "fuelPerWeek": "Bränsle/Vecka",
+      "alerts": "Larm",
+      "lastSeen": "Senast Sedd"
+    },
+    "kpi": {
+      "vehicles": {
+        "label": "Fordon",
+        "note": "i flottan"
+      },
+      "totalHours": {
+        "label": "Totalt Timmar/Vecka"
+      },
+      "avgUtilisation": {
+        "label": "Gen. Utnyttjande"
+      },
+      "totalFuel": {
+        "label": "Totalt Bränsle/Vecka"
+      },
+      "openAlerts": {
+        "label": "Öppna Larm",
+        "note": "i hela flottan"
+      }
+    }
+  },
+  "costing": {
+    "title": "Bränslekostnad",
+    "rangeFullHistory": "hela historiken",
+    "measuredNote": "Kostnaden är ett intervall baserat på lastbilens egen spridning i bränsleförbrukning mellan arbete och icke-arbete; bränslepris och timlön är dina egna antaganden.",
+    "noFuelData": "Inga bränsledata för detta fordon — kostnadsberäkning kräver bränsleflödeskanalen, som denna lastbils telemetri saknar.",
+    "measured": {
+      "fuelBurned": {
+        "label": "Förbrukat Bränsle",
+        "sub": "under {{range}}"
+      },
+      "workingHours": {
+        "label": "Arbetstimmar",
+        "sub": "PTO eller pump aktiverad"
+      },
+      "workingFuelRate": {
+        "label": "Bränsleförbrukning vid Arbete",
+        "sub": "intervall {{low}}–{{high}}"
+      },
+      "offtaskFuelRate": {
+        "label": "Bränsleförbrukning utom Arbete",
+        "sub": "intervall {{low}}–{{high}} · inkl. tomgång"
+      }
+    },
+    "estimator": {
+      "title": "Kostnadsberäknare för Jobb",
+      "currency": "Valuta",
+      "fuelPrice": "Bränslepris ({{cur}}/L)",
+      "labourRate": "Timlön ({{cur}}/h)",
+      "workingHours": "Arbetstimmar",
+      "travelIdleHours": "Körnings-/tomgångstimmar",
+      "estimatedCost": "Uppskattad kostnad för detta jobb",
+      "lowBreakdown": "Låg · bränsle {{fuel}} + lön {{labour}}",
+      "highBreakdown": "Hög · bränsle {{fuel}} + lön {{labour}}",
+      "notEnoughData": "Inte tillräckligt med bränsleförbrukningsdata för att göra en kostnadsuppskattning.",
+      "note": "Intervallet kommer från denna lastbils p25–p75 spridning i bränsleförbrukning: den låga kostnaden antar den lättaste förbrukningen, den höga den tyngsta. Lönen är densamma i båda."
+    },
+    "measuredCost": {
+      "title": "Uppmätt Bränslekostnad",
+      "actualBurnedRange": "Faktiskt förbrukat bränsle under {{range}}, till {{price}}/L",
+      "actualBurnedDays_one": "Faktiskt förbrukat bränsle under {{count}} vald dag, till {{price}}/L",
+      "actualBurnedDays_other": "Faktiskt förbrukat bränsle under {{count}} valda dagar, till {{price}}/L",
+      "measuredBreakdown": "{{litres}} L uppmätt · {{sel}} av {{total}} dagar",
+      "corruptDiscarded_one": "· {{count}} felaktig avläsning bortsorterad",
+      "corruptDiscarded_other": "· {{count}} felaktiga avläsningar bortsorterade",
+      "note": "Välj vilka dagar som ska ingå — varje bubbla är en dag med bränsledata. Kostnaden är de uppmätta litrarna på de valda dagarna (den dagliga räknarskillnaden, prissatt till ditt bränslepris ovan); räknarnollställningar och orimliga toppar sorteras alltid bort, räknas aldrig."
+    },
+    "dayPicker": {
+      "daysOf": "{{selected}} av {{available}} dagar",
+      "all": "Alla",
+      "clear": "Rensa",
+      "prevMonth": "Föregående månad",
+      "nextMonth": "Nästa månad",
+      "toggleMonthTitle": "Välj eller rensa hela denna månad",
+      "noFuelData": "inga bränsledata"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "revive-live-demo-frontend",
+  "description": "Revive Live Frontend",
+  "homepage": "https://revive-live-demo.vercel.app/",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ReviveLive/Demo.git"
+  },
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:static": "vite build --mode static",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "i18next": "^26.4.2",
+    "jspdf": "^4.2.1",
+    "leaflet": "^1.9.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^17.0.13",
+    "recharts": "^2.12.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.2"
+  }
+}

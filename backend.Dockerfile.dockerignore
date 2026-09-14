@@ -1,0 +1,11 @@
+# Keep the build context small. Paths are relative to the build context (the
+# project root). The backend image only needs backend/requirements.txt and
+# backend/revive, but the whole context is sent to Docker unless excluded here.
+backend/.venv
+**/__pycache__
+frontend/node_modules
+frontend/dist
+pgdata
+processed
+incoming
+.git

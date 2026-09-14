@@ -1,0 +1,652 @@
+{
+  "common": {
+    "grain": {
+      "day": "",
+      "week": "",
+      "month": ""
+    },
+    "nav": {
+      "prev": "",
+      "next": ""
+    },
+    "loading": "",
+    "noDataForPeriod": "",
+    "routePanel": {
+      "title": "",
+      "noLocation": "",
+      "noGpsForDay": "",
+      "noGpsFallback": "",
+      "ptoActive": "",
+      "start": "",
+      "end": "",
+      "driving": "",
+      "stop": "",
+      "workingStop": "",
+      "stops": ""
+    },
+    "mapPanel": {
+      "title": "",
+      "noLocation": ""
+    },
+    "weatherPanel": {
+      "title": "",
+      "noLocation": "",
+      "unavailable": "",
+      "now": "",
+      "overnightLow": "",
+      "blowdown": "",
+      "storm": "",
+      "illustrative": "",
+      "rainIn": "",
+      "theArea": "",
+      "outlookUnavailable": "",
+      "unlikelyToday": "",
+      "chance": "",
+      "mm": "",
+      "expectedToday": "",
+      "heaviestAt": "",
+      "peak": {
+        "overnight": "",
+        "morning": "",
+        "midday": "",
+        "afternoon": "",
+        "evening": ""
+      }
+    },
+    "weatherConditions": {
+      "clear": "",
+      "mainlyClear": "",
+      "partlyCloudy": "",
+      "overcast": "",
+      "fog": "",
+      "drizzle": "",
+      "lightRain": "",
+      "rain": "",
+      "heavyRain": "",
+      "snow": "",
+      "showers": "",
+      "heavyShowers": "",
+      "snowShowers": "",
+      "thunderstorm": "",
+      "cloudy": ""
+    },
+    "weekdaysShort": {
+      "mon": "",
+      "tue": "",
+      "wed": "",
+      "thu": "",
+      "fri": "",
+      "sat": "",
+      "sun": ""
+    }
+  },
+  "overview": {
+    "dayStatusBar": {
+      "statusOnNamed": "",
+      "statusOnGeneric": "",
+      "prevDay": "",
+      "nextDay": "",
+      "latest": ""
+    },
+    "kpi": {
+      "utilisation": {
+        "label": "",
+        "note": ""
+      },
+      "hours": {
+        "label": "",
+        "note": ""
+      },
+      "atWork": {
+        "label": "",
+        "notePct": "",
+        "noteNoRoute": ""
+      },
+      "jobs": {
+        "label": "",
+        "note": ""
+      },
+      "stops": {
+        "label": "",
+        "note": ""
+      },
+      "openAlerts": {
+        "label": "",
+        "noteInRecord": ""
+      }
+    },
+    "routeToggle": {
+      "routes": "",
+      "location": ""
+    },
+    "activity": {
+      "title": "",
+      "mismatch": "",
+      "noData": "",
+      "atWork": "",
+      "travel": "",
+      "idle": "",
+      "jobs": "",
+      "stops": ""
+    },
+    "currentStatus": {
+      "title": "",
+      "segments": {
+        "offline": "",
+        "live": "",
+        "travelling": "",
+        "idle": "",
+        "working": ""
+      },
+      "indicators": {
+        "pto": "",
+        "vac": "",
+        "jet": "",
+        "rec": ""
+      }
+    },
+    "tankLevels": {
+      "title": "",
+      "noData": "",
+      "frontWater": "",
+      "rearSludge": "",
+      "frontCompartmentWater": "",
+      "fullAria": ""
+    },
+    "vehicleWeight": {
+      "title": "",
+      "noData": "",
+      "total": ""
+    },
+    "fuelConsumed": {
+      "title": "",
+      "noDataFallback": "",
+      "noData": "",
+      "travelIdle": ""
+    }
+  },
+  "trends": {
+    "title": "",
+    "monthlyNote": "",
+    "kpiNote": {
+      "vsLast": ""
+    },
+    "metrics": {
+      "operatingHours": {
+        "label": ""
+      },
+      "waterRecycled": {
+        "label": ""
+      },
+      "fuelUsed": {
+        "label": ""
+      },
+      "fuelRate": {
+        "label": ""
+      },
+      "engineRpm": {
+        "label": ""
+      },
+      "safetyEvents": {
+        "label": ""
+      }
+    },
+    "safetyTimeline": {
+      "title": "",
+      "inThisPeriod": "",
+      "noEvents": "",
+      "tooltip_one": "",
+      "tooltip_other": ""
+    },
+    "rpmChart": {
+      "title": "",
+      "noData": "",
+      "ptoOff": "",
+      "atWork": ""
+    }
+  },
+  "sustainability": {
+    "title": "",
+    "kpi": {
+      "co2": {
+        "label": "",
+        "note": ""
+      },
+      "recyclingRate": {
+        "label": "",
+        "note": ""
+      },
+      "avgUtilisation": {
+        "label": "",
+        "note": ""
+      },
+      "fuel": {
+        "label": ""
+      },
+      "waterRecycled": {
+        "label": ""
+      }
+    },
+    "charts": {
+      "co2": {
+        "label": "",
+        "info": ""
+      },
+      "fuelUsed": {
+        "label": "",
+        "info": ""
+      },
+      "utilisation": {
+        "label": "",
+        "info": ""
+      },
+      "recyclingRate": {
+        "label": "",
+        "info": "",
+        "zeroNote": ""
+      },
+      "waterRecycled": {
+        "label": "",
+        "info": "",
+        "zeroNote": ""
+      }
+    },
+    "info": {
+      "co2": "",
+      "fuelUsed": "",
+      "utilisation": "",
+      "recyclingRate": "",
+      "waterRecycled": ""
+    }
+  },
+  "health": {
+    "title": "",
+    "updated": "",
+    "thresholdsPlaceholder": "",
+    "kpi": {
+      "healthy": {
+        "label": "",
+        "note": ""
+      },
+      "serviceSoon": {
+        "label": "",
+        "note": ""
+      },
+      "serviceDue": {
+        "label": "",
+        "note": ""
+      },
+      "pointsTracked": {
+        "label": "",
+        "note": ""
+      }
+    },
+    "groups": {
+      "ptoAndPumps": "",
+      "bodyAndCycles": "",
+      "chassisMileage": "",
+      "engine": ""
+    },
+    "points": {
+      "pto": "",
+      "vacuumPump": "",
+      "jettingPump": "",
+      "recyclePump": "",
+      "pistonMovesCompleted": "",
+      "cassetteMovements": "",
+      "rearCoverOpenings": "",
+      "chassisMileage": "",
+      "engineHours": "",
+      "coolantTemp": "",
+      "oilTemp": ""
+    },
+    "probes": {
+      "cycloneProbe": "",
+      "dynasetProbe": "",
+      "frontLevelProbe": "",
+      "hydraulicPressureProbe": "",
+      "jettingProbe": "",
+      "pistonProbe": "",
+      "rearLevelProbe": "",
+      "vacuumProbe": ""
+    },
+    "status": {
+      "ok": "",
+      "serviceSoon": "",
+      "serviceDue": "",
+      "noReading": ""
+    },
+    "gauge": {
+      "limit": ""
+    },
+    "cycleCounts": {
+      "title": "",
+      "note": ""
+    },
+    "periodPicker": {
+      "day": "",
+      "week": "",
+      "month": "",
+      "range": ""
+    }
+  },
+  "alerts": {
+    "kpi": {
+      "emergencyStops": {
+        "label": "",
+        "note": ""
+      },
+      "overrides": {
+        "label": "",
+        "note": ""
+      },
+      "machineFaults": {
+        "label": "",
+        "note": ""
+      }
+    },
+    "alarmStatus": {
+      "title": "",
+      "manual": "",
+      "automatic": "",
+      "noData": "",
+      "ok": ""
+    },
+    "alarms": {
+      "lowLevelOverride": {
+        "label": "",
+        "activeLabel": ""
+      },
+      "safetyCircuit": {
+        "label": "",
+        "activeLabel": ""
+      },
+      "oilLevel": {
+        "label": "",
+        "activeLabel": ""
+      },
+      "oilTemperature": {
+        "label": "",
+        "activeLabel": ""
+      }
+    },
+    "emergencyStopsLog": {
+      "title": ""
+    },
+    "operationalOverridesLog": {
+      "title": ""
+    },
+    "machineFaultsLog": {
+      "title": ""
+    },
+    "eventList": {
+      "none": ""
+    },
+    "sensorHealth": {
+      "title": "",
+      "fault": "",
+      "ok": "",
+      "noData": "",
+      "dataUnavailable": "",
+      "lastReading": "",
+      "noDataNote": ""
+    },
+    "estop": {
+      "warriorButton": {
+        "label": "",
+        "cause": ""
+      },
+      "remoteButton": {
+        "label": "",
+        "cause": ""
+      },
+      "remoteOutOfRange": {
+        "label": "",
+        "cause": ""
+      },
+      "remoteFallDetection": {
+        "label": "",
+        "cause": ""
+      },
+      "safetyCircuitTripped": {
+        "label": "",
+        "cause": ""
+      },
+      "fallback": ""
+    },
+    "override": {
+      "lowLevel": {
+        "label": "",
+        "cause": ""
+      },
+      "fallback": ""
+    },
+    "fault": {
+      "lowOil": {
+        "label": "",
+        "cause": ""
+      },
+      "highOilTemp": {
+        "label": "",
+        "cause": ""
+      },
+      "fallback": ""
+    }
+  },
+  "routes": {
+    "workLocationLog": {
+      "title": "",
+      "info": "",
+      "noData": ""
+    },
+    "truckStopsLog": {
+      "title": "",
+      "info": "",
+      "noData": ""
+    },
+    "weatherUnavailable": "",
+    "historicalWeatherUnavailable": ""
+  },
+  "pumps": {
+    "labels": {
+      "pto": "",
+      "idle": "",
+      "vacuum": "",
+      "jet": "",
+      "recycle": ""
+    },
+    "utilisation": {
+      "title": "",
+      "subtitle": "",
+      "note": "",
+      "noPto": "",
+      "noPtoPeriod": "",
+      "pumpsActive": "",
+      "ptoIdle": "",
+      "notFitted": ""
+    },
+    "timeline": {
+      "title": "",
+      "subtitle": "",
+      "noData": "",
+      "noDayData": "",
+      "on": "",
+      "off": ""
+    },
+    "usage": {
+      "title": "",
+      "noData": "",
+      "pumpsActiveLong": "",
+      "ptoIdleLong": ""
+    },
+    "trend": {
+      "title": "",
+      "noData": ""
+    },
+    "activityBars": {
+      "title": "",
+      "subtitle": "",
+      "noData": ""
+    },
+    "activitySingle": {
+      "title": "",
+      "noData": ""
+    },
+    "activationLog": {
+      "title": "",
+      "note": "",
+      "noData": "",
+      "ongoing": ""
+    }
+  },
+  "fleet": {
+    "title": "",
+    "clickToOpen": "",
+    "subtitle": "",
+    "loading": "",
+    "noVehicles": "",
+    "noGps": "",
+    "columns": {
+      "vehicle": "",
+      "hoursPerWeek": "",
+      "utilisation": "",
+      "fuelPerWeek": "",
+      "alerts": "",
+      "lastSeen": ""
+    },
+    "kpi": {
+      "vehicles": {
+        "label": "",
+        "note": ""
+      },
+      "totalHours": {
+        "label": ""
+      },
+      "avgUtilisation": {
+        "label": ""
+      },
+      "totalFuel": {
+        "label": ""
+      },
+      "openAlerts": {
+        "label": "",
+        "note": ""
+      }
+    }
+  },
+  "costing": {
+    "title": "",
+    "rangeFullHistory": "",
+    "measuredNote": "",
+    "noFuelData": "",
+    "measured": {
+      "fuelBurned": {
+        "label": "",
+        "sub": ""
+      },
+      "workingHours": {
+        "label": "",
+        "sub": ""
+      },
+      "workingFuelRate": {
+        "label": "",
+        "sub": ""
+      },
+      "offtaskFuelRate": {
+        "label": "",
+        "sub": ""
+      }
+    },
+    "estimator": {
+      "title": "",
+      "currency": "",
+      "fuelPrice": "",
+      "labourRate": "",
+      "workingHours": "",
+      "travelIdleHours": "",
+      "estimatedCost": "",
+      "lowBreakdown": "",
+      "highBreakdown": "",
+      "notEnoughData": "",
+      "note": ""
+    },
+    "measuredCost": {
+      "title": "",
+      "actualBurnedRange": "",
+      "actualBurnedDays_one": "",
+      "actualBurnedDays_other": "",
+      "measuredBreakdown": "",
+      "corruptDiscarded_one": "",
+      "corruptDiscarded_other": "",
+      "note": ""
+    },
+    "dayPicker": {
+      "daysOf": "",
+      "all": "",
+      "clear": "",
+      "prevMonth": "",
+      "nextMonth": "",
+      "toggleMonthTitle": "",
+      "noFuelData": ""
+    }
+  },
+  "nav": {
+    "overview": {
+      "label": "",
+      "title": ""
+    },
+    "fleet": {
+      "label": "",
+      "title": "",
+      "crumb": ""
+    },
+    "trends": {
+      "label": "",
+      "title": ""
+    },
+    "sustainability": {
+      "label": "",
+      "title": ""
+    },
+    "health": {
+      "label": "",
+      "title": ""
+    },
+    "alerts": {
+      "label": "",
+      "title": ""
+    },
+    "pumps": {
+      "label": "",
+      "title": ""
+    },
+    "routes": {
+      "label": "",
+      "title": ""
+    },
+    "costing": {
+      "label": "",
+      "title": ""
+    },
+    "groups": {
+      "vehicle": "",
+      "fleet": ""
+    }
+  },
+  "app": {
+    "menu": "",
+    "generateReport": "",
+    "lastKnownValues": "",
+    "vehicle": "",
+    "selectVehicle": "",
+    "live": "",
+    "offline": "",
+    "toggleDarkMode": "",
+    "noVehiclesVisible": "",
+    "apiError": {
+      "title": "",
+      "hint": ""
+    },
+    "footer": ""
+  }
+}
