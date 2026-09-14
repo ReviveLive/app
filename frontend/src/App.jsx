@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Analytics } from "@vercel/analytics/react";
 import { getVehicles, getLastKnown, getCustomer } from "./api.js";
 import { fmtDMY, fmtDMYTime } from "./dates.js";
 import OverviewPage from "./pages/OverviewPage.jsx";
@@ -346,7 +345,6 @@ export default function App() {
         <ReportDialog vehicles={vehicles} vehicleId={vehicleId} readings={readings}
           onClose={() => setReportOpen(false)} />
       )}
-      <Analytics />
     </div>
   );
 }
