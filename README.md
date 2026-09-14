@@ -98,6 +98,20 @@ by the platform's internal network.
 
 ## Local dev (no deployment)
 
+**Against a real Railway database (recommended — no local Postgres needed):**
+```powershell
+.\dev-start-railway.ps1
+```
+First run creates `.env.railway` and asks you to fill in
+`RAILWAY_DATABASE_URL` (Railway dashboard → the Postgres service → Connect →
+the public connection string), then re-run. It sets up the backend venv and
+frontend `node_modules` if they don't exist yet, then launches both against
+that database — read-only, so this carries no write risk. The vehicle
+dropdown starts empty until you set `$env:VISIBLE_VEHICLES` or
+`$env:CUSTOMER_ID` (the script prints the exact syntax) — the API fails
+closed with neither set, per CLAUDE.md non-negotiable #4.
+
+**Against a local Postgres instead:**
 ```bash
 # backend, from backend/ with a venv active and requirements installed:
 uvicorn revive.api:app --reload
