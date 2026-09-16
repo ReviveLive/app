@@ -37,6 +37,7 @@
   --red-soft: rgba(220, 38, 38, 0.12);
   --blue: #2a78d6;
   --violet: #6d5ae0;
+  --brown: #a97a4b; /* rear (sludge) tank fill - distinct from front (water)'s --blue */
 
   /* Elevation (flat + subtle) */
   --elev-1: 0 1px 2px rgba(15, 27, 45, 0.05), 0 1px 3px rgba(15, 27, 45, 0.04);
@@ -95,6 +96,7 @@ html.dark {
   --red-soft: rgba(242, 114, 111, 0.15);
   --blue: #4d9bf0;
   --violet: #9b87f5;
+  --brown: #c89b6a; /* rear (sludge) tank fill - distinct from front (water)'s --blue */
 
   --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
   --elev-2: 0 8px 22px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -667,10 +669,12 @@ html.dark .skel-line::after { background: linear-gradient(90deg, transparent, rg
 .tank-fill { position: absolute; left: 0; right: 0; bottom: 0;
   background: linear-gradient(180deg, color-mix(in srgb, var(--blue) 78%, transparent), var(--blue));
   transition: height 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.tank-fill.sludge { background: linear-gradient(180deg, color-mix(in srgb, var(--brown) 78%, transparent), var(--brown)); }
 .tank-fill.low { background: linear-gradient(180deg, color-mix(in srgb, var(--amber) 78%, transparent), var(--amber)); }
 .tank-wave { position: absolute; left: 0; right: 0; top: -6px; height: 8px;
   background: color-mix(in srgb, var(--blue) 50%, var(--surface));
   border-radius: 50%; opacity: 0.6; }
+.tank-fill.sludge .tank-wave { background: color-mix(in srgb, var(--brown) 50%, var(--surface)); }
 .tank-fill.low .tank-wave { background: color-mix(in srgb, var(--amber) 50%, var(--surface)); }
 .tank-ticks { position: absolute; inset: 0; pointer-events: none; }
 .tank-tick { position: absolute; right: 0; width: 8px; height: 2px; background: var(--line-strong); }

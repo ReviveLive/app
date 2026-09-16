@@ -8,9 +8,10 @@ import { useTranslation } from "react-i18next";
 const TANK_CAPACITY_M3 = 8;
 const LOW_PCT = 20;
 
-function Vessel({ label, pct }) {
+function Vessel({ label, pct, sludge }) {
   const { t } = useTranslation();
   const low = pct <= LOW_PCT;
+  const cls = "tank-fill" + (sludge ? " sludge" : "") + (low ? " low" : "");
   return (
     <div className="tank-gauge-body">
       <div className="tank-vessel" role="img" aria-label={t("overview.tankLevels.fullAria", { label, pct: pct.toFixed(0) })}>
@@ -19,7 +20,7 @@ function Vessel({ label, pct }) {
             <span className="tank-tick" key={t} style={{ bottom: `${t}%` }} />
           ))}
         </div>
-        <div className={"tank-fill" + (low ? " low" : "")} style={{ height: `${pct}%` }}>
+        <div className={cls} style={{ height: `${pct}%` }}>
           <span className="tank-wave" />
         </div>
       </div>
@@ -56,7 +57,7 @@ export default function TankLevel({ readings }) {
         {hasSplit ? (
           <>
             <Vessel label={t("overview.tankLevels.frontWater")} pct={Math.max(0, Math.min(100, front ?? 0))} />
-            <Vessel label={t("overview.tankLevels.rearSludge")} pct={Math.max(0, Math.min(100, rear ?? 0))} />
+            <Vessel label={t("overview.tankLevels.rearSludge")} pct={Math.max(0, Math.min(100, rear ?? 0))} sludge />
           </>
         ) : (
           <Vessel label={t("overview.tankLevels.frontCompartmentWater")}
